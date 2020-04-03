@@ -1,4 +1,32 @@
 Phase de Réflexion:
-
+	Penser à vérifier les champs de saisies
+	Faire un drag and drop pour ordonner les valeurs
 
 Répartition des tâches:
+	- Léopold fais le maquetage
+
+
+Maquetage du site:
+	4 pages html 
+		- index.html: Permet de saisir le nom du modèle, le nom du fichier, le type de fichiers, le nombre de ligne à générer, le nombre de type de 			  champs.
+					  Clique sur un bouton générer qui permet de générer de la donnée et renvoie sur la page generate.html
+
+		- generate.html: Contient un tableau avec chaques types de variable sélectionnée plutôt:
+							Chaque type aura une colonne avec nom de champs(nom de la table sql)
+								*bool, int, double, double float: valeur_min, valeur_max
+								*date, date_time, time: val_min_date, val_max_date
+								*char, varchar: va piocher du texte dans un fichier .txt
+							Possibilité de bouger chaque Int avec un drag and drop pour les positionner
+							Afficher le résultat dans une petite console en dessous.
+							Proposer de télécharger le fichier.
+							Envoyer le modèle dans la bdd si sauvegarde ok
+
+		- replay.html: Contient la liste des modèles présentes dans la bdd
+					   Choix du fichier de téléchargement, renommer le fichier de sortie 
+					   Possibilité de remodifier les valeurs en renvoyant le modèle dans generate.html => button Modifier valeur
+					   Possibilité de remodifier les types en renvoyant le modèle dans index.html => button Modifier type 
+
+		- back.html: Permet de cacher ou supprimer un champ dans un modèle (Le champ ne peut plus apparaître dans le modèle)
+
+
+
