@@ -4,6 +4,8 @@ Phase de Réflexion:
 
 Répartition des tâches:
 	- Léopold fais le maquetage
+	- Léopold s'occupe du front et de la récupération des données en PHP (saisie, mauvaise saisie)
+	- Victor fais la connection à la base de donnée, les requêtes ainsi la génération des .sql et des .csv (peut-être laisse léopold faire ça)
 
 
 Maquetage du site:
