@@ -11,7 +11,7 @@ Répartition des tâches:
 Maquetage du site:
 	4 pages html 
 		- index.html: Permet de saisir le nom du modèle, le nom du fichier, le type de fichiers, le nombre de ligne à générer, le nombre de type de 			  champs.
-					  Clique sur un bouton générer qui permet de générer de la donnée et renvoie sur la page generate.html
+					  Clique sur un bouton Next qui permet de générer de la donnée et renvoie sur la page generate.html
 
 		- generate.html: Contient un tableau avec chaques types de variable sélectionnée plutôt:
 							Chaque type aura une colonne avec nom de champs(nom de la table sql)
