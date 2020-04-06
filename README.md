@@ -6,12 +6,12 @@ Application permettant de générer de la donnée dans un format SQL/CSV à part
 ## Maquette du site 
 
 #### Page d'accueil
-[index][https://github.com/Gouderg/app-Brocoli/blob/master/maquette/index.PNG]
+![index][https://github.com/Gouderg/app-Brocoli/blob/master/maquette/index.png]
 
 
 #### Génération des données
-[generate][https://github.com/Gouderg/app-Brocoli/blob/master/maquette/generate.PNG]
+![generate][https://github.com/Gouderg/app-Brocoli/blob/master/maquette/generate.png]
 
 
 #### Gestion des modèles
-[replay][https://github.com/Gouderg/app-Brocoli/blob/master/maquette/replay.PNG]
+![replay][https://github.com/Gouderg/app-Brocoli/blob/master/maquette/replay.png]
