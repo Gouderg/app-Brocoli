@@ -8,10 +8,6 @@ Répartition des tâches:
 	- Victor fais la connection à la base de donnée, les requêtes ainsi la génération des .sql et des .csv (peut-être laisse léopold faire ça)
 
 
-
-
-
-
 Maquetage du site:
 	4 pages html 
 		- index.html: Permet de saisir le nom du modèle, le nom du fichier, le type de fichiers, le nombre de ligne à générer, le nombre de type de 			  champs.
@@ -44,4 +40,4 @@ Refonte du site:
 				   TITLE -> Nom du modèle
 				   Sauvegarder: bouton
 
-			 
+	replay.html: Enlever le generate, Rename Modèle		 
