@@ -1,99 +1,113 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
 	<meta charset="utf-8">
-	<title>Mini P
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-	ojet</title>
-</head>
-<body>
-
+	<title>Projet Broccoli</title>
+</head>	
 <body>
 	<header>
-		<a href="index.html">
-			<img src="image/Logo_Fiver2.png" alt="logo">
-		 </a>
-		<img src="image/france3.png" id="bretagne" alt="france">
-		<img src="image/location.svg" id="localisation" alt="localisation">
-		
-		<h1 id="devise">Vous Loger, Notre Métier</h1>
-		
-		<div class= "dropdown">
-			<img src="image/menu.svg" id="menu" alt="menu">
-			<h2>Menu</h2>
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6ACA6B;">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="true"><img src="img/Menu.png" width="50%"></a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Rejouer un modèle</a>
+					<a class="dropdown-item" href="#">Autre chose </a>
+				</div>
+				<div class="text-center"><h1 style="font-weight: bold;">BROCCOLI - DATA GENERATOR</h1></div>
+				
+			</div>
+		</nav>
+	</header>
+	
+	<form method="POST">
+		<div class="container"> 
+			<br>
+			<h1>Générateur de données</h1>
+			<hr>
+			<img src="img/brocolis.jpg" width="20%" class="rounded float-right">
 
-			<div class="dropdown-content">
-				<a href = "rechercheGlobal.html">
-					<p>Acheter un bien </p>
-				</a>
-				<a href = "contact.html">
-					<p>Nous Contacter </p>
-				</a>
-				<a href="agence.html">
-					<p>Qui Sommes-Nous</p>
-				</a>
+			<div class="form-group row">
+				<label for="nomModele" class="col-sm-2 col-form-label">Nom du modèle</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="nomModele">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="nomFichier" class="col-sm-2 col-form-label">Nom du fichier</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="nomFichier">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de ligne</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="nbLigne" size="50">
+				</div>
 			</div>
 		</div>
-	</header>
-
-
-	<form method="post" id="saisie">
-		Votre recherche : 
-		<select id="type">
-			<option id="Appartement">Appartement</option>
-			<option id="Maison">Maison</option>
-		</select>
-		à
-		<select id="ville">
-			<option id="brest">Brest</option>
-			<option id="rennes">Rennes</option>
-		</select>
-	
-		<button id="recherche">Rechercher</button>
+		<br>
+		<div class="container">
+			<h2>Nombre de Champs types: </h2>
+			<hr>
+			
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="int">Integer</label>
+					<input type="text" class="form-control" id="int" placeholder="0">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="double">Double-Float</label>
+					<input type="text" class="form-control" id="double" placeholder="0">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="tinyInt">Tiny-Int</label>
+					<input type="text" class="form-control" id="tinyInt" placeholder="0">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="varchar">Varchar</label>
+					<input type="text" class="form-control" id="varchar" placeholder="0">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="char">Char</label>
+					<input type="text" class="form-control" id="char" placeholder="0">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="boolean">Boolean</label>
+					<input type="text" class="form-control" id="boolean" placeholder="0">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="date">Date</label>
+					<input type="text" class="form-control" id="date" placeholder="0">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="time">Time</label>
+					<input type="text" class="form-control" id="time" placeholder="0">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="datetime">DateTime</label>
+					<input type="text" class="form-control" id="datetime" placeholder="0">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-success btn-lg">Suivant</button>
+		</div>
 	</form>
+	<br><br><br>
 
-	
-	
-
-	<div id="slider">
-		<h2>Nos Coups de Coeurs</h2>
-		<figure>
-			<img src="image/maison1.jpg" alt="maison1">
-			<img src="image/maison1.jpg" alt="maison2">
-			<img src="image/maison1.jpg" alt="maison3">
-			<img src="image/maison1.jpg" alt="maison4">
-		</figure>
+	<footer id="sticky-footer" class="py-4" style="background-color: #6ACA6B;">
+		<div class="container text-center">
+			<small>Copyright PRALAIN Léopold - ILLIEN Victor</small>
+		</div>
 		
-		<button id="coeur">Visiter!</button> <br><br>
-	</div>
-
-		
-
-	<footer>
-		<a href="index.html">
-			<img id="Logo" src="image/Logo_Fiver2.png" alt="logo">
-		</a>
-		<a href="https://www.facebook.com/">
-			<img id="facebook" src="image/Facebook-Icon.svg" alt="facebook">
-		</a>
-		<a href="https://twitter.com/">
-			<img  id="twitter" src="image/Twitter-Icon.svg" alt="twitter">
-		</a>
-		<a href="https://fr.linkedin.com/">
-			<img  id="linkedin" src="image/linkedin-3.svg" alt="linkedin">
-		</a>
-		<a href="agence.html">
-			<p id="Quifoot">Qui sommes-nous ?</p>
-		</a>
-		<a href="mentionLegale.html">
-			<p id="MentionFoot">Mentions Légales </p>
-		</a>
-		<a href = "contact.html">
-			<p id="Contactfoot">Contactez-nous !</p>
-		</a>
-		<p id="Copyrights">Copyrights FIVER 2019. Tous droits réservés</p>
 	</footer>
-
 </body>
 </html>
-
