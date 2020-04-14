@@ -7,11 +7,12 @@ html {
 	height: 100%
 }
 
-h2{
+#ch{
+	position: relative;
 	color:#333333;
-	position: absolute;
+	
 	font-family: verdana;
-	right: 70%;
+	left: 8%;
 }
 
  #contenu{
@@ -262,7 +263,7 @@ font-weight: bold;
 font-size: 18px;
 left: 80%;
 top: 95%;
-border-radius: 25%;
+border-radius: 35%;
 }
 a.generer:hover {
 background: #570906;
