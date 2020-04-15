@@ -18,7 +18,7 @@
 			<br>
 			<h1>Générateur de données</h1>
 			<hr>
-			<img src="img/brocolis.jpg" width="20%" class="rounded float-right">
+			<img src="img/icon/brocolis.jpg" width="20%" class="rounded float-right">
 
 			<div class="form-group row">
 				<label for="nomModele" class="col-sm-2 col-form-label">Nom du modèle</label>
