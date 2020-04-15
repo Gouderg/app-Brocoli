@@ -11,19 +11,7 @@
 	<title>Projet Broccoli</title>
 </head>	
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6ACA6B;">
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="true"><img src="img/Menu.png" width="50%"></a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Rejouer un modèle</a>
-					<a class="dropdown-item" href="#">Autre chose </a>
-				</div>
-				<div class="text-center"><h1 style="font-weight: bold;">BROCCOLI - DATA GENERATOR</h1></div>
-				
-			</div>
-		</nav>
-	</header>
+	<?php require "html/header.html" ?>
 	
 	<form method="POST">
 		<div class="container"> 
@@ -102,12 +90,6 @@
 		</div>
 	</form>
 	<br><br><br>
-
-	<footer id="sticky-footer" class="py-4" style="background-color: #6ACA6B;">
-		<div class="container text-center">
-			<small>Copyright PRALAIN Léopold - ILLIEN Victor</small>
-		</div>
-		
-	</footer>
+	<?php require "html/footer.html" ?>
 </body>
 </html>
