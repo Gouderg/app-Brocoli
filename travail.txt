@@ -41,3 +41,8 @@ Refonte du site:
 				   Sauvegarder: bouton
 
 	replay.html: Enlever le generate, Rename Modèle		 
+
+
+
+Mémo Base de donnée:
+	La base de donnée hébergé est différente de ce qu'il faut générer. Dans la base, il y a les titres à générer.

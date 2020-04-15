@@ -1,8 +1,4 @@
 #------------------------------------------------------------
-# Table: modele
-#------------------------------------------------------------
-
-#------------------------------------------------------------
 # Change database
 #------------------------------------------------------------
 USE projetIV_PL;
@@ -14,7 +10,9 @@ DROP TABLE IF EXISTS modele;
 DROP TABLE IF EXISTS type_champ;
 DROP TABLE IF EXISTS champ;
 
-
+#------------------------------------------------------------
+# Table: modele
+#------------------------------------------------------------
 CREATE TABLE modele(
         libelle       Varchar (50) NOT NULL ,
         nom_fichier   Varchar (50) NOT NULL ,
@@ -27,7 +25,6 @@ CREATE TABLE modele(
 #------------------------------------------------------------
 # Table: type_champ
 #------------------------------------------------------------
-
 CREATE TABLE type_champ(
         type_champ Varchar (1024) NOT NULL ,
         actif      Bool NOT NULL
@@ -38,17 +35,16 @@ CREATE TABLE type_champ(
 #------------------------------------------------------------
 # Table: champ
 #------------------------------------------------------------
-
 CREATE TABLE champ(
         id           Int  Auto_increment  NOT NULL ,
         nom_champ    Varchar (50) NOT NULL ,
-        longueur     Double NOT NULL ,
-        val_min_nb   Double NOT NULL ,
-        val_max_nb   Double NOT NULL ,
-        val_min_date Date NOT NULL ,
-        val_max_date Date NOT NULL ,
-        liste_txt    Varchar (1024) NOT NULL ,
-        fichier      Varchar (1024) NOT NULL ,
+        longueur     Double NULL ,
+        val_min_nb   Double NULL ,
+        val_max_nb   Double NULL ,
+        val_min_date Date NULL ,
+        val_max_date Date NULL ,
+        liste_txt    Varchar (1024) NULL ,
+        fichier      Varchar (1024) NULL ,
         libelle      Varchar (50) NOT NULL ,
         type_champ   Varchar (1024) NOT NULL
 	,CONSTRAINT champ_PK PRIMARY KEY (id)
