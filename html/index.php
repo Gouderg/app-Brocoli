@@ -11,14 +11,14 @@
 	<title>Projet Broccoli</title>
 </head>	
 <body>
-	<?php require "html/header.html" ?>
+	<?php require "header.html" ?>
 	
 	<form method="POST">
 		<div class="container"> 
 			<br>
 			<h1>Générateur de données</h1>
 			<hr>
-			<img src="img/icon/brocolis.jpg" width="20%" class="rounded float-right">
+			<img src="../img/icon/brocolis.jpg" width="20%" class="rounded float-right">
 
 			<div class="form-group row">
 				<label for="nomModele" class="col-sm-2 col-form-label">Nom du modèle</label>
@@ -86,10 +86,10 @@
 					<input type="text" class="form-control" id="datetime" placeholder="0">
 				</div>
 			</div>
-			<button type="submit" class="btn btn-success btn-lg">Suivant</button>
+			<button type="submit" class="btn btn-success btn-lg"><a href="generate.php">Suivant</a></button>
 		</div>
 	</form>
 	<br><br><br>
-	<?php require "html/footer.html" ?>
+	<?php require "footer.html" ?>
 </body>
 </html>
