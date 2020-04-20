@@ -1,0 +1,38 @@
+/*------------------------------------------------Replay.php-----------------------------------------------*/
+#rename{
+	position: relative;
+	float:right; 
+	right: 35%; 
+}
+
+#val{
+	position: relative; 
+	right: 24%;
+	margin-top: 7%; 
+	float: right;
+}
+
+#struct{
+	position: relative; 
+	left: 25%;
+	float: right;
+	margin-top: 7%; 
+
+}
+
+.vertical-line{
+		position: relative;
+		float: right;
+        border-left: 2px solid #000;
+        display: inline-block;
+        height: 400px;
+        margin-top: 8%;
+
+
+      }
+
+
+.police{
+
+	font-size: 160%;
+}
