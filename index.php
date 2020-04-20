@@ -41,7 +41,7 @@
 		</div>
 		<br>
 		<div class="container">
-			<h2>Nombre de Champs types: </h2>
+			<h2>Nombre de champs types: </h2>
 			<hr>
 			
 			<div class="form-row">
