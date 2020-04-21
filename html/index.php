@@ -9,7 +9,7 @@
 	
 	<form method="POST">
 		<div class="container"> 
-			<br>
+			<br><br><br><br><br>
 			<h1>Générateur de données</h1>
 			<hr>
 			<img src="../img/icon/brocolis.jpg" width="20%" class="rounded float-right">
@@ -29,7 +29,7 @@
 			<div class="form-group row">
 				<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de ligne</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nbLigne" size="50">
+					<input type="text" class="form-control" id="nbLigne">
 				</div>
 			</div>
 		</div>
