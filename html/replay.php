@@ -19,13 +19,24 @@
 	
 	</div>
 
-	<div>
-		<label class="police col-md-3 row" >Changer la valeur :</label>
-		<span class="vertical-line"></span>
-		<label class="police" id="struct">Changer la structure :</label>
+	<div class="container">
 
-		<button type="button" class="btn btn-lg btn-primary" disabled>Click here</button>
-		<button type="button" class="btn btn-lg btn-primary" disabled>Click here</button>
+	<div class="row ">
+		
+		<div class=" row col-md-6">
+		<label class="police " >Changer la valeur :</label>
+		</div>
+		<span class="vertical-line"></span>
+		<div class=" col-md-6">
+		<label class="police">Changer la structure :</label>
+		</div>
+		<div class="col-md-6">
+		<button type="button" class="btn  btn-lg btn-primary" disabled>Click here</button>
+		</div>
+		<div class="col-md-6">
+		<button type="button" class="btn  btn-lg btn-primary" disabled>Click here</button>
+		</div>
+	</div>
 	</div>
 	<div class="rounded"> 
 			<table class="table table-bordered col-md-3" >
