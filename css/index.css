@@ -1,24 +1,39 @@
 /*	Replay.php	*/
-#rename{
+/*#rename{
 	position: relative;
 	float:right; 
 	right: 35%; 
 }
 
+
 #val{
-	position: relative; 
-	right: 24%;
-	margin-top: 7%; 
-	float: right;
+	position: fixed; 
+	left:75%;
+	margin-top: 6%; 
+	
 }
 
 #struct{
-	position: relative; 
-	left: 25%;
-	float: right;
-	margin-top: 7%; 
+	position: fixed; 
+	left:35%;
+	margin-top: 6%; 
 
 }
+
+#bouton1{
+	position: fixed;
+	left:38%;
+	margin-top: 19%;
+	}
+
+#bouton2{
+	position: fixed;
+	left:78%;
+	margin-top: 19%;
+	}
+
+
+*/
 
 .vertical-line{
 		
@@ -26,7 +41,9 @@
         border-left: 2px solid #000;
         display: inline-block;
         height: 400px;
-        margin-top: 8%;
+        
+        
+
 
 
       }
