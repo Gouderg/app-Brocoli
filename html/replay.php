@@ -86,32 +86,34 @@
 		<div class="col-md-8">
 			<div class="row">
 				<div class="col-md-8">
-					<div class="form-group">
+					<div class="form-group police">
 						<label for="renommer" class="col-form-label">Renommer le fichier :</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="nomModel" value="Nom du modèle">
-						</div>
+						<hr>
+							<input type="text" class="  form-control" id="newfic" value="Nouveau nom du fichier">
 					</div>
 					<br><br>
 				</div>
 
 				<div class="row">
 					<div class="col-auto ">			
-						<label class="police " id="val">Changer la structure :</label>
+						<label class="police " id="val"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  Changer la structure : &nbsp; &nbsp; &nbsp; </label>
 
 						<br><br><br><br><br><br>
 					
 						<div class="col-auto">
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 							<button type="submit" class="btn btn-outline-primary btn-lg" id="btnGenerer"> <a href="generate.php">Click here </a></button>						
 						</div>
 					</div>
-					<div class="vertical-line col-auto"></div>
+					&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; 
+					<div class="vertical-line col-auto"> &nbsp; &nbsp; &nbsp; </div>
 					<div class="col-auto"> 
-						<label class="police " id="val">Changer la valeur :</label>
-						
+						<label class="police " id="val"> &nbsp; &nbsp; &nbsp;  Changer la valeur :</label>
+
 						<br><br><br><br><br><br>
 					
 						<div class="col-auto">
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 							<button type="submit" class="btn btn-outline-primary btn-lg" id="btnGenerer"> <a href="index.php"> Click here </a></button>						
 						</div>
 					</div>
