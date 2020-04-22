@@ -115,24 +115,28 @@
 	<hr id="separation">
 	<div class="row">
 		<div class="col-md-8">
-			<section class="container" id="console">
-				+----+-----------------------+----------+<br>
-				| id | nom                   | quantite |<br>
-				+----+-----------------------+----------+<br>
-				|  2 | Tournevis électrique  |       85 |<br>
-				|  3 | Coupe bordure         |       38 |<br>
-				|  4 | Tondeuse à gazon      |       18 |<br>
-				|  5 | Nettoyeur HP          |        1 |<br>
-				|  6 | Scie sauteuse         |        7 |<br>
-				|  7 | Remorque 700kg        |        5 |<br>
-				|  8 | Groupe électrogène    |        2 |<br>
-				|  9 | Raton laveur          |       24 |<br>
-				| 10 | Aspirateur            |       58 |<br>
-				| 11 | Oscilloscope          |       12 |<br>
-				| 12 | Planche à voile       |       72 |<br>
-				+----+-----------------------+----------+<br>
-
-			</section>
+			<div class="card" style=" margin-left: 10rem;">
+				<div class="card-body">
+					<h5 class="card-title" style="">Console</h5>
+					<p class="card-text">
+						+----+-----------------------+----------+<br>
+						| id | nom                   | quantite |<br>
+						+----+-----------------------+----------+<br>
+						|  2 | Tournevis électrique  |       85 |<br>
+						|  3 | Coupe bordure         |       38 |<br>
+						|  4 | Tondeuse à gazon      |       18 |<br>
+						|  5 | Nettoyeur HP          |        1 |<br>
+						|  6 | Scie sauteuse         |        7 |<br>
+						|  7 | Remorque 700kg        |        5 |<br>
+						|  8 | Groupe électrogène    |        2 |<br>
+						|  9 | Raton laveur          |       24 |<br>
+						| 10 | Aspirateur            |       58 |<br>
+						| 11 | Oscilloscope          |       12 |<br>
+						| 12 | Planche à voile       |       72 |<br>
+						+----+-----------------------+----------+<br>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	
