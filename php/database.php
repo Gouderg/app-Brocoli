@@ -1,5 +1,5 @@
 <?php
-	require_once('constante.php');
+	require_once('../php/constante.php');
 	//Fonction connection à la base de données
 	function dbConnect() {
 		try {

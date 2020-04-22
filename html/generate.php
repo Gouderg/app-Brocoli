@@ -138,8 +138,17 @@
 	
 	
 	
+	<?php
+		require('../php/database.php');
 
+		$db = dbConnect();
 
+		if($db) echo "fese";
+		else echo "c'est pas bon";
+	?>
+	<br><br><br><br><br>
 	<?php require "footer.html" ?>
+
+
 </body>
 </html>
