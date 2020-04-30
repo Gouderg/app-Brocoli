@@ -1,5 +1,6 @@
 <?php
 	require_once('../php/constante.php');
+	
 	//Fonction connection à la base de données
 	function dbConnect() {
 		try {
@@ -12,7 +13,12 @@
 		return $db;
 	}
 
-	//Fonction avec toutes les requêtes nécessaires
+	//Fonction récupérant les données d'un modèle
+	function dbRecupModele($db, $libelle) {
+
+	}
+
+	//Fonction ajoutant un modèle()
 
 
 

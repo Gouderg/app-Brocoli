@@ -17,19 +17,19 @@
 			<div class="form-group row">
 				<label for="nomModele" class="col-sm-2 col-form-label">Nom du modèle</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nomModele">
+					<input type="text" class="form-control" id="nomModele" name="nomModele">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nomFichier" class="col-sm-2 col-form-label">Nom du fichier</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nomFichier">
+					<input type="text" class="form-control" id="nomFichier" name="nomFichier">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de ligne</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nbLigne">
+					<input type="text" class="form-control" id="nbLigne" name="nbLigne">
 				</div>
 			</div>
 		</div>
@@ -41,43 +41,43 @@
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="int">Integer</label>
-					<input type="text" class="form-control" id="int" placeholder="0">
+					<input type="text" class="form-control" id="int" name="int" placeholder="0">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="double">Double-Float</label>
-					<input type="text" class="form-control" id="double" placeholder="0">
+					<input type="text" class="form-control" id="double" name="double" placeholder="0">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="tinyInt">Tiny-Int</label>
-					<input type="text" class="form-control" id="tinyInt" placeholder="0">
+					<input type="text" class="form-control" id="tinyInt" name="tinyInt" placeholder="0">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="varchar">Varchar</label>
-					<input type="text" class="form-control" id="varchar" placeholder="0">
+					<input type="text" class="form-control" id="varchar" name="varchar" placeholder="0">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="char">Char</label>
-					<input type="text" class="form-control" id="char" placeholder="0">
+					<input type="text" class="form-control" id="char" name="char" placeholder="0">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="boolean">Boolean</label>
-					<input type="text" class="form-control" id="boolean" placeholder="0">
+					<input type="text" class="form-control" id="boolean" name="boolean" placeholder="0">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="date">Date</label>
-					<input type="text" class="form-control" id="date" placeholder="0">
+					<input type="text" class="form-control" id="date" name="date" placeholder="0">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="time">Time</label>
-					<input type="text" class="form-control" id="time" placeholder="0">
+					<input type="text" class="form-control" id="time" name="time" placeholder="0">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="datetime">DateTime</label>
-					<input type="text" class="form-control" id="datetime" placeholder="0">
+					<input type="text" class="form-control" id="datetime" name="datetime" placeholder="0">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success btn-lg"><a href="generate.php">Suivant</a></button>

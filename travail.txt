@@ -46,3 +46,10 @@ Refonte du site:
 
 Mémo Base de donnée:
 	La base de donnée hébergé est différente de ce qu'il faut générer. Dans la base, il y a les titres à générer.
+
+Travail PHP, décomposition des trucs à faire:
+	
+	Récupérer les valeurs de la page index.php, vérifier les saisies, et les transformer en un tableau associatif.
+	Envoyer ses valeurs vers la page generate.php, 
+	Regarder comment écrire dans un fichier du sql et du csv
+	Faire les requeste avec la base de donnée (ajouter et récupérer un modèle)
