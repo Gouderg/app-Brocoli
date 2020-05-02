@@ -83,77 +83,79 @@
 			<button type="submit" class="btn btn-success btn-lg">Suivant</button>
 		</div>
 	</form>
-	<?php
+	<?php		
+		$data = null;
 
-	
-	$data = null;	
-
-
-
-	$modele= htmlspecialchars($_POST["nomModele"]);
-	$fichier=htmlspecialchars($_POST["nomFichier"]);
-	$nbLigne = htmlspecialchars($_POST["nbLigne"]);
-	$int= htmlspecialchars($_POST['int']);
-	$double= htmlspecialchars($_POST["double"]);
-	$tinyInt= htmlspecialchars($_POST["tinyInt"]);
-	$varchar= htmlspecialchars($_POST["varchar"]);
-	$char= htmlspecialchars($_POST["char"]);
-	$boolean= htmlspecialchars($_POST["boolean"]);
-	$date= htmlspecialchars($_POST["date"]);
-	$time= htmlspecialchars($_POST["time"]);
-	$datetime= htmlspecialchars($_POST["datetime"]);
-	
-	
-
-	$nbLigne = verifEntier($_POST["nbLigne"]);
-	$int= verifEntier($_POST['int']);
-	$double= verifEntier($_POST["double"]);
-	$tinyInt= verifEntier($_POST["tinyInt"]);
-	$varchar= verifEntier($_POST["varchar"]);
-	$char= verifEntier($_POST["char"]);
-	$boolean= verifEntier($_POST["boolean"]);
-	$date= verifEntier($_POST["date"]);
-	$time= verifEntier($_POST["time"]);
-	$datetime= verifEntier($_POST["datetime"]);
-	
-
-	
-
-	if(isset($modele) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
-		$data = array(
-			 "nomModele" => $_POST["nomModele"],
-			 "nomFichier" => $_POST["nomFichier"],
-			 "nbLigne" => $_POST["nbLigne"],
-			 "int" => $_POST["int"],
-			 "double" => $_POST["double"],
-			 "tinyInt" => $_POST["tinyInt"],
-			 "varchar" => $_POST["varchar"],
-			 "char" => $_POST["char"], 
-			 "boolean" => $_POST["boolean"],
-			 "date" => $_POST["date"],
-			 "time" => $_POST["time"],
-			 "datetime" =>$_POST["datetime"],
-			);
-		var_dump($data);
-	
-	} 
-	else {
-		echo "Error wrong !!!";
-	}
-
-
-	
-
-
-function verifEntier($entier){
+		$modele= htmlspecialchars($_POST["nomModele"]);
+		$fichier=htmlspecialchars($_POST["nomFichier"]);
+		$nbLigne = htmlspecialchars($_POST["nbLigne"]);
+		$int= htmlspecialchars($_POST['int']);
+		$double= htmlspecialchars($_POST["double"]);
+		$tinyInt= htmlspecialchars($_POST["tinyInt"]);
+		$varchar= htmlspecialchars($_POST["varchar"]);
+		$char= htmlspecialchars($_POST["char"]);
+		$boolean= htmlspecialchars($_POST["boolean"]);
+		$date= htmlspecialchars($_POST["date"]);
+		$time= htmlspecialchars($_POST["time"]);
+		$datetime= htmlspecialchars($_POST["datetime"]);
 		
-		if( is_numeric($entier) == true  &&  is_float($entier) == false ){
-			return true;
-		} else {
-			return false;
-		}
+		
+
+		$nbLigne = verifEntier($_POST["nbLigne"]);
+		$int= verifEntier($_POST['int']);
+		$double= verifEntier($_POST["double"]);
+		$tinyInt= verifEntier($_POST["tinyInt"]);
+		$varchar= verifEntier($_POST["varchar"]);
+		$char= verifEntier($_POST["char"]);
+		$boolean= verifEntier($_POST["boolean"]);
+		$date= verifEntier($_POST["date"]);
+		$time= verifEntier($_POST["time"]);
+		$datetime= verifEntier($_POST["datetime"]);
 	
-}
+
+	
+
+		if(isset($modele) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
+			$data = array(
+				 "nomModele" => $_POST["nomModele"],
+				 "nomFichier" => $_POST["nomFichier"],
+				 "nbLigne" => $_POST["nbLigne"],
+				 "int" => $_POST["int"],
+				 "double" => $_POST["double"],
+				 "tinyInt" => $_POST["tinyInt"],
+				 "varchar" => $_POST["varchar"],
+				 "char" => $_POST["char"], 
+				 "boolean" => $_POST["boolean"],
+				 "date" => $_POST["date"],
+				 "time" => $_POST["time"],
+				 "datetime" =>$_POST["datetime"],
+				);
+			var_dump($data);
+		
+		} else {
+			echo "Error wrong !!!";
+		}
+
+
+	
+
+
+		function verifEntier($entier){
+			if( is_numeric($entier) == true && is_float($entier) == false ){
+				return true;
+			} else {
+				return false;
+			}	
+		}
+
+
+		/*
+
+		Faire un dossier class avec un fichier champ.php qui est une classe
+		Avoir des attributs avec nom , valeurs.
+		Avoir une méthode qui fait les vérifications et ensuite, on met toutes les classes dans un tableau que l'on passe sur l' autre page
+
+		*/
 
 	?>
 	<br><br><br><br><br><br>

@@ -26,112 +26,113 @@
 	</header>
 
 	<br>
-	<div class="container">
-		<table class="table">
-			<tbody>
-				<tr>
-					<th scope="row">Integer</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifINT">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Double-Float</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifDouble">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Tiny-Int</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifTiny">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Varchar</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifVarchar">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Char</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifChar">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Boolean</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifBool">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Date</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifDate">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Time</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actiTime">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">DateTime</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actiDateTime">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+	<form>
+		<div class="container">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th scope="row">Integer</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifINT">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Double-Float</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifDouble">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Tiny-Int</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifTiny">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Varchar</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifVarchar">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Char</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifChar">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Boolean</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifBool">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Date</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actifDate">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Time</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actiTime">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">DateTime</th>
+						<td>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="actiDateTime">
+									<option value="Actif" selected>Actif</option>
+									<option value="Inactif">Inactif</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
 
 	<br><br><br><br>
 	<footer class="fixed-bottom" style="background-color: #CC6600;">

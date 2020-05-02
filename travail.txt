@@ -53,3 +53,13 @@ Travail PHP, décomposition des trucs à faire:
 	Envoyer ses valeurs vers la page generate.php, 
 	Regarder comment écrire dans un fichier du sql et du csv
 	Faire les requeste avec la base de donnée (ajouter et récupérer un modèle)
+
+
+
+
+
+TRUC URGENT À FAIRE:
+
+	Pouvoir update si un type est bon ou pas. => En vitesse
+	Résoudre le problème d'unité de libelle
+	
