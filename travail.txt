@@ -62,4 +62,8 @@ TRUC URGENT À FAIRE:
 
 	Pouvoir update si un type est bon ou pas. => En vitesse
 	Résoudre le problème d'unité de libelle
-	
+
+
+	pour back.php:
+		générer le tableau avec la table sql, puis quand on change on actualise la base de donnée
+		

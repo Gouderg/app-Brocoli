@@ -65,15 +65,15 @@ CREATE TABLE champ(
 #------------------------------------------------------------
 # Table: type_champ
 #------------------------------------------------------------
-INSERT INTO  type_champ VALUES ('INT', true);
-INSERT INTO  type_champ VALUES ('CHAR', true);
-INSERT INTO  type_champ VALUES ('VARCHAR', true);
-INSERT INTO  type_champ VALUES ('TINYINT', true);
-INSERT INTO  type_champ VALUES ('DOUBLE FLOAT', true);
-INSERT INTO  type_champ VALUES ('DATE', true);
-INSERT INTO  type_champ VALUES ('TIME', true);
-INSERT INTO  type_champ VALUES ('DATETIME', true);
-INSERT INTO  type_champ VALUES ('BOOLEAN', true);
+INSERT INTO  type_champ VALUES ('Integer', true);
+INSERT INTO  type_champ VALUES ('Double-Float', true);
+INSERT INTO  type_champ VALUES ('Tiny-Int', true);
+INSERT INTO  type_champ VALUES ('Varchar', true);
+INSERT INTO  type_champ VALUES ('Char', true);
+INSERT INTO  type_champ VALUES ('Boolean', true);
+INSERT INTO  type_champ VALUES ('Date', true);
+INSERT INTO  type_champ VALUES ('Time', true);
+INSERT INTO  type_champ VALUES ('DateTime', true);
 
 #------------------------------------------------------------
 # Table: modele
@@ -85,17 +85,17 @@ INSERT INTO modele VALUES ('Thomas', 'fichier3', 'table3', '2020-04-15');
 #------------------------------------------------------------
 # Table: champ
 #------------------------------------------------------------
-INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Victor', 'INT');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Victor', 'VARCHAR');
-INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Victor', 'DATE');
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Victor', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Victor', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Victor', 'Date');
 
-INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Leopold', 'INT');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Leopold', 'VARCHAR');
-INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Leopold', 'DATE');
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Leopold', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Leopold', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Leopold', 'Date');
 
-INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Thomas', 'INT');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Thomas', 'VARCHAR');
-INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Thomas', 'DATE');
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Thomas', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Thomas', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Thomas', 'Date');
 
 SET autocommit = 0;
 SET names utf8;
