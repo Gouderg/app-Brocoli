@@ -41,49 +41,123 @@
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="int">Integer</label>
-					<input type="text" class="form-control" id="int" name="int" placeholder="0">
+					<input type="text" class="form-control" id="int" name="int" value=0>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="double">Double-Float</label>
-					<input type="text" class="form-control" id="double" name="double" placeholder="0">
+					<input type="text" class="form-control" id="double" name="double" value=0>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="tinyInt">Tiny-Int</label>
-					<input type="text" class="form-control" id="tinyInt" name="tinyInt" placeholder="0">
+					<input type="text" class="form-control" id="tinyInt" name="tinyInt" value=0>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="varchar">Varchar</label>
-					<input type="text" class="form-control" id="varchar" name="varchar" placeholder="0">
+					<input type="text" class="form-control" id="varchar" name="varchar" value=0>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="char">Char</label>
-					<input type="text" class="form-control" id="char" name="char" placeholder="0">
+					<input type="text" class="form-control" id="char" name="char" value=0>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="boolean">Boolean</label>
-					<input type="text" class="form-control" id="boolean" name="boolean" placeholder="0">
+					<input type="text" class="form-control" id="boolean" name="boolean" value=0>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="date">Date</label>
-					<input type="text" class="form-control" id="date" name="date" placeholder="0">
+					<input type="text" class="form-control" id="date" name="date" value=0>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="time">Time</label>
-					<input type="text" class="form-control" id="time" name="time" placeholder="0">
+					<input type="text" class="form-control" id="time" name="time" value=0>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="datetime">DateTime</label>
-					<input type="text" class="form-control" id="datetime" name="datetime" placeholder="0">
+					<input type="text" class="form-control" id="datetime" name="datetime" value=0>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-success btn-lg"><a href="generate.php">Suivant</a></button>
+			<button type="submit" class="btn btn-success btn-lg">Suivant</button>
 		</div>
 	</form>
+	<?php
+
+	
+	$data = null;	
+
+
+
+	$modele= htmlspecialchars($_POST["nomModele"]);
+	$fichier=htmlspecialchars($_POST["nomFichier"]);
+	$nbLigne = htmlspecialchars($_POST["nbLigne"]);
+	$int= htmlspecialchars($_POST['int']);
+	$double= htmlspecialchars($_POST["double"]);
+	$tinyInt= htmlspecialchars($_POST["tinyInt"]);
+	$varchar= htmlspecialchars($_POST["varchar"]);
+	$char= htmlspecialchars($_POST["char"]);
+	$boolean= htmlspecialchars($_POST["boolean"]);
+	$date= htmlspecialchars($_POST["date"]);
+	$time= htmlspecialchars($_POST["time"]);
+	$datetime= htmlspecialchars($_POST["datetime"]);
+	
+	
+
+	$nbLigne = verifEntier($_POST["nbLigne"]);
+	$int= verifEntier($_POST['int']);
+	$double= verifEntier($_POST["double"]);
+	$tinyInt= verifEntier($_POST["tinyInt"]);
+	$varchar= verifEntier($_POST["varchar"]);
+	$char= verifEntier($_POST["char"]);
+	$boolean= verifEntier($_POST["boolean"]);
+	$date= verifEntier($_POST["date"]);
+	$time= verifEntier($_POST["time"]);
+	$datetime= verifEntier($_POST["datetime"]);
+	
+
+	
+
+	if(isset($modele) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
+		$data = array(
+			 "nomModele" => $_POST["nomModele"],
+			 "nomFichier" => $_POST["nomFichier"],
+			 "nbLigne" => $_POST["nbLigne"],
+			 "int" => $_POST["int"],
+			 "double" => $_POST["double"],
+			 "tinyInt" => $_POST["tinyInt"],
+			 "varchar" => $_POST["varchar"],
+			 "char" => $_POST["char"], 
+			 "boolean" => $_POST["boolean"],
+			 "date" => $_POST["date"],
+			 "time" => $_POST["time"],
+			 "datetime" =>$_POST["datetime"],
+			);
+		var_dump($data);
+	
+	} 
+	else {
+		echo "Error wrong !!!";
+	}
+
+
+	
+
+
+function verifEntier($entier){
+		
+		if( is_numeric($entier) == true  &&  is_float($entier) == false ){
+			return true;
+		} else {
+			return false;
+		}
+	
+}
+
+	?>
 	<br><br><br><br><br><br>
 	<?php require "footer.html" ?>
+	
 </body>
 </html>
