@@ -1,18 +1,27 @@
 #------------------------------------------------------------
-# Change database
+# Delete database
 #------------------------------------------------------------
-USE projetIV_PL;
+DROP DATABASE IF EXISTS projetIV_PL;
+DROP USER IF EXISTS 'leopoldUSER'@'localhost';
 
 #------------------------------------------------------------
-# Database cleanup
+# Create database
 #------------------------------------------------------------
-DROP TABLE IF EXISTS modele;
-DROP TABLE IF EXISTS type_champ;
-DROP TABLE IF EXISTS champ;
+CREATE DATABASE projetIV_PL;
+
+#------------------------------------------------------------
+# Create user
+#------------------------------------------------------------
+CREATE USER 'leopoldUSER'@'localhost' IDENTIFIED BY 'phpInMyHeart333!!!';
+GRANT ALL PRIVILEGES ON projetIV_PL.* TO 'leopoldUSER'@'localhost';
+FLUSH PRIVILEGES;
+
+USE projetIV_PL;
 
 #------------------------------------------------------------
 # Table: modele
 #------------------------------------------------------------
+
 CREATE TABLE modele(
         libelle       Varchar (50) NOT NULL ,
         nom_fichier   Varchar (50) NOT NULL ,
@@ -52,6 +61,41 @@ CREATE TABLE champ(
 	,CONSTRAINT champ_modele_FK FOREIGN KEY (libelle) REFERENCES modele(libelle)
 	,CONSTRAINT champ_type_champ0_FK FOREIGN KEY (type_champ) REFERENCES type_champ(type_champ)
 )ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: type_champ
+#------------------------------------------------------------
+INSERT INTO  type_champ VALUES ('Integer', true);
+INSERT INTO  type_champ VALUES ('Double-Float', true);
+INSERT INTO  type_champ VALUES ('Tiny-Int', true);
+INSERT INTO  type_champ VALUES ('Varchar', true);
+INSERT INTO  type_champ VALUES ('Char', true);
+INSERT INTO  type_champ VALUES ('Boolean', true);
+INSERT INTO  type_champ VALUES ('Date', true);
+INSERT INTO  type_champ VALUES ('Time', true);
+INSERT INTO  type_champ VALUES ('DateTime', true);
+
+#------------------------------------------------------------
+# Table: modele
+#------------------------------------------------------------
+INSERT INTO modele VALUES ('Victor', 'fichier1', 'table1', '2020-02-15');
+INSERT INTO modele VALUES ('Leopold', 'fichier2', 'table2', '2020-03-15');
+INSERT INTO modele VALUES ('Thomas', 'fichier3', 'table3', '2020-04-15');
+
+#------------------------------------------------------------
+# Table: champ
+#------------------------------------------------------------
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Victor', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Victor', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Victor', 'Date');
+
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Leopold', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Leopold', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Leopold', 'Date');
+
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Thomas', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Thomas', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Thomas', 'Date');
 
 SET autocommit = 0;
 SET names utf8;

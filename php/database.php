@@ -15,8 +15,57 @@
 
 	//Fonction récupérant les données d'un modèle
 	function dbRecupModele($db, $libelle) {
+		try {
+			$request = 'SELECT c.libelle, m.nom_fichier, m.nom_table, m.date_creation, c.type_champ, c.nom_champ, c.val_min_nb, c.val_max_nb, c.val_max_date, c.val_min_date, t.actif
+						FROM champ c
+						JOIN modele m on m.libelle = c.libelle
+						JOIN type_champ t on t.type_champ = c.type_champ
+						WHERE c.libelle = :libelle ';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->execute();
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return $result;
 	}
+
+	//Fonction qui récupère l'état des types de champs
+	function dbRequestTypeActif($db) {
+		try {
+			$request = 'SELECT * FROM type_champ';
+			$statement = $db->prepare($request);
+			$statement->execute();
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return $result;
+	}
+
+	//Fonction qui update l'état d'un des types champ
+	function dbUpdateType($db, $type, $etat) {
+		try {
+			$request = 'UPDATE type_champ
+						SET actif = :actif
+						WHERE type_champ = :type_champ';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':actif', $etat, PDO::PARAM_INT);
+			$statement->bindParam(':type_champ', $type, PDO::PARAM_STR);
+			$statement->execute();
+
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return true;
+	}
+
 
 	//Fonction ajoutant un modèle()
 

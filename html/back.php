@@ -25,113 +25,81 @@
 		</nav>
 	</header>
 
+	<?php 
+		require_once("../php/database.php");
+
+		#Connection à la base
+		$db = dbConnect();
+		if (!$db) {
+			echo "Problème de connection avec la base de donnée";
+			exit(1); 
+		}
+
+		#On récupère le tableau des champs
+		$champType = dbRequestTypeActif($db);
+		if (!$champType) {
+			echo "Requête incorrecte ou table inexistante";
+			exit(1);
+		}
+	?>
+
 	<br>
-	<div class="container">
-		<table class="table">
-			<tbody>
-				<tr>
-					<th scope="row">Integer</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifINT">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Double-Float</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifDouble">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Tiny-Int</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifTiny">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Varchar</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifVarchar">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Char</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifChar">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Boolean</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifBool">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Date</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actifDate">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Time</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actiTime">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">DateTime</th>
-					<td>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="actiDateTime">
-								<option value="Actif" selected>Actif</option>
-								<option value="Inactif">Inactif</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+	<form action="back.php" method="post" enctype="multipart/form-data">
+		<div class="container">
+			<table class="table">
+				<tbody>
+					<?php foreach($champType as $champ) { ?>
+						<tr>
+							<th scope="row"><?php echo $champ['type_champ']; ?></th>
+							<td>
+								<div class="input-group mb-3">
+									<select class="custom-select" name= <?php echo "actif".$champ['type_champ']; ?>>
+										<?php
+											if ($champ['actif'] == 1) {
+												echo "<option value='Actif' selected>Actif</option>"
+													 ."<option value='Inactif'>Inactif</option>";
+											} else {
+												echo "<option value='Actif'>Actif</option>"
+													."<option value='Inactif' selected>Inactif</option>";
+											}
+										?>
+									</select>
+									
+								</div>
+							</td>
+						</tr>		
+					<?php } ?>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-primary" id="maj">Mettre à jour</button>
+		</div>
+	</form>
+	<?php
+		$i = 0;
+		#Remet les bonnes valeurs dans le tableau après saisie
+		foreach ($champType as $champ) {
+			switch ($_POST['actif'.$champ['type_champ']]) {
+				case 'Actif':
+					if ($champ['actif'] != '1') $champType[$i]['actif'] = '1';
+				break;
+
+				case 'Inactif':
+					if ($champ['actif'] != '0') $champType[$i]['actif'] = '0';
+				break;
+			}
+			$i += 1;
+		}
+
+		#Envoie une requête à la base de donnée pour Update chaque type
+		foreach($champType as $champ) {
+			$result = dbUpdateType($db, $champ['type_champ'], (int)$champ['actif']);
+			if (!$result) {
+				echo "Problème d'update de la base de donnée";
+				exit(1);
+			}
+			
+		}
+	?>
 
 	<br><br><br><br>
 	<footer class="fixed-bottom" style="background-color: #CC6600;">

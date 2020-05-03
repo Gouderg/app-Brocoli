@@ -1,8 +1,0 @@
-DROP DATABASE IF EXISTS projetIV_PL;
-DROP USER IF EXISTS 'leopoldUSER'@'localhost';
-
-CREATE DATABASE projetIV_PL;
-USE projetIV_PL;
-CREATE USER 'leopoldUSER'@'localhost' IDENTIFIED BY 'phpInMyHeart333!!!';
-GRANT ALL PRIVILEGES ON projetIV_PL.* TO 'leopoldUSER'@'localhost';
-FLUSH PRIVILEGES;
