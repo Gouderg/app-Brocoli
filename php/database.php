@@ -33,6 +33,10 @@
 		return $result;
 	}
 
+	//-------------------------------------------------------------
+	// Back.php
+	//-------------------------------------------------------------
+
 	//Fonction qui récupère l'état des types de champs
 	function dbRequestTypeActif($db) {
 		try {
@@ -66,9 +70,24 @@
 		return true;
 	}
 
+	//-------------------------------------------------------------
+	// Replay.php
+	//-------------------------------------------------------------
 
-	//Fonction ajoutant un modèle()
+	//Fonction récupérant la liste des modèle
+	function dbRecupNomModele($db) {
+		try {
+			$request = 'SELECT libelle FROM modele';
+			$statement = $db->prepare($request);
+			$statement->execute();
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return $result;
+	}
 
 
 

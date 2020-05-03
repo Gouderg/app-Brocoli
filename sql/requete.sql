@@ -19,3 +19,6 @@ SELECT * FROM type_champ;
 UPDATE type_champ
 SET actif = :actif
 WHERE type_champ = :type_champ;
+
+#Requête pour récupérer la liste des modèles
+SELECT libelle FROM modele;

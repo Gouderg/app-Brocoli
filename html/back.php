@@ -71,34 +71,48 @@
 					<?php } ?>
 				</tbody>
 			</table>
-			<button type="submit" class="btn btn-primary" id="maj">Mettre à jour</button>
+			<div class="row">
+				<div class="form-check col">
+					<input type="checkbox" name="check">
+					<label class="form-check-label" for="check">Valider la saisie</label>
+				</div>	
+				<div class="col">
+					<button type="submit" class="btn btn-primary" id="maj">Mettre à jour</button>
+				</div>
+			</div>
 		</div>
 	</form>
 	<?php
-		$i = 0;
-		#Remet les bonnes valeurs dans le tableau après saisie
-		foreach ($champType as $champ) {
-			switch ($_POST['actif'.$champ['type_champ']]) {
-				case 'Actif':
-					if ($champ['actif'] != '1') $champType[$i]['actif'] = '1';
-				break;
 
-				case 'Inactif':
-					if ($champ['actif'] != '0') $champType[$i]['actif'] = '0';
-				break;
+		#Obligé de mettre un radio pour éviter un ping pong entre les valeurs à cause du reload des valeurs
+		if (isset($_POST['check'])) {
+			$i = 0;
+			#Remet les bonnes valeurs dans le tableau après saisie
+			foreach ($champType as $champ) {
+				switch ($_POST['actif'.$champ['type_champ']]) {
+					case 'Actif':
+						if ($champ['actif'] != '1') $champType[$i]['actif'] = '1';
+					break;
+
+					case 'Inactif':
+						if ($champ['actif'] != '0') $champType[$i]['actif'] = '0';
+					break;
+				}
+				$i += 1;
 			}
-			$i += 1;
+
+			#Envoie une requête à la base de donnée pour Update chaque type
+			foreach($champType as $champ) {
+				$result = dbUpdateType($db, $champ['type_champ'], (int)$champ['actif']);
+				if (!$result) {
+					echo "Problème d'update de la base de donnée";
+					exit(1);
+				}
+			}
 		}
 
-		#Envoie une requête à la base de donnée pour Update chaque type
-		foreach($champType as $champ) {
-			$result = dbUpdateType($db, $champ['type_champ'], (int)$champ['actif']);
-			if (!$result) {
-				echo "Problème d'update de la base de donnée";
-				exit(1);
-			}
-			
-		}
+		
+
 	?>
 
 	<br><br><br><br>

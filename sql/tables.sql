@@ -65,15 +65,15 @@ CREATE TABLE champ(
 #------------------------------------------------------------
 # Table: type_champ
 #------------------------------------------------------------
-INSERT INTO  type_champ VALUES ('Integer', true);
-INSERT INTO  type_champ VALUES ('Double-Float', true);
-INSERT INTO  type_champ VALUES ('Tiny-Int', true);
-INSERT INTO  type_champ VALUES ('Varchar', true);
-INSERT INTO  type_champ VALUES ('Char', true);
-INSERT INTO  type_champ VALUES ('Boolean', true);
-INSERT INTO  type_champ VALUES ('Date', true);
-INSERT INTO  type_champ VALUES ('Time', true);
-INSERT INTO  type_champ VALUES ('DateTime', true);
+INSERT INTO  type_champ VALUES ('Integer', 1);
+INSERT INTO  type_champ VALUES ('Double-Float', 1);
+INSERT INTO  type_champ VALUES ('Tiny-Int', 1);
+INSERT INTO  type_champ VALUES ('Varchar', 1);
+INSERT INTO  type_champ VALUES ('Char', 1);
+INSERT INTO  type_champ VALUES ('Boolean', 1);
+INSERT INTO  type_champ VALUES ('Date', 1);
+INSERT INTO  type_champ VALUES ('Time', 1);
+INSERT INTO  type_champ VALUES ('DateTime', 1);
 
 #------------------------------------------------------------
 # Table: modele
