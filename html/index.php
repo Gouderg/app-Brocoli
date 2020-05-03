@@ -29,7 +29,7 @@
 			<div class="form-group row">
 				<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de ligne</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nbLigne" name="nbLigne">
+					<input type="text" class="form-control" id="nbLigne" name="nbLigne" value=0>
 				</div>
 			</div>
 		</div>
@@ -83,43 +83,49 @@
 			<button type="submit" class="btn btn-success btn-lg">Suivant</button>
 		</div>
 	</form>
+	
+
 	<?php
 
-	
-	$data = null;	
-
-
-
-	$modele= htmlspecialchars($_POST["nomModele"]);
-	$fichier=htmlspecialchars($_POST["nomFichier"]);
-	$nbLigne = htmlspecialchars($_POST["nbLigne"]);
-	$int= htmlspecialchars($_POST['int']);
-	$double= htmlspecialchars($_POST["double"]);
-	$tinyInt= htmlspecialchars($_POST["tinyInt"]);
-	$varchar= htmlspecialchars($_POST["varchar"]);
-	$char= htmlspecialchars($_POST["char"]);
-	$boolean= htmlspecialchars($_POST["boolean"]);
-	$date= htmlspecialchars($_POST["date"]);
-	$time= htmlspecialchars($_POST["time"]);
-	$datetime= htmlspecialchars($_POST["datetime"]);
-	
+	$data=null;
 	
 
-	$nbLigne = verifEntier($_POST["nbLigne"]);
-	$int= verifEntier($_POST['int']);
-	$double= verifEntier($_POST["double"]);
-	$tinyInt= verifEntier($_POST["tinyInt"]);
-	$varchar= verifEntier($_POST["varchar"]);
-	$char= verifEntier($_POST["char"]);
-	$boolean= verifEntier($_POST["boolean"]);
-	$date= verifEntier($_POST["date"]);
-	$time= verifEntier($_POST["time"]);
-	$datetime= verifEntier($_POST["datetime"]);
+	if (isset($_POST["nbLigne"])) {
+		$nbLigne = verifEntier(htmlspecialchars($_POST["nbLigne"]));
+	}
+	if (isset($_POST['int'])) {
+		$int= verifEntier(htmlspecialchars($_POST['int']));	
+	}
+	if (isset($_POST["double"])) {
+		$double= verifEntier(htmlspecialchars($_POST["double"]));	
+	}
 	
+	if (isset($_POST["tinyInt"])) {
+		$tinyInt= verifEntier(htmlspecialchars($_POST["tinyInt"]));
+	}
+	if (isset($_POST['varchar'])) {
+		$varchar= verifEntier(htmlspecialchars($_POST["varchar"]));
+	}
+	if (isset($_POST["char"])) {
+		$char= verifEntier(htmlspecialchars($_POST["char"]));
+	}	
+	if (isset($_POST["boolean"])) {
+		$boolean= verifEntier(htmlspecialchars($_POST["boolean"]));
+	}
+	if (isset($_POST['date'])) {
+		$date= verifEntier(htmlspecialchars($_POST["date"]));
+	}
+	if (isset($_POST["time"])) {
+		$time= verifEntier(htmlspecialchars($_POST["time"]));	
+	}
+	if (isset($_POST["datetime"])) {
+		$datetime= verifEntier(htmlspecialchars($_POST["datetime"]));	
+	}
+
 
 	
-
-	if(isset($modele) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
+	
+	if(isset($_POST["nomModele"]) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
 		$data = array(
 			 "nomModele" => $_POST["nomModele"],
 			 "nomFichier" => $_POST["nomFichier"],
