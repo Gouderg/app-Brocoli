@@ -15,7 +15,8 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="true"><img src="../img/icon/Menu.png" width="50%"></a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="../html/index.php">Générer un modèle</a> 
+					<a class="dropdown-item" href="../html/index.php">Index</a>
+					<a class="dropdown-item" href="../html/generate.php">Genérateur </a> <!-- temporaire -->
 					<a class="dropdown-item" href="../html/replay.php">Rejouer un modèle</a>
 					<a class="dropdown-item" href="../html/back.php">Back </a>
 				</div>
@@ -28,10 +29,10 @@
 	<?php 
 		require_once("../php/database.php");
 
-		#Connection à la base
+		#Connexion à la base
 		$db = dbConnect();
 		if (!$db) {
-			echo "Problème de connection avec la base de donnée";
+			echo "Problème de connexion avec la base de donnée";
 			exit(1); 
 		}
 
@@ -44,7 +45,7 @@
 	?>
 
 	<br>
-	<form action="back.php" method="post" enctype="multipart/form-data">
+	<form method="post">
 		<div class="container">
 			<table class="table">
 				<tbody>
@@ -109,9 +110,7 @@
 					exit(1);
 				}
 			}
-		}
-
-		
+		}				
 
 	?>
 

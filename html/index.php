@@ -1,5 +1,6 @@
-
+<!--Ouverture d'une session pour passer les varaibles par adresse -->
 <?php session_start(); ?> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +8,38 @@
 	<title>Projet Broccoli</title>
 </head>	
 <body>
-	<?php require "header.html" ?>
+	<?php require "header.html"; ?>
+
+	<?php
+		require_once("../php/database.php");
+
+		#Connexion à la base de donnée
+		$db = dbConnect();
+		if (!$db) {
+			echo "Problème de connexion à la base de donnée";
+			exit(1);
+		}
+
+		#On récupère le tableau des champs
+		$champType = dbRequestTypeActif($db);
+		if (!$champType) {
+			echo "Requête incorrecte ou table inexistante (type_champ)";
+			exit(1);
+		}
+
+		#Ensemble de variable permettant de fermer proprement le formulaire 
+		$i = 0;
+		$nbActif = 0;
+		foreach($champType as $type) {
+			if ($type['actif'] == 1) {
+				$nbActif += 1;
+			}
+		}
+
+	?> 
 	
 	<form method="POST">
 		<div class="container"> 
-			<br><br><br><br><br>
 			<h1>Générateur de données</h1>
 			<hr>
 			<img src="../img/icon/brocolis.jpg" width="20%" class="rounded float-right">
@@ -39,58 +67,39 @@
 		<div class="container">
 			<h2>Nombre de champs types: </h2>
 			<hr>
-			
+
+			<?php foreach ($champType as $type) {
+					if ($type['actif'] == 1) {
+						if ($i % 3 == 0) {
+							echo "<div class='form-row'>";
+							$j = 0;
+						}
+						$j += 1;
+
+			?>
+						<div class="form-group col-md-2">
+							<label for= <?php echo $type['type_champ']; ?>><?php echo $type['type_champ']; ?></label>
+							<input type="text" class='form-control' value=0 name=<?php echo $type['type_champ']; ?> >
+						</div>
+
+			<?php  
+						if ($j == 3) echo "</div>";
+						if ($j != 3 && $i == $nbActif - 1) echo '</div>'; 
+				  		$i += 1;
+				  	}
+				  }
+			?>
+			<br>
 			<div class="form-row">
 				<div class="form-group col-md-2">
-					<label for="int">Integer</label>
-					<input type="text" class="form-control" id="int" name="int" value=0>
-				</div>
-				<div class="form-group col-md-2">
-					<label for="double">Double-Float</label>
-					<input type="text" class="form-control" id="double" name="double" value=0>
-				</div>
-				<div class="form-group col-md-2">
-					<label for="tinyInt">Tiny-Int</label>
-					<input type="text" class="form-control" id="tinyInt" name="tinyInt" value=0>
+					<button type="submit" class="btn btn-success btn-lg">Suivant</button>					
 				</div>
 			</div>
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="varchar">Varchar</label>
-					<input type="text" class="form-control" id="varchar" name="varchar" value=0>
-				</div>
-				<div class="form-group col-md-2">
-					<label for="char">Char</label>
-					<input type="text" class="form-control" id="char" name="char" value=0>
-				</div>
-				<div class="form-group col-md-2">
-					<label for="boolean">Boolean</label>
-					<input type="text" class="form-control" id="boolean" name="boolean" value=0>
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="date">Date</label>
-					<input type="text" class="form-control" id="date" name="date" value=0>
-				</div>
-				<div class="form-group col-md-2">
-					<label for="time">Time</label>
-					<input type="text" class="form-control" id="time" name="time" value=0>
-				</div>
-				<div class="form-group col-md-2">
-					<label for="datetime">DateTime</label>
-					<input type="text" class="form-control" id="datetime" name="datetime" value=0>
-				</div>
-			</div>
-			<button type="submit" class="btn btn-success btn-lg">Suivant</button>
 		</div>
 	</form>
 	
 
 	<?php
-
-		
-		
 
 		if (isset($_POST["nbLigne"])) {
 			$nbLigne = verifEntier(htmlspecialchars($_POST["nbLigne"]));
@@ -142,16 +151,8 @@
 				$_SESSION["boolean"] = $_POST["boolean"];
 				$_SESSION["date"] = $_POST["date"];
 				$_SESSION["time"] = $_POST["time"];
-				$_SESSION["datetime"] = $_POST["datetime"];
-
-				//echo "window.location = 'replay.php';"
-
-			
+				$_SESSION["datetime"] = $_POST["datetime"];	
 		}
-
-
-	
-
 
 		function verifEntier($entier){
 			if( is_numeric($entier) == true  &&  is_float($entier) == false ){
@@ -161,8 +162,8 @@
 		}
 
 	?>
-	<br><br><br><br><br><br>
-	<?php require "footer.html" ?>
+	
+	<?php require "footer.html"; ?>
 	
 </body>
 </html>

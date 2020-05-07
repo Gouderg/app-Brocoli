@@ -7,13 +7,8 @@
 	<title>Projet Broccoli</title>
 </head>
 <body>
-	<?php require "header.html" ?>
-	<br><br><br><br><br>
-<?php  
-foreach($_SESSION as $value) {
-			echo $value.'<br>';
-		}
-?>
+	<?php require "header.html"; ?>
+
 	<form method="post">
 		<div class="row">
 			<div class="col-md-8">
@@ -145,8 +140,7 @@ foreach($_SESSION as $value) {
 		</div>
 	</div>
 	
-	<br><br><br><br><br>
-	<?php require "footer.html" ?>
+	<?php require "footer.html"; ?>
 
 
 </body>

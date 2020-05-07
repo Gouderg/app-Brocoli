@@ -56,14 +56,27 @@ Travail PHP, décomposition des trucs à faire:
 
 
 
+Ordre du travail à faire:
 
+	Étape 1
+	-Rendre la page replay.php fonctionnel comme ça on one shot le reste.
+		* Rendre la page responsive -> OK
+		* Mettre un checkbox pour ensuite envoyé une requete vers index ou generate ne pas activer le bouton si une checkbox n'est pas coché
+		* Enlever le renommer fichier, rajouter un compteur de champs à côté du nom du modèle -> OK
+		* Remodéliser le php
 
-TRUC URGENT À FAIRE:
+	Étape 2:
+	-Page index.php 
+		*Soit elle est initialisé à null et donc se passe normalement
+		*Soit elle récupère quelque chose par la session et du coup on prérempli les champs
 
-	Pouvoir update si un type est bon ou pas. => En vitesse
-	Résoudre le problème d'unité de libelle
+	Étape 3: (DIFFICULTY *******)
+	-Page generate.php
+		 ( 	* INT, TINY-INT, DOUBLE: valeur_min_nb | valeur_max_nb | check Auto_increment 
+		 	* Boolean: check TRUE, check FALSE, check RANDOM
+		 	* VARCHAR, CHAR: longueur, select nom_fic
+		 	* DATE, TIME, DATETIME: valeur_date_min, valeur_date_max (vérifier si min < max)
+		 )
+		 Rajouter un nom de table, urgent sinon cela ne marche pas on ne peut pas inserer
 
-
-	pour back.php:
-		générer le tableau avec la table sql, puis quand on change on actualise la base de donnée
-		
+	Pour rendre le libelle unique: mettre un "autoIncr_nomModele"

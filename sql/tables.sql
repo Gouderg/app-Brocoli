@@ -78,24 +78,24 @@ INSERT INTO  type_champ VALUES ('DateTime', 1);
 #------------------------------------------------------------
 # Table: modele
 #------------------------------------------------------------
-INSERT INTO modele VALUES ('Victor', 'fichier1', 'table1', '2020-02-15');
-INSERT INTO modele VALUES ('Leopold', 'fichier2', 'table2', '2020-03-15');
-INSERT INTO modele VALUES ('Thomas', 'fichier3', 'table3', '2020-04-15');
+INSERT INTO modele VALUES ('1_modVictor', 'modVictor', 'table1', '2020-02-15');
+INSERT INTO modele VALUES ('2_modLeopold', 'modLeopold', 'table2', '2020-03-15');
+INSERT INTO modele VALUES ('3_modThomas', 'modThomas', 'table3', '2020-04-15');
 
 #------------------------------------------------------------
 # Table: champ
 #------------------------------------------------------------
-INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Victor', 'Integer');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Victor', 'Varchar');
-INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Victor', 'Date');
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', '1_modVictor', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '1_modVictor', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', '1_modVictor', 'Date');
 
-INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Leopold', 'Integer');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Leopold', 'Varchar');
-INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Leopold', 'Date');
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', '2_modLeopold', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '2_modLeopold', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', '2_modLeopold', 'Date');
 
-INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', 'Thomas', 'Integer');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', 'Thomas', 'Varchar');
-INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', 'Thomas', 'Date');
+INSERT INTO champ (nom_champ, longueur, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '50', '0', '99', '3_modThomas', 'Integer');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '3_modThomas', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '50', '2000-01-01', '2004-01-01', '3_modThomas', 'Date');
 
 SET autocommit = 0;
 SET names utf8;

@@ -1,22 +1,18 @@
-
-<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 	<title>Projet Brocoli</title>
-	<link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
-	<?php require "header.html" ?>
-	<br><br><br><br><br>
+	<?php require "header.html"; ?>
 
 	<?php
 		require_once("../php/database.php");
 
-		#Connection à la base de donnée
+		#Connexion à la base de donnée
 		$db = dbConnect();
 		if (!$db) {
-			echo "Problème de connection à la base de donnée";
+			echo "Problème de connexion à la base de donnée";
 			exit(1);
 		}
 
@@ -27,21 +23,13 @@
 			exit(1);
 		}
 
-		foreach ($modele as $value) {
-			echo $value['libelle'].'<br>';
-		}
-
-foreach($_SESSION as $value) {
-			echo $value.'<br>';
-		}
-
 	?>
 	
 	<form method="post">
 
-		<div class="col-sm-2">
+		<div class="col-md-2">
 			<h1>Modèles :</h1>
-			<hr>
+			<br>
 		</div>
 
 		<div class="row">
@@ -52,6 +40,8 @@ foreach($_SESSION as $value) {
 	    					<tr>
 								<th scope="col">#</th>
 								<th scope="col">Nom du modèle</th>
+								<th scope="col">Nombre de champ</th>
+								<th scope="col">Sélection</th>
 					   		</tr>
 						</thead>
 						<tbody>
@@ -61,6 +51,9 @@ foreach($_SESSION as $value) {
 									echo '<tr>';
 									echo '<th scope="row">'.$i.'</th>';
 									echo '<td>'.$nom['libelle'].'</td>';
+									echo '<td> 5 </td>';
+									echo '<td> <div class="form-check">
+												<input type="checkbox" class="form-check-input" name="check'.$i.'"></div>';
 									echo '</tr>';
 									$i += 1;
 
@@ -73,47 +66,26 @@ foreach($_SESSION as $value) {
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-8">
-						<div class="form-group police">
-							<label for="renommer" class="col-form-label">Renommer le fichier :</label>
-							<hr>
-								<input type="text" class="  form-control" id="newfic" value="Nouveau nom du fichier">
-						</div>
-						<br><br>
+						<h4>Changer la structure du modèle: </h4>
+						<button type="submit" name="index" class="btn-lg btn-primary buttonReplay"> Struct </button>
 					</div>
-
-					<div class="row">
-						<div class="col-auto ">		
-							<label class="police"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  Changer la structure du modèle : &nbsp; &nbsp; &nbsp; </label>
-
-							<br><br><br><br><br><br>
-						
-							<div class="col-auto">
-								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-								<button type="submit" class="btn btn-outline-primary btn-lg" id="btnGenerer"> <a href="index.php">Click here </a></button>						
-							</div>
-						</div>
-						&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; 
-						<div class="vertical-line col-auto"> &nbsp; &nbsp; &nbsp; </div>
-						<div class="col-auto"> 
-							<label class="police"> &nbsp; &nbsp; &nbsp;  Regénérer des données à partir d'un modèle :</label>
-
-							<br><br><br><br><br><br>
-						
-							<div class="col-auto">
-								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-								<button type="submit" class="btn btn-outline-primary btn-lg" id="btnGenerer"> <a href="generate.php"> Click here </a></button>						
-							</div>
-						</div>
-			
-					</div>		
+				</div>
+				<br><hr><br>
+				<div class="row">
+					<div class="col-md-8">
+						<h4>Regénérer des données à partir d'un modèle: </h4>
+						<button type="submit" name="generate" class="btn-lg btn-primary buttonReplay"> Generate </button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</form>
 
-	<br><br><br><br><br>
-
-	<?php require "footer.html" ?>
+	<!-- Console de débuggage pour dire à l'utilisateur qu'il a mal coché -->
+	<div>
+	</div>
+	
+	<?php require "footer.html"; ?>
 </body>
 </html>
 
