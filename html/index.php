@@ -1,3 +1,5 @@
+
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +89,7 @@
 
 	<?php
 
-		$data = null;
+		
 		
 
 		if (isset($_POST["nbLigne"])) {
@@ -124,23 +126,26 @@
 
 
 		
+
+			
 		
-		if(isset($_POST["nomModele"]) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
-			$data = array(
-				 "nomModele" => $_POST["nomModele"],
-				 "nomFichier" => $_POST["nomFichier"],
-				 "nbLigne" => $_POST["nbLigne"],
-				 "int" => $_POST["int"],
-				 "double" => $_POST["double"],
-				 "tinyInt" => $_POST["tinyInt"],
-				 "varchar" => $_POST["varchar"],
-				 "char" => $_POST["char"], 
-				 "boolean" => $_POST["boolean"],
-				 "date" => $_POST["date"],
-				 "time" => $_POST["time"],
-				 "datetime" =>$_POST["datetime"],
-				);
-			var_dump($data);
+		if(isset($_POST["nomModele"]) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $nbLigne != 0 && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
+		
+				$_SESSION["nomModele"] = $_POST["nomModele"];
+				$_SESSION["nomFichier"] = $_POST["nomFichier"];
+				$_SESSION["nbLigne"] = $_POST["nbLigne"];
+				$_SESSION["int"] = $_POST["int"];
+				$_SESSION["double"] = $_POST["double"];
+				$_SESSION["tinyInt"] = $_POST["tinyInt"];
+				$_SESSION["varchar"] = $_POST["varchar"];
+				$_SESSION["char"] = $_POST["char"];
+				$_SESSION["boolean"] = $_POST["boolean"];
+				$_SESSION["date"] = $_POST["date"];
+				$_SESSION["time"] = $_POST["time"];
+				$_SESSION["datetime"] = $_POST["datetime"];
+
+				//echo "window.location = 'replay.php';"
+
 			
 		}
 

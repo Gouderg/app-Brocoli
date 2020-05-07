@@ -35,7 +35,7 @@ CREATE TABLE modele(
 # Table: type_champ
 #------------------------------------------------------------
 CREATE TABLE type_champ(
-        type_champ Varchar (1024) NOT NULL ,
+        type_champ Varchar (512) NOT NULL ,
         actif      Bool NOT NULL
 	,CONSTRAINT type_champ_PK PRIMARY KEY (type_champ)
 )ENGINE=InnoDB;
@@ -52,10 +52,10 @@ CREATE TABLE champ(
         val_max_nb   Double NULL ,
         val_min_date Date NULL ,
         val_max_date Date NULL ,
-        liste_txt    Varchar (1024) NULL ,
-        fichier      Varchar (1024) NULL ,
-        libelle      Varchar (50) NOT NULL ,
-        type_champ   Varchar (1024) NOT NULL
+        liste_txt    Varchar (512) NULL ,
+        fichier      Varchar (512) NULL ,
+        libelle      Varchar (512) NOT NULL ,
+        type_champ   Varchar (512) NOT NULL
 	,CONSTRAINT champ_PK PRIMARY KEY (id)
 
 	,CONSTRAINT champ_modele_FK FOREIGN KEY (libelle) REFERENCES modele(libelle)

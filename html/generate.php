@@ -1,3 +1,5 @@
+<?php session_start(); ?> 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,8 +9,11 @@
 <body>
 	<?php require "header.html" ?>
 	<br><br><br><br><br>
-
-
+<?php  
+foreach($_SESSION as $value) {
+			echo $value.'<br>';
+		}
+?>
 	<form method="post">
 		<div class="row">
 			<div class="col-md-8">

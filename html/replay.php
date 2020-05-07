@@ -1,3 +1,5 @@
+
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,7 +10,7 @@
 	<?php require "header.html" ?>
 	<br><br><br><br><br>
 
-	<?php 
+	<?php
 		require_once("../php/database.php");
 
 		#Connection à la base de donnée
@@ -28,6 +30,11 @@
 		foreach ($modele as $value) {
 			echo $value['libelle'].'<br>';
 		}
+
+foreach($_SESSION as $value) {
+			echo $value.'<br>';
+		}
+
 	?>
 	
 	<form method="post">
@@ -36,7 +43,6 @@
 			<h1>Modèles :</h1>
 			<hr>
 		</div>
-
 
 		<div class="row">
 			<div class="col-md-4">
@@ -57,6 +63,7 @@
 									echo '<td>'.$nom['libelle'].'</td>';
 									echo '</tr>';
 									$i += 1;
+
 								}
 							?>
 	 					</tbody>
@@ -75,7 +82,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-auto ">			
+						<div class="col-auto ">		
 							<label class="police"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  Changer la structure du modèle : &nbsp; &nbsp; &nbsp; </label>
 
 							<br><br><br><br><br><br>
