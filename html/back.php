@@ -26,6 +26,7 @@
 		</nav>
 	</header>
 
+
 	<?php 
 		require_once("../php/database.php");
 
@@ -39,7 +40,7 @@
 		#On récupère le tableau des champs
 		$champType = dbRequestTypeActif($db);
 		if (!$champType) {
-			echo "Requête incorrecte ou table inexistante";
+			echo "Requête incorrecte ou table inexistante (dbRequestTypeActif)";
 			exit(1);
 		}
 	?>
@@ -106,7 +107,7 @@
 			foreach($champType as $champ) {
 				$result = dbUpdateType($db, $champ['type_champ'], (int)$champ['actif']);
 				if (!$result) {
-					echo "Problème d'update de la base de donnée";
+					echo "Problème d'update de la base de donnée (dbUpdateType)";
 					exit(1);
 				}
 			}

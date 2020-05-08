@@ -63,7 +63,7 @@ Ordre du travail à faire:
 		* Rendre la page responsive -> OK
 		* Mettre un checkbox pour ensuite envoyé une requete vers index ou generate ne pas activer le bouton si une checkbox n'est pas coché
 		* Enlever le renommer fichier, rajouter un compteur de champs à côté du nom du modèle -> OK
-		* Remodéliser le php
+		* Remodéliser le php -> OK
 
 	Étape 2:
 	-Page index.php 
@@ -80,3 +80,7 @@ Ordre du travail à faire:
 		 Rajouter un nom de table, urgent sinon cela ne marche pas on ne peut pas inserer
 
 	Pour rendre le libelle unique: mettre un "autoIncr_nomModele"
+
+	$_SESSION = array();
+	session_destroy();
+	unset($_SESSION);

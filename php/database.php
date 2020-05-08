@@ -77,7 +77,10 @@
 	//Fonction récupérant la liste des modèle
 	function dbRecupNomModele($db) {
 		try {
-			$request = 'SELECT libelle FROM modele';
+			$request = 'SELECT m.libelle, COUNT(c.type_champ) AS nbChamp 
+						FROM modele m
+						JOIN champ c ON m.libelle = c.libelle
+						GROUP BY m.libelle';
 			$statement = $db->prepare($request);
 			$statement->execute();
 			$result = $statement->fetchAll(PDO::FETCH_ASSOC);

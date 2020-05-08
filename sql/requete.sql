@@ -20,6 +20,8 @@ UPDATE type_champ
 SET actif = :actif
 WHERE type_champ = :type_champ;
 
-#Requête pour récupérer la liste des modèles
-SELECT libelle FROM modele;
-
+#Requête pour récupérer la liste des modèles avec le nombre de champs
+SELECT m.libelle, COUNT(c.type_champ) AS nbChamp
+FROM modele m
+JOIN champ c ON m.libelle = c.libelle
+GROUP BY m.libelle;

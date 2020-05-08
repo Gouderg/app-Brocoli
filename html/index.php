@@ -1,4 +1,4 @@
-<!--Ouverture d'une session pour passer les varaibles par adresse -->
+<!--Ouverture d'une session pour passer les variables par adresse -->
 <?php session_start(); ?> 
 
 <!DOCTYPE html>
@@ -20,10 +20,21 @@
 			exit(1);
 		}
 
+		echo $_SESSION['libelle'];
+		$_SESSION = array();
+		session_destroy();
+		unset($_SESSION);
+
+		session_start();
+
+		$_SESSION['libelle'] = "mod";
+		header('Location: generate.php');
+		exit();
+
 		#On récupère le tableau des champs
 		$champType = dbRequestTypeActif($db);
 		if (!$champType) {
-			echo "Requête incorrecte ou table inexistante (type_champ)";
+			echo "Requête incorrecte ou table inexistante (dbRequestTypeActif)";
 			exit(1);
 		}
 
