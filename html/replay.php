@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+	<meta charset="utf-8">
 	<title>Projet Brocoli</title>
 	<link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
@@ -36,19 +37,19 @@
 		<div class="row">
 			<div class="col-md-4">
 				<section class="container">
-					<table class="table" id="tabReplay">	
-	  					<thead>
-	    					<tr>
+					<table class="table" id="tabReplay">
+						<thead>
+							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Nom du modèle</th>
 								<th scope="col">Nombre de champ</th>
 								<th scope="col">Sélection</th>
-					   		</tr>
+							</tr>
 						</thead>
 						<tbody>
 							<?php
 								foreach($modele as $nom) {
-									$info = explode("_", $nom['libelle']); #On sépare le nombre et le nom du modèle 	
+									$info = explode("_", $nom['libelle']); #On sépare le nombre et le nom du modèle
 									echo '<tr>';
 									echo '<th scope="row">'.(int)$info[0].'</th>';
 									echo '<td>'.$info[1].'</td>';

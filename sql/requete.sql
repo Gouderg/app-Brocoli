@@ -25,3 +25,11 @@ SELECT m.libelle, COUNT(c.type_champ) AS nbChamp
 FROM modele m
 JOIN champ c ON m.libelle = c.libelle
 GROUP BY m.libelle;
+
+#Requête pour récupérer la liste des type utilisés dans un modèle
+SELECT t.type_champ, COUNT( * ) AS nbChamp
+FROM type_champ t 
+JOIN champ c ON t.type_champ = c.type_champ
+WHERE c.libelle = '1_modVictor'
+GROUP BY t.type_champ
+ORDER BY t.type_champ;

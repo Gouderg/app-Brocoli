@@ -86,6 +86,7 @@ INSERT INTO modele VALUES ('3_modThomas', 'modThomas', 'table3', '2020-04-15');
 # Table: champ
 #------------------------------------------------------------
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '0', '99', '1_modVictor', 'Integer');
+INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Salaire', '0', '9999', '1_modVictor', 'Integer');
 INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '1_modVictor', 'Varchar');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '2000-01-01', '2004-01-01', '1_modVictor', 'Date');
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Utile', '0', '1', '1_modVictor', 'Boolean');

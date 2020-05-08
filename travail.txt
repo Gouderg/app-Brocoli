@@ -61,14 +61,14 @@ Ordre du travail à faire:
 	Étape 1
 	-Rendre la page replay.php fonctionnel comme ça on one shot le reste.
 		* Rendre la page responsive -> OK
-		* Mettre un checkbox pour ensuite envoyé une requete vers index ou generate ne pas activer le bouton si une checkbox n'est pas coché
+		* Mettre un checkbox pour ensuite envoyé une requete vers index ou generate ne pas activer le bouton si une checkbox n'est pas coché -> OK
 		* Enlever le renommer fichier, rajouter un compteur de champs à côté du nom du modèle -> OK
 		* Remodéliser le php -> OK
 
 	Étape 2:
 	-Page index.php 
-		*Soit elle est initialisé à null et donc se passe normalement
-		*Soit elle récupère quelque chose par la session et du coup on prérempli les champs
+		*Soit elle est initialisé à null et donc se passe normalement -> OK
+		*Soit elle récupère quelque chose par la session et du coup on prérempli les champs -> OK
 
 	Étape 3: (DIFFICULTY *******)
 	-Page generate.php

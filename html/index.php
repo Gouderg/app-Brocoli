@@ -1,17 +1,26 @@
-<!--Ouverture d'une session pour passer les variables par adresse -->
-<?php session_start(); ?> 
-
+<!--Ouverture d'une session pour récupérer les valeurs envoyés par replay -->
+<?php
+	session_start();
+	$libelle = '';
+	if (isset($_SESSION['libelle'])) {
+		$libelle = $_SESSION['libelle'];
+	}
+	$_SESSION = array();
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="Location" content="generate.php">
 	<title>Projet Broccoli</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>	
 <body>
 	<?php require "header.html"; ?>
 
 	<?php
 		require_once("../php/database.php");
+		require_once("../php/class/typeChamp.php");
 
 		#Connexion à la base de donnée
 		$db = dbConnect();
@@ -20,17 +29,6 @@
 			exit(1);
 		}
 
-		echo $_SESSION['libelle'];
-		$_SESSION = array();
-		session_destroy();
-		unset($_SESSION);
-
-		session_start();
-
-		$_SESSION['libelle'] = "mod";
-		header('Location: generate.php');
-		exit();
-
 		#On récupère le tableau des champs
 		$champType = dbRequestTypeActif($db);
 		if (!$champType) {
@@ -38,7 +36,35 @@
 			exit(1);
 		}
 
-		#Ensemble de variable permettant de fermer proprement le formulaire 
+		#Si libelle n'est pas nulle, on récupère les données lui correspondant
+		if (!empty($libelle)) {
+			$typeValue = dbRequestModValue($db, $libelle);
+			if (!$typeValue) {
+				echo "Requête incorrecte ou table inexistante (dbRequestModValue)";
+				exit(1);
+			}
+		}
+
+		#On crée une array de class contenant chaque type avec son état et sa valeur
+		$arrayTypeClass = array();
+		foreach ($champType as $champ) {
+			$isHere = True;
+			if (!empty($libelle)) {
+				foreach ($typeValue as $type) {
+					if ($type['type_champ'] == $champ['type_champ']) {
+						$isHere = False;
+						$class = new TypeChamp($champ['type_champ'], $champ['actif'], $type['nbChamp']);
+						array_push($arrayTypeClass, $class);
+					}
+				}
+			}
+			if ($isHere) {
+				$class = new TypeChamp($champ['type_champ'], $champ['actif'], 0);
+				array_push($arrayTypeClass, $class);
+			}
+		}
+
+		#Ensemble de variable permettant de fermer proprement le formulaire
 		$i = 0;
 		$nbActif = 0;
 		foreach($champType as $type) {
@@ -47,10 +73,10 @@
 			}
 		}
 
-	?> 
+	?>
 	
 	<form method="POST">
-		<div class="container"> 
+		<div class="container">
 			<h1>Générateur de données</h1>
 			<hr>
 			<img src="../img/icon/brocolis.jpg" width="20%" class="rounded float-right">
@@ -62,9 +88,9 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="nomFichier" class="col-sm-2 col-form-label">Nom du fichier</label>
+				<label for="nomTable" class="col-sm-2 col-form-label">Nom de la table</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nomFichier" name="nomFichier">
+					<input type="text" class="form-control" id="nomTable" name="nomTable">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -78,102 +104,103 @@
 		<div class="container">
 			<h2>Nombre de champs types: </h2>
 			<hr>
-
-			<?php foreach ($champType as $type) {
-					if ($type['actif'] == 1) {
+			<?php
+				foreach ($arrayTypeClass as $class) {
+					if ($class->getActif() == 1) {
 						if ($i % 3 == 0) {
 							echo "<div class='form-row'>";
 							$j = 0;
 						}
 						$j += 1;
-
 			?>
 						<div class="form-group col-md-2">
-							<label for= <?php echo $type['type_champ']; ?>><?php echo $type['type_champ']; ?></label>
-							<input type="text" class='form-control' value=0 name=<?php echo $type['type_champ']; ?> >
+							<label for= <?php echo $class->getType(); ?>><?php echo $class->getType(); ?></label>
+							<input type="text" class='form-control' name=<?php echo $class->getType(); ?> value=<?php echo $class->getValue(); ?>>
 						</div>
-
-			<?php  
+			<?php
 						if ($j == 3) echo "</div>";
-						if ($j != 3 && $i == $nbActif - 1) echo '</div>'; 
-				  		$i += 1;
-				  	}
-				  }
+						if ($j != 3 && $i == $nbActif - 1) echo '</div>';
+						$i += 1;
+					}
+				}
 			?>
 			<br>
 			<div class="form-row">
 				<div class="form-group col-md-2">
-					<button type="submit" class="btn btn-success btn-lg">Suivant</button>					
+					<button type="submit" name="suivant" class="btn btn-success btn-lg">Suivant</button>
 				</div>
 			</div>
 		</div>
 	</form>
-	
 
-	<?php
-
-		if (isset($_POST["nbLigne"])) {
-			$nbLigne = verifEntier(htmlspecialchars($_POST["nbLigne"]));
-		}
-		if (isset($_POST['int'])) {
-			$int= verifEntier(htmlspecialchars($_POST['int']));	
-		}
-		if (isset($_POST["double"])) {
-			$double= verifEntier(htmlspecialchars($_POST["double"]));	
-		}
-		
-		if (isset($_POST["tinyInt"])) {
-			$tinyInt= verifEntier(htmlspecialchars($_POST["tinyInt"]));
-		}
-		if (isset($_POST['varchar'])) {
-			$varchar= verifEntier(htmlspecialchars($_POST["varchar"]));
-		}
-		if (isset($_POST["char"])) {
-			$char= verifEntier(htmlspecialchars($_POST["char"]));
-		}	
-		if (isset($_POST["boolean"])) {
-			$boolean= verifEntier(htmlspecialchars($_POST["boolean"]));
-		}
-		if (isset($_POST['date'])) {
-			$date= verifEntier(htmlspecialchars($_POST["date"]));
-		}
-		if (isset($_POST["time"])) {
-			$time= verifEntier(htmlspecialchars($_POST["time"]));	
-		}
-		if (isset($_POST["datetime"])) {
-			$datetime= verifEntier(htmlspecialchars($_POST["datetime"]));	
-		}
-
-
-		
-
-			
-		
-		if(isset($_POST["nomModele"]) && isset($_POST["nomFichier"]) && isset($_POST["nbLigne"]) && $nbLigne == true && $nbLigne != 0 && $int == true && $double == true && $tinyInt == true && $varchar == true && $char == true && $boolean == true && $date == true && $time == true && $datetime == true) { 
-		
-				$_SESSION["nomModele"] = $_POST["nomModele"];
-				$_SESSION["nomFichier"] = $_POST["nomFichier"];
-				$_SESSION["nbLigne"] = $_POST["nbLigne"];
-				$_SESSION["int"] = $_POST["int"];
-				$_SESSION["double"] = $_POST["double"];
-				$_SESSION["tinyInt"] = $_POST["tinyInt"];
-				$_SESSION["varchar"] = $_POST["varchar"];
-				$_SESSION["char"] = $_POST["char"];
-				$_SESSION["boolean"] = $_POST["boolean"];
-				$_SESSION["date"] = $_POST["date"];
-				$_SESSION["time"] = $_POST["time"];
-				$_SESSION["datetime"] = $_POST["datetime"];	
-		}
-
-		function verifEntier($entier){
-			if( is_numeric($entier) == true  &&  is_float($entier) == false ){
-				return true;
+	<div class="console">
+		<?php
+			#Vérifie si chaque type est un entier >= 0 à met à jour la class
+			$i = 0;
+			foreach ($arrayTypeClass as $typeClass) {
+				if (isset($_POST[$typeClass->getType()])) {
+					$arrayTypeClass[$i]->setValue(verifEntier(htmlspecialchars($_POST[$typeClass->getType()])));
+				}
+				$i += 1;
 			}
-			return false;
-		}
 
-	?>
-	
+			#Si on soumet le formulaire
+			if (isset($_POST['suivant'])) {
+				$isHere = True;
+
+				#Vérifie si le nombre de ligne est valide
+				if (isset($_POST['nbLigne'])) {
+					$nbLigne = verifEntier(htmlspecialchars($_POST['nbLigne']));
+					if ($nbLigne < 1) {
+						echo "Veuillez choisir un nombre entier de ligne supérieur à 0 <br>";
+						$isHere = False;
+					}
+				}
+
+				#Parcours chaque type et affiche un message d'erreur si un type n'est pas un entier > -1
+				foreach ($arrayTypeClass as $typeClass) {
+					if ($typeClass->getValue() == -1) {
+						echo 'Le type '.$typeClass->getType().' doit être un entier >= à 0 <br>';
+						$isHere = False;
+					}
+				}
+
+				#Si on a rencontré aucune erreur dans la saisie des données et que nomModele et nomTable ne sont pas nuls on envoie
+				if ($isHere && !(empty($_POST['nomModele'])) && !(empty($_POST['nomTable']))) {
+					
+					$_SESSION['nomModele'] = $_POST['nomModele'];
+					$_SESSION['nomTable'] = $_POST['nomTable'];
+					$_SESSION['nbLigne'] = $nbLigne;
+
+					foreach ($arrayTypeClass as $typeClass) {
+						if ($typeClass->getValue() > 0 ) {
+							$_SESSION[$typeClass->getType()] = $typeClass->getValue();
+						}
+					}
+					/*
+					Solution Javascript qui marche très bien
+						echo "<script> window.location.href='generate.php'</script>";
+					Solution php qui ne marche pas et qui me génère une erreur car des headers ont déjà été envoyés
+						header("Location: generate.php");
+						exit();
+					*/
+
+				} else {
+					echo "Veuillez compléter les champs 'Nom du modèle' et 'Nom de la table' <br>";
+				}
+
+			}
+
+
+			#Fonction vérifiant si c'est un entier supérier à 0
+			function verifEntier($entier) {
+				if (is_numeric($entier) && !(is_float($entier)) && (int)$entier >= 0) {
+					return (int)$entier;
+				}
+				return -1;
+			}
+		?>
+	</div>
 	<?php require "footer.html"; ?>
 	
 </body>
