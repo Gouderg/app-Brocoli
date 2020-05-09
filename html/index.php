@@ -29,7 +29,7 @@
 			exit(1);
 		}
 
-		#On récupère le tableau des champs
+		#On récupère le tableau de l'activité des champs
 		$champType = dbRequestTypeActif($db);
 		if (!$champType) {
 			echo "Requête incorrecte ou table inexistante (dbRequestTypeActif)";
@@ -38,11 +38,21 @@
 
 		#Si libelle n'est pas nulle, on récupère les données lui correspondant
 		if (!empty($libelle)) {
+			#Récupération de l'occurence de chaque type
 			$typeValue = dbRequestModValue($db, $libelle);
 			if (!$typeValue) {
 				echo "Requête incorrecte ou table inexistante (dbRequestModValue)";
 				exit(1);
 			}
+			#Récupération du nom de la table et du nom du modèle
+			$dataMod = dbRequestModData($db, $libelle);
+			if (!$dataMod) {
+				echo "Requête incorrecte ou table inexistante (dbRequestModData)";
+				exit(1);
+			}
+			$info = explode('_', $libelle);
+			array_push($dataMod, $info[1]);
+
 		}
 
 		#On crée une array de class contenant chaque type avec son état et sa valeur
@@ -84,13 +94,13 @@
 			<div class="form-group row">
 				<label for="nomModele" class="col-sm-2 col-form-label">Nom du modèle</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nomModele" name="nomModele">
+					<input type="text" class="form-control" id="nomModele" name="nomModele" <?php if(!empty($libelle)) {echo "value=".$dataMod[0];} ?>>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nomTable" class="col-sm-2 col-form-label">Nom de la table</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nomTable" name="nomTable">
+					<input type="text" class="form-control" id="nomTable" name="nomTable" <?php if(!empty($libelle)) {echo "value=".$dataMod['nom_table'];} ?>>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -177,6 +187,7 @@
 							$_SESSION[$typeClass->getType()] = $typeClass->getValue();
 						}
 					}
+					echo "<script> window.location.href='generate.php'</script>";
 					/*
 					Solution Javascript qui marche très bien
 						echo "<script> window.location.href='generate.php'</script>";

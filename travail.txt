@@ -30,6 +30,7 @@ Maquetage du site:
 
 		- back.html: Permet de cacher ou supprimer un champ dans un modèle (Le champ ne peut plus apparaître dans le modèle)
 
+--------------------------------------------------------------------------------
 
 
 Refonte du site:
@@ -42,7 +43,7 @@ Refonte du site:
 
 	replay.html: Enlever le generate, Rename Modèle		 
 
-
+--------------------------------------------------------------------------------
 
 Mémo Base de donnée:
 	La base de donnée hébergé est différente de ce qu'il faut générer. Dans la base, il y a les titres à générer.
@@ -54,7 +55,7 @@ Travail PHP, décomposition des trucs à faire:
 	Regarder comment écrire dans un fichier du sql et du csv
 	Faire les requeste avec la base de donnée (ajouter et récupérer un modèle)
 
-
+--------------------------------------------------------------------------------
 
 Ordre du travail à faire:
 
@@ -80,7 +81,34 @@ Ordre du travail à faire:
 		 Rajouter un nom de table, urgent sinon cela ne marche pas on ne peut pas inserer
 
 	Pour rendre le libelle unique: mettre un "autoIncr_nomModele"
+	Pour les booleans mettre des 0 = faux, 1 = vrai, 2 = random
+	INDEX.php => Rajouter un morceau de code pour nomModlee et nom de la table
 
 	$_SESSION = array();
 	session_destroy();
 	unset($_SESSION);
+
+--------------------------------------------------------------------------------
+
+*Refaire la base de donnée et (MCD + Justification) et mettre de nouvelle entré pour 1_modVictor
+*Rajouter le modele et le nombre de champs dans index.php
+*Rajouter la date de création dans replay.pph
+*Séparer les char et les varchar
+Créer une class virtuelle contentant le nom
+
+
+
+Pourquoi avoir changer le MCD de la base de donnée:
+	
+	Modification: 
+		table modèle: nom_fichier transformé en cheminFichier (stockage du fichier à télécharger)
+
+	Suppression:
+		table champ: fichier dégage car ne sert à rien
+
+	Ajout:
+		table modele: nom_modele
+		table champ: - etat pour les booleans (valeur compris entre 0 et 2)
+					 - Ajout de val_min_time, val_max_time
+					 - Ajout de val_min_datetime, val_max_datetime
+

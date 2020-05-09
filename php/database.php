@@ -57,7 +57,7 @@
 	//Fonction récupérant la liste des modèle
 	function dbRecupNomModele($db) {
 		try {
-			$request = 'SELECT m.libelle, COUNT(c.type_champ) AS nbChamp 
+			$request = 'SELECT m.libelle, COUNT(c.type_champ) AS nbChamp, m.date_creation 
 						FROM modele m
 						JOIN champ c ON m.libelle = c.libelle
 						GROUP BY m.libelle';
@@ -93,7 +93,21 @@
 			return false;
 		}
 		return $result;
-	} 
+	}
 
+	function dbRequestModData($db, $libelle) {
+		try {
+			$request = 'SELECT nom_table FROM modele WHERE libelle = :libelle';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->execute();
+			$result = $statement->fetch(PDO::FETCH_ASSOC);
+		
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return $result;
+	}
 
  ?>

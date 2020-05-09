@@ -5,31 +5,40 @@ JOIN modele m ON m.libelle = c.libelle;
 
 
 #Requête pour sélectionner tout venant d'un meme libelle
-SELECT c.libelle, m.nom_fichier, m.nom_table, m.date_creation, c.type_champ, c.nom_champ, c.val_min_nb, c.val_max_nb, c.val_max_date, c.val_min_date, t.actif
+SELECT c.libelle, m.nom_fichier, m.nom_table, c.type_champ, c.nom_champ, c.val_min_nb, c.val_max_nb, c.val_max_date, c.val_min_date
 FROM champ c
 JOIN modele m on m.libelle = c.libelle
-JOIN type_champ t on t.type_champ = c.type_champ
-WHERE c.libelle = 'Thomas';
+WHERE c.libelle = '1_modVictor';
 
-#Requête qui récupère l'état des champs
+#Requête qui récupère l'état des champs => back.php, index.php
 SELECT * FROM type_champ;
 
 
-#Requête qui update l'état d'un des types
+#Requête qui update l'état d'un des types => back.php
 UPDATE type_champ
 SET actif = :actif
 WHERE type_champ = :type_champ;
 
-#Requête pour récupérer la liste des modèles avec le nombre de champs
-SELECT m.libelle, COUNT(c.type_champ) AS nbChamp
+#Requête pour récupérer la liste des modèles avec le nombre de champs => replay.php
+SELECT m.libelle, COUNT(c.type_champ) AS nbChamp, m.date_creation
 FROM modele m
 JOIN champ c ON m.libelle = c.libelle
 GROUP BY m.libelle;
 
-#Requête pour récupérer la liste des type utilisés dans un modèle
+#Requête pour récupérer la liste des type utilisés dans un modèle = index.php
 SELECT t.type_champ, COUNT( * ) AS nbChamp
 FROM type_champ t 
 JOIN champ c ON t.type_champ = c.type_champ
 WHERE c.libelle = '1_modVictor'
 GROUP BY t.type_champ
 ORDER BY t.type_champ;
+
+#Requête pour récupérer le nom de la table et le nom du modèle => generate.php
+SELECT nom_fichier, nom_table
+FROM modele
+WHERE libelle = "1_modVictor";
+
+#Requête pour récupérer les types, le nom du type et ses valeurs => generate.php
+SELECT type_champ, nom_champ, val_min_nb, val_max_nb, val_min_date, val_max_date, longueur, liste_txt
+FROM champ
+WHERE libelle = "1_modVictor"; 

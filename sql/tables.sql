@@ -66,8 +66,8 @@ CREATE TABLE champ(
 # Table: type_champ
 #------------------------------------------------------------
 INSERT INTO  type_champ VALUES ('Integer', 1);
-INSERT INTO  type_champ VALUES ('Double-Float', 1);
-INSERT INTO  type_champ VALUES ('Tiny-Int', 1);
+INSERT INTO  type_champ VALUES ('Double', 1);
+INSERT INTO  type_champ VALUES ('Tinyint', 1);
 INSERT INTO  type_champ VALUES ('Varchar', 1);
 INSERT INTO  type_champ VALUES ('Char', 1);
 INSERT INTO  type_champ VALUES ('Boolean', 1);

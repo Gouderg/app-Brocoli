@@ -43,6 +43,7 @@
 								<th scope="col">#</th>
 								<th scope="col">Nom du modèle</th>
 								<th scope="col">Nombre de champ</th>
+								<th scope="col">Date de création</th>
 								<th scope="col">Sélection</th>
 							</tr>
 						</thead>
@@ -54,6 +55,7 @@
 									echo '<th scope="row">'.(int)$info[0].'</th>';
 									echo '<td>'.$info[1].'</td>';
 									echo '<td>'.$nom["nbChamp"].'</td>';
+									echo '<td>'.$nom['date_creation'].'</td>';
 									echo '<td> <div class="form-check">
 												<input type="checkbox" class="form-check-input" name="check'.$info[0].'"></div>';
 									echo '</tr>';

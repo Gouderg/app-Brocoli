@@ -1,4 +1,18 @@
-<?php session_start(); ?> 
+<?php
+	require_once("../php/fonctionGenerate.php");
+	session_start();
+	$modeleGen = array();
+	#On regarde de qui nous envoie des données
+	#Si c'est replay.php, on effectue une requete sql pour récupérer un modèle déjà sauvegarder
+	if (isset($_SESSION['libelle'])) {
+		$modeleGen = fillModGen($_SESSION['libelle']);
+		
+	}
+
+	$_SESSION = array();
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,13 +26,18 @@
 	<form method="post">
 		<div class="row">
 			<div class="col-md-8">
-				<section class="container" id="champ">
-					<table class="table" id="tabChamp">
-						<!-- Générer par le php -->
+				<section class="container">
+					<table class="table">
 						<div class="form-group row">
 							<label for="nomModel" class="col-sm-2 col-form-label">Nom du modèle:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="nomModel" value="Nom du modèle">
+								<input type="text" class="form-control" name="nomModel" value="Nom du modèle">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de Ligne:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="nbLigne" value="0">
 							</div>
 						</div>
 						<thead>
@@ -112,12 +131,12 @@
 			</div>
 		</div>
 	</form>
-	<hr id="separation">
+	<hr>
 	<div class="row">
 		<div class="col-md-8">
 			<div class="card" style=" margin-left: 10rem;">
 				<div class="card-body">
-					<h5 class="card-title" style="">Console</h5>
+					<h5 class="card-title">Console</h5>
 					<p class="card-text">
 						+----+-----------------------+----------+<br>
 						| id | nom                   | quantite |<br>
