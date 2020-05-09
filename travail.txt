@@ -91,11 +91,11 @@ Ordre du travail à faire:
 --------------------------------------------------------------------------------
 
 *Refaire la base de donnée et (MCD + Justification) et mettre de nouvelle entré pour 1_modVictor
-*Rajouter le modele et le nombre de champs dans index.php
-*Rajouter la date de création dans replay.pph
-*Séparer les char et les varchar
+*Rajouter le modele et le nombre de champs dans index.php OK
+*Rajouter la date de création dans replay.pph OK
+*Séparer les char et les varchar OK
 Créer une class virtuelle contentant le nom
-
+Pas besoin de faire d'auto incrémentation
 
 
 Pourquoi avoir changer le MCD de la base de donnée:
@@ -107,7 +107,6 @@ Pourquoi avoir changer le MCD de la base de donnée:
 		table champ: fichier dégage car ne sert à rien
 
 	Ajout:
-		table modele: nom_modele
 		table champ: - etat pour les booleans (valeur compris entre 0 et 2)
 					 - Ajout de val_min_time, val_max_time
 					 - Ajout de val_min_datetime, val_max_datetime

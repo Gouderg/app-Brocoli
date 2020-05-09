@@ -1,14 +1,15 @@
 <?php 
-	class Tinyint {
+	class Tinyint extends TypeNomChamp{
 
 		#Attributs
 		private $valTinyIntMin;
 		private $valTinyIntMax;
 
 		#Constructeur
-		public function __construct($valTinyIntMin, $valTinyIntMax) {
+		public function __construct($valTinyIntMin = null, $valTinyIntMax = null, $nom_champ = null) {
 			$this->valTinyIntMin = $valTinyIntMin;
 			$this->valTinyIntMax = $valTinyIntMax;
+			$this->nom_champ = $nom_champ;
 
 		}
 
@@ -19,6 +20,7 @@
 		#Setter
 		public function setValMin($valTinyIntMin) {$this->valTinyIntMin = $valTinyIntMin;}
 		public function setValMax($valTinyIntMax) {$this->valTinyIntMax = $valTinyIntMax;}
+		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

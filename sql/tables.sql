@@ -23,10 +23,10 @@ USE projetIV_PL;
 #------------------------------------------------------------
 
 CREATE TABLE modele(
-        libelle       Varchar (50) NOT NULL ,
-        nom_fichier   Varchar (50) NOT NULL ,
-        nom_table     Varchar (50) NOT NULL ,
-        date_creation Date NOT NULL
+        libelle          Varchar (50) NOT NULL ,
+        chemin_fichier   Varchar (75) NULL ,
+        nom_table        Varchar (50) NOT NULL ,
+        date_creation    Date NOT NULL
 	,CONSTRAINT modele_PK PRIMARY KEY (libelle)
 )ENGINE=InnoDB;
 
@@ -45,15 +45,19 @@ CREATE TABLE type_champ(
 # Table: champ
 #------------------------------------------------------------
 CREATE TABLE champ(
-        id           Int  Auto_increment  NOT NULL ,
-        nom_champ    Varchar (50) NOT NULL ,
-        longueur     Double NULL ,
-        val_min_nb   Double NULL ,
-        val_max_nb   Double NULL ,
-        val_min_date Date NULL ,
-        val_max_date Date NULL ,
-        liste_txt    Varchar (512) NULL ,
-        fichier      Varchar (512) NULL ,
+        id               Int  Auto_increment  NOT NULL ,
+        nom_champ        Varchar (50) NOT NULL ,
+        longueur         Double NULL ,
+        liste_txt        Varchar (512) NULL ,
+        val_min_nb       Double NULL ,
+        val_max_nb       Double NULL ,
+        val_min_date     Date NULL ,
+        val_max_date     Date NULL ,
+        val_min_datetime DateTime NULL ,
+        val_max_datetime DateTime NULL ,
+        val_min_time     Time NULL ,
+        val_max_time     Time NULL ,
+        etat             Int NULL ,
         libelle      Varchar (512) NOT NULL ,
         type_champ   Varchar (512) NOT NULL
 	,CONSTRAINT champ_PK PRIMARY KEY (id)
@@ -78,9 +82,9 @@ INSERT INTO  type_champ VALUES ('DateTime', 1);
 #------------------------------------------------------------
 # Table: modele
 #------------------------------------------------------------
-INSERT INTO modele VALUES ('1_modVictor', 'modVictor', 'table1', '2020-02-15');
-INSERT INTO modele VALUES ('2_modLeopold', 'modLeopold', 'table2', '2020-03-15');
-INSERT INTO modele VALUES ('3_modThomas', 'modThomas', 'table3', '2020-04-15');
+INSERT INTO modele (libelle, nom_table, date_creation) VALUES ('1_modVictor', 'table1', '2020-02-15');
+INSERT INTO modele (libelle, nom_table, date_creation) VALUES ('2_modLeopold', 'table2', '2020-03-15');
+INSERT INTO modele (libelle, nom_table, date_creation) VALUES ('3_modThomas', 'table3', '2020-04-15');
 
 #------------------------------------------------------------
 # Table: champ
@@ -89,7 +93,9 @@ INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUE
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Salaire', '0', '9999', '1_modVictor', 'Integer');
 INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '1_modVictor', 'Varchar');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '2000-01-01', '2004-01-01', '1_modVictor', 'Date');
-INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Utile', '0', '1', '1_modVictor', 'Boolean');
+INSERT INTO champ (nom_champ, etat, libelle, type_champ) VALUES ('Utile', '0', '1_modVictor', 'Boolean');
+INSERT INTO champ (nom_champ, val_min_time, val_max_time, libelle, type_champ) VALUES ('Heure', '12:00:00', '13:00:00', '1_modVictor', 'Time');
+INSERT INTO champ (nom_champ, val_min_datetime, val_max_datetime, libelle, type_champ) VALUES ('Heure', '2003-01-01 12:00:00', '2004-01-01 13:00:00', '1_modVictor', 'DateTime');
 
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '0', '99', '2_modLeopold', 'Integer');
 INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '2_modLeopold', 'Varchar');

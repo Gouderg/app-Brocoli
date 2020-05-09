@@ -61,12 +61,6 @@
 								<td><input type="text" class="form-control" placeholder="Age"></td>
 								<td><input type="text" class="form-control" placeholder="Valeur minimale"></td>
 								<td><input type="text" class="form-control" placeholder="Valeur maximale"></td>
-								<td>
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" id="autoIncr">
-										<label class="form-check-label" for="autoIncr">Incrementation auto</label>
-									</div>
-								</td>
 							</tr>
 							<tr>
 								<td class="col-1">

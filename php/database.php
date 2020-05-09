@@ -110,4 +110,22 @@
 		return $result;
 	}
 
+	//-------------------------------------------------------------
+	// Generate.php
+	//-------------------------------------------------------------
+	function dbRequestValue($db, $libelle) {
+		try {
+			$request = '';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->execute();
+			$result = $statement->fetch(PDO::FETCH_ASSOC);
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return $result;
+	}
+
+
  ?>

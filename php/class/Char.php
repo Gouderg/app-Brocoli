@@ -1,14 +1,15 @@
 <?php 
-	class Char {
+	class Char extends TypeNomChamp{
 
 		#Attributs
 		private $longueur;
 		private $fichier;
 
 		#Constructeur
-		public function __construct($longueur, $fichier) {
+		public function __construct($longueur = null, $fichier = null, $nom_champ = null) {
 			$this->longueur = $longueur;
 			$this->fichier = $fichier;
+			$this->nom_champ = $nom_champ;
 
 		}
 
@@ -19,6 +20,7 @@
 		#Setter
 		public function setLongueur($longueur) {$this->longueur = $longueur;}
 		public function setFichier($fichier) {$this->fichier = $fichier;}
+		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

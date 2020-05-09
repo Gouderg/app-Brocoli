@@ -1,14 +1,15 @@
 <?php 
-	class DateTime {
+	class DateTime extends TypeNomChamp{
 
 		#Attributs
 		private $valDateTimeMin;
 		private $valDateTimeMax;
 
 		#Constructeur
-		public function __construct($valDateTimeMin, $valDateTimeMax) {
+		public function __construct($valDateTimeMin = null, $valDateTimeMax = null, $nom_champ = null) {
 			$this->valDateTimeMin = $valDateTimeMin;
 			$this->valDateTimeMax = $valDateTimeMax;
+			$this->nom_champ = $nom_champ;
 
 		}
 
@@ -19,7 +20,8 @@
 		#Setter
 		public function setValMin($valDateTimeMin) {$this->valDateTimeMin = $valDateTimeMin;}
 		public function setValMax($valDateTimeMax) {$this->valDateTimeMax = $valDateTimeMax;}
-
+		public function setNomChamp($nom) {$this->nom_champ = $nom;}
+		
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 
 		# Fonction retournant une ligne SQL/CSV permettant la génération 

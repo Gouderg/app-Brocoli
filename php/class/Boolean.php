@@ -1,12 +1,13 @@
 <?php
-	class Boolean {
+	class Boolean extends TypeNomChamp {
 
 		#Attributs
 		private $etat;
 
 		#Constructeur
-		public function __construct($etat) {
+		public function __construct($nom_champ = null, $etat = null) {
 			$this->etat = $etat;
+			$this->nom_champ = $nom_champ;
 		}
 
 		#Getter
@@ -14,6 +15,7 @@
 
 		#Setter
 		public function setEtat($etat) {$this->etat = $etat;}
+		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

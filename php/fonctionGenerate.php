@@ -18,7 +18,7 @@
 			echo "Table inexistante (dbRequestValue)";
 			exit();
 		}
-		
+		$dataMod = dbRequestData($db, $libelle);
 
 	}
 
