@@ -113,9 +113,27 @@
 	//-------------------------------------------------------------
 	// Generate.php
 	//-------------------------------------------------------------
-	function dbRequestValue($db, $libelle) {
+	function dbRequestValueGen($db, $libelle) {
 		try {
-			$request = '';
+			$request = 'SELECT type_champ, nom_champ, val_min_nb, val_max_nb, val_min_date, val_max_date, longueur, liste_txt, etat
+						FROM champ
+						WHERE libelle = :libelle';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->execute();
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $exception) {
+			error_log('Request error: ' .$exception->getMessage());
+			return false;
+		}
+		return $result;
+	}
+
+	function dbRequestDataGen($db, $libelle) {
+		try {
+			$request = 'SELECT libelle, nom_table
+						FROM modele
+						WHERE libelle = :libelle';
 			$statement = $db->prepare($request);
 			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
 			$statement->execute();

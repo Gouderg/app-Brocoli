@@ -6,10 +6,12 @@
 		private $valDateMax;
 
 		#Constructeur
-		public function __construct($valDateMin = null, $valDateMax = null, $nom_champ = null) {
+		public function __construct($id = null, $type_champ = null, $valDateMin = null, $valDateMax = null, $nom_champ = null) {
 			$this->valDateMin = $valDateMin;
 			$this->valDateMax = $valDateMax;
-			$this->nom_champ = $nom_champ
+			$this->nom_champ = $nom_champ;
+			$this->id = $id;
+			$this->type_champ = $type_champ;
 
 		}
 
@@ -20,7 +22,6 @@
 		#Setter
 		public function setValMin($valDateMin) {$this->valDateMin = $valDateMin;}
 		public function setValMax($valDateMax) {$this->valDateMax = $valDateMax;}
-		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

@@ -6,10 +6,12 @@
 		private $valTinyIntMax;
 
 		#Constructeur
-		public function __construct($valTinyIntMin = null, $valTinyIntMax = null, $nom_champ = null) {
+		public function __construct($id = null, $type_champ = null, $valTinyIntMin = null, $valTinyIntMax = null, $nom_champ = null) {
 			$this->valTinyIntMin = $valTinyIntMin;
 			$this->valTinyIntMax = $valTinyIntMax;
 			$this->nom_champ = $nom_champ;
+			$this->id = $id;
+			$this->type_champ = $type_champ;
 
 		}
 
@@ -20,7 +22,6 @@
 		#Setter
 		public function setValMin($valTinyIntMin) {$this->valTinyIntMin = $valTinyIntMin;}
 		public function setValMax($valTinyIntMax) {$this->valTinyIntMax = $valTinyIntMax;}
-		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

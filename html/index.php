@@ -1,6 +1,6 @@
 <!--Ouverture d'une session pour récupérer les valeurs envoyés par replay -->
 <?php
-	session_start();
+	if(!isset($_SESSION)) session_start();
 	$libelle = '';
 	if (isset($_SESSION['libelle'])) {
 		$libelle = $_SESSION['libelle'];
@@ -106,7 +106,7 @@
 			<div class="form-group row">
 				<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de ligne</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="nbLigne" name="nbLigne" value=0>
+					<input type="text" class="form-control" id="nbLigne" name="nbLigne" value=4>
 				</div>
 			</div>
 		</div>

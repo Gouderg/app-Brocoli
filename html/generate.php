@@ -1,17 +1,24 @@
 <?php
 	require_once("../php/fonctionGenerate.php");
-	session_start();
+
+	if(!isset($_SESSION)) session_start();
+
 	$modeleGen = array();
-	#On regarde de qui nous envoie des données
+
+	#On regarde qui nous envoie des données
 	#Si c'est replay.php, on effectue une requete sql pour récupérer un modèle déjà sauvegarder
 	if (isset($_SESSION['libelle'])) {
-		$modeleGen = fillModGen($_SESSION['libelle']);
+		$modeleGen = fillFromReplay($_SESSION['libelle']);
 		
+	} 
+	#Si c'es index.php, on rempli juste le tableau
+	elseif (isset($_SESSION['nomModele'])) {
+		$modeleGen = fillFromIndex();
+	
 	}
 
+	#On vide $_SESSION pour éviter d'avoir des erreurs
 	$_SESSION = array();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +38,13 @@
 						<div class="form-group row">
 							<label for="nomModel" class="col-sm-2 col-form-label">Nom du modèle:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nomModel" value="Nom du modèle">
+								<input type="text" class="form-control" name="nomModele" value=<?php echo $modeleGen['nomModele']; ?>>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de Ligne:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nbLigne" value="0">
+								<input type="text" class="form-control" name="nbLigne" value=<?php echo $modeleGen['nbLigne']; ?>>
 							</div>
 						</div>
 						<thead>
@@ -45,49 +52,29 @@
 								<th scope="col">Position</th>
 								<th scope="col">Type champ</th>
 								<th scope="col">Nom du champ</th>
-								<th>Valeurs</th>
+								<th scope="col">Valeurs</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="col-1">
-									<select class="form-control">
-										<option selected>1</option>
-										<option>2</option>
-										<option>3</option>
-									</select>
-								</td>
-								<th scope="row">Integer</th>
-								<td><input type="text" class="form-control" placeholder="Age"></td>
-								<td><input type="text" class="form-control" placeholder="Valeur minimale"></td>
-								<td><input type="text" class="form-control" placeholder="Valeur maximale"></td>
-							</tr>
-							<tr>
-								<td class="col-1">
-									<select class="form-control">
-										<option>1</option>
-										<option selected>2</option>
-										<option>3</option>
-									</select>
-								</td>
-								<th scope="row">Double</th>
-								<td><input type="text" class="form-control" placeholder="Salaire" aria-label="Salaire"></td>
-								<td><input type="text" class="form-control" placeholder="Valeur minimale"></td>
-								<td><input type="text" class="form-control" placeholder="Valeur maximale"></td>
-							</tr>
-							<tr>
-								<td class="col-1">
-									<select class="form-control">
-										<option>1</option>
-										<option>2</option>
-										<option selected>3</option>
-									</select>
-								</td>
-								<th scope="row">Varchar</th>
-								<td><input type="text" class="form-control" placeholder="Metier"></td>
-								<td><input type="text" class="form-control" placeholder="Valeur minimale"></td>
-								<td><input type="text" class="form-control" placeholder="Valeur maximale"></td>
-							</tr>
+
+							<?php
+								#On fais une boucle pour parcourir tous les types
+								for ($i = 0; $i < $modeleGen['nbType']; $i++) {
+									#On récupère les valeurs nécessaires et si elles sont nulles on ne met rien 
+									if ($modeleGen[$i]->getNomChamp() != NULL) {
+										$nomChamp = $modeleGen[$i]->getNomChamp();
+									} else {
+										$nomChamp = " ";
+									}
+
+									echo '<tr>';	
+									echo positionType($modeleGen['nbType'], $modeleGen[$i]->getId());				#Génère la position
+									echo '<th scope="row">'.$modeleGen[$i]->getTypeChamp().'</th>';					#Génère le type
+									echo '<td><input type="text" class="form-control" value ='.$nomChamp.'></td>';	#Génère le nom
+									echo switchValue($modeleGen[$i]); 												#Génère les valeurs
+									echo '</tr>';
+								}
+							?>
 						</tbody>
 					</table>
 				</section>

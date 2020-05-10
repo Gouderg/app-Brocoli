@@ -1,15 +1,17 @@
 <?php 
-	class DateTime extends TypeNomChamp{
+	class DateTimes extends TypeNomChamp{
 
 		#Attributs
 		private $valDateTimeMin;
 		private $valDateTimeMax;
 
 		#Constructeur
-		public function __construct($valDateTimeMin = null, $valDateTimeMax = null, $nom_champ = null) {
+		public function __construct($id = null, $type_champ = null, $valDateTimeMin = null, $valDateTimeMax = null, $nom_champ = null) {
 			$this->valDateTimeMin = $valDateTimeMin;
 			$this->valDateTimeMax = $valDateTimeMax;
 			$this->nom_champ = $nom_champ;
+			$this->id = $id;
+			$this->type_champ = $type_champ;
 
 		}
 
@@ -20,7 +22,6 @@
 		#Setter
 		public function setValMin($valDateTimeMin) {$this->valDateTimeMin = $valDateTimeMin;}
 		public function setValMax($valDateTimeMax) {$this->valDateTimeMax = $valDateTimeMax;}
-		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 		
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

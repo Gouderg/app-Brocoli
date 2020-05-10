@@ -34,11 +34,11 @@ GROUP BY t.type_champ
 ORDER BY t.type_champ;
 
 #Requête pour récupérer le nom de la table et le nom du modèle => generate.php
-SELECT nom_fichier, nom_table
+SELECT libelle, nom_table
 FROM modele
 WHERE libelle = "1_modVictor";
 
 #Requête pour récupérer les types, le nom du type et ses valeurs => generate.php
-SELECT type_champ, nom_champ, val_min_nb, val_max_nb, val_min_date, val_max_date, longueur, liste_txt
+SELECT type_champ, nom_champ, val_min_nb, val_max_nb, val_min_date, val_max_date, longueur, liste_txt, etat
 FROM champ
 WHERE libelle = "1_modVictor"; 

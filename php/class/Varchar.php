@@ -6,10 +6,12 @@
 		private $fichier;
 
 		#Constructeur
-		public function __construct($longueur = null, $fichier = null, $nom_champ = null) {
+		public function __construct($id = null, $type_champ = null, $longueur = null, $fichier = null, $nom_champ = null) {
 			$this->longueur = $longueur;
 			$this->fichier = $fichier;
 			$this->nom_champ = $nom_champ;
+			$this->id = $id;
+			$this->type_champ = $type_champ;
 
 		}
 
@@ -20,7 +22,6 @@
 		#Setter
 		public function setLongueur($longueur) {$this->longueur = $longueur;}
 		public function setFichier($fichier) {$this->fichier = $fichier;}
-		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 		
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 

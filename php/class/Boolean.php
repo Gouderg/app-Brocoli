@@ -5,9 +5,11 @@
 		private $etat;
 
 		#Constructeur
-		public function __construct($nom_champ = null, $etat = null) {
+		public function __construct($id = null, $type_champ = null, $etat = null, $nom_champ = null) {
 			$this->etat = $etat;
 			$this->nom_champ = $nom_champ;
+			$this->id = $id;
+			$this->type_champ = $type_champ;
 		}
 
 		#Getter
@@ -15,7 +17,6 @@
 
 		#Setter
 		public function setEtat($etat) {$this->etat = $etat;}
-		public function setNomChamp($nom) {$this->nom_champ = $nom;}
 
 		#Méthode
 		# Fonction qui effectue la vérification des données et qui retourne 
