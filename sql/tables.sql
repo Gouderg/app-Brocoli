@@ -87,18 +87,18 @@ INSERT INTO modele (libelle, nom_table, date_creation) VALUES ('3_modThomas', 't
 #------------------------------------------------------------
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '0', '99', '1_modVictor', 'Integer');
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Salaire', '0', '9999', '1_modVictor', 'Integer');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '1_modVictor', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'departement', '1_modVictor', 'Varchar');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '2000-01-01 00:00:00', '2004-01-01 00:00:00', '1_modVictor', 'Date');
 INSERT INTO champ (nom_champ, etat, libelle, type_champ) VALUES ('Utile', '0', '1_modVictor', 'Boolean');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Heure', '1753-01-01 12:00:00', '1753-01-01 13:00:00', '1_modVictor', 'Time');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Heure', '2003-01-01 12:00:00', '2004-01-01 13:00:00', '1_modVictor', 'DateTimes');
 
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '0', '99', '2_modLeopold', 'Integer');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '2_modLeopold', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'departement', '2_modLeopold', 'Varchar');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '2000-01-01 00:00:00', '2004-01-01 00:00:00', '2_modLeopold', 'Date');
 
 INSERT INTO champ (nom_champ, val_min_nb, val_max_nb, libelle, type_champ) VALUES ('Age', '0', '99', '3_modThomas', 'Integer');
-INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'metier.txt', '3_modThomas', 'Varchar');
+INSERT INTO champ (nom_champ, longueur, liste_txt, libelle, type_champ) VALUES ('Metier', '50', 'departement', '3_modThomas', 'Varchar');
 INSERT INTO champ (nom_champ, val_min_date, val_max_date, libelle, type_champ) VALUES ('Date Naissance', '2000-01-01 00:00:00', '2004-01-01 00:00:00', '3_modThomas', 'Date');
 
 SET autocommit = 0;

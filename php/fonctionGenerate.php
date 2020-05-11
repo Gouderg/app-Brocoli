@@ -91,9 +91,9 @@
 	}
 
 	#Fonction qui retourne le select de position 
-	function positionType($nbType, $posType) {
+	function positionType($nbType, $posType, $numero) {
 
-		$boutonSelect = '<td class="col-1"><select class="form-control">';
+		$boutonSelect = '<td class="col-1"><select class="form-control" name= "pos'.$numero.'">';
 		$select = '';
 		for ($i = 1; $i <= $nbType; $i++) {
 			if ($posType == $i) {
@@ -104,12 +104,10 @@
 			$boutonSelect .= '<option '.$select.'>'.$i.'</option>';
 		}
 		$boutonSelect .= '</select></td>';
-
-
 		return $boutonSelect;
 	}
 
-	#Fonction qui retourne les bons champ de valeur
+	#Fonction qui retourne les bons champ de valeur, pas mal de recopie de code à cause de la personalisation du placeholder
 	function switchValue($objType) {
 
 		$valeurs = '';
@@ -122,7 +120,19 @@
 			break;
 
 			case 'Integer':
+				$valMin = checkVal($objType->getValMin());
+				$valMax = checkVal($objType->getValMax());
+				$valeurs = '<td><input type="text" class="form-control" placeholder="-2 147 483 648" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" placeholder="2 147 483 648" value ='.$valMax.'></td>';
+			break;
+
 			case 'Tinyint':
+				$valMin = checkVal($objType->getValMin());
+				$valMax = checkVal($objType->getValMax());
+				$valeurs = '<td><input type="text" class="form-control" placeholder="-128" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" placeholder="127" value ='.$valMax.'></td>';
+			break;
+
 			case 'Double':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
@@ -133,10 +143,9 @@
 			case 'Varchar':
 			case 'Char':
 				$longueur = checkVal($objType->getLongueur());
+				$nomFichier = checkVal($objType->getFichier());
 				$valeurs = '<td><input type="text" class="form-control" placeholder="Longueur Chaine" value ='.$longueur.'></td>';
-
-				//Pour le fichier il faut faire un select
-
+				$valeurs .= fillSelectVarchar($objType->getId(), $nomFichier);
 			break;
 
 			case 'Date':
@@ -159,10 +168,7 @@
 				$valeurs = '<td><input type="text" class="form-control" placeholder="00:00:00" value ='.$valMin.'></td>';
 				$valeurs .= '<td><input type="text" class="form-control" placeholder="23:59:59" value ='.$valMax.'></td>';
 			break;
-
-
 		}
-
 		return $valeurs;
 	}
 
@@ -170,6 +176,37 @@
 	function checkVal($val) {
 		if ($val != NULL) return $val;
 		return ' ';
+	}
+
+	#Fonction qui retourne le select du liste de Char/Varchar
+	function fillSelectVarchar($id, $nomFichier) {
+
+		#On ouvre le fichier et on le lis ligne par ligne pour le stocker dans un tableau 
+		$fichier = fopen('../fichier/liste/liste.txt', 'r') or die('Fichier non accessible (liste.txt)');
+		$listeFichier = array();
+		while(!feof($fichier)) {
+			$temp = fgets($fichier);
+			$temp = str_replace("\n", "", $temp);
+			array_push($listeFichier, $temp);
+		}
+		fclose($fichier);
+
+
+		#Permet de sélectionner ou pas la bonne valeur
+		if ($nomFichier == NULL) {$selected = 'selected';}
+		else {$selected = ' ';}
+		
+		$select = '<td><select class="form-control" name="char'.$id.'">';
+		$select .= '<option '.$selected.' > Aucun </option>';
+		
+		foreach($listeFichier as $nom) {
+			if ($nomFichier == $nom) {$selected = 'selected';}
+			else {$selected = ' ';}
+			
+			$select .= '<option '.$selected.' >'.$nom.'</option>';
+		}
+		$select .= '</select></td>';
+		return $select;
 	}
 
 ?>

@@ -3,16 +3,18 @@
 
 	if(!isset($_SESSION)) session_start();
 
-	$modeleGen = array();
+	
 
 	#On regarde qui nous envoie des données
 	#Si c'est replay.php, on effectue une requete sql pour récupérer un modèle déjà sauvegarder
 	if (isset($_SESSION['libelle'])) {
+		$modeleGen = array();
 		$modeleGen = fillFromReplay($_SESSION['libelle']);
 		
 	} 
 	#Si c'es index.php, on rempli juste le tableau
 	elseif (isset($_SESSION['nomModele'])) {
+		$modeleGen = array();
 		$modeleGen = fillFromIndex();
 	
 	}
@@ -38,13 +40,13 @@
 						<div class="form-group row">
 							<label for="nomModel" class="col-sm-2 col-form-label">Nom du modèle:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nomModele" value=<?php echo $modeleGen['nomModele']; ?>>
+								<input type="text" class="form-control" name="nomModele" placeholder="Nom du modèle" value=<?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de Ligne:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nbLigne" value=<?php echo $modeleGen['nbLigne']; ?>>
+								<input type="text" class="form-control" name="nbLigne" placeholder="Nombre de ligne" value=<?php if (isset($modeleGen)) echo $modeleGen['nbLigne']; ?>>
 							</div>
 						</div>
 						<thead>
@@ -68,7 +70,7 @@
 									}
 
 									echo '<tr>';	
-									echo positionType($modeleGen['nbType'], $modeleGen[$i]->getId());				#Génère la position
+									echo positionType($modeleGen['nbType'], $modeleGen[$i]->getId(), $i+1);			#Génère la position
 									echo '<th scope="row">'.$modeleGen[$i]->getTypeChamp().'</th>';					#Génère le type
 									echo '<td><input type="text" class="form-control" value ='.$nomChamp.'></td>';	#Génère le nom
 									echo switchValue($modeleGen[$i]); 												#Génère les valeurs
@@ -89,7 +91,7 @@
 					<hr>
 					<div class="form-row align-items-center">		
 						<div class="col-auto">
-							<input type="text" id="nomFichier" class="form-control" placeholder="sql">
+							<input type="text" id="nomFichier" class="form-control" placeholder="nomFichier" value= <?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
 						</div>
 						<div class="col-auto">
 							<select id="typeFichier" class="form-control">
