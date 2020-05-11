@@ -1,5 +1,6 @@
 <?php
-	require_once("../php/fonctionGenerate.php");
+	require_once("../php/fonGenerate/initFonction.php");
+	require_once("../php/fonGenerate/checkFonction.php");
 
 	if(!isset($_SESSION)) session_start();
 
@@ -28,11 +29,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Projet Broccoli</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
 	<?php require "header.html"; ?>
 
-	<form method="post">
+	<form method="POST">
 		<div class="row">
 			<div class="col-md-8">
 				<section class="container">
@@ -121,24 +123,33 @@
 				<div class="card-body">
 					<h5 class="card-title">Console</h5>
 					<p class="card-text">
-						+----+-----------------------+----------+<br>
-						| id | nom                   | quantite |<br>
-						+----+-----------------------+----------+<br>
-						|  2 | Tournevis électrique  |       85 |<br>
-						|  3 | Coupe bordure         |       38 |<br>
-						|  4 | Tondeuse à gazon      |       18 |<br>
-						|  5 | Nettoyeur HP          |        1 |<br>
-						|  6 | Scie sauteuse         |        7 |<br>
-						|  7 | Remorque 700kg        |        5 |<br>
-						|  8 | Groupe électrogène    |        2 |<br>
-						|  9 | Raton laveur          |       24 |<br>
-						| 10 | Aspirateur            |       58 |<br>
-						| 11 | Oscilloscope          |       12 |<br>
-						| 12 | Planche à voile       |       72 |<br>
-						+----+-----------------------+----------+<br>
+						
 					</p>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-4" id="console">
+			<?php
+				
+				#On vérifie si chaque position est unique puis on update notre variable modeleGen
+				if (checkPosition($modeleGen['nbType'])) {
+					for ($i = 1; $i <= $modeleGen['nbType']; $i++) {
+						$modeleGen[$i-1]->setId($_POST['pos'.$i]);
+					}
+				} else {
+					echo "Vous avez saisie plusieurs fois la même position pour vos types <br>";
+				}
+
+				#Boucle de vérification
+				for ($i=0; $i < $modeleGen['nbType'] ; $i++) { 
+					var_dump($modeleGen[$i]->getId());
+					echo '<br>';
+				}
+				
+				
+
+
+			?>
 		</div>
 	</div>
 	

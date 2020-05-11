@@ -5,6 +5,7 @@
 	if (isset($_SESSION['libelle'])) {
 		$libelle = $_SESSION['libelle'];
 	}
+	$_SESSION = array();
 ?>
 <!DOCTYPE html>
 <html>

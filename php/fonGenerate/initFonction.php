@@ -209,4 +209,9 @@
 		return $select;
 	}
 
+	#Fonction qui affiche un exemple de 10 chiffre généré.
+	function affichExemple() {
+		return 'Hello';
+	}
+
 ?>

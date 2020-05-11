@@ -107,7 +107,14 @@ Pourquoi avoir changer le MCD de la base de donnée:
 		table champ: fichier dégage car ne sert à rien
 
 	Ajout:
-		table champ: - etat pour les booleans (valeur compris entre 0 et 2)
-					 - Ajout de val_min_time, val_max_time
-					 - Ajout de val_min_datetime, val_max_datetime
+		table champ: Changement du date en datetime pour val_min_date et val_max_date
+
+----------------------------------------------------------------------------------
+
+Penser à faire une fonction qui quand on clique sur un bouton permet de garder les données affichés à l'écran
+
+Pour chaque champ, faire une fonction dans chaque classe et on appelle cette fonction qui retourne un message ou bien false et si c'est false on update la valeur.
+=>Peut être faire un isset du bouton et de rappeler les fonctions de initFonction? attention les valeurs pas bonnes doivent rester (meme si je pense que c'est bon).
+Rajouter des names à chaque champ sinon c'est impossible de récupérer la valeur
+
 
