@@ -1,0 +1,327 @@
+[33mcommit da64aade3668bfee6a9d32e30b46d7df50707b64[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Mon May 11 12:35:42 2020 +0200
+
+    Fin de la mise en page générate
+
+[33mcommit 92def067c8359951ef75cebced8743ebda9b97c1[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Mon May 11 01:17:51 2020 +0200
+
+    Langage generate appris et traduit
+
+[33mcommit 246f092294405611b14a3f985b972e14e9273ab8[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Sun May 10 01:47:36 2020 +0200
+
+    Ajout class abstraite
+
+[33mcommit 25f51aeea527123ef5b3b0434d06adda3bd8cdc0[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Sat May 9 22:20:57 2020 +0200
+
+    Mise en place de la base de generate
+
+[33mcommit 48f27a39ab91c15b1b6dfe017cf181dbfe440753[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Sat May 9 01:59:51 2020 +0200
+
+    index fonctionnel
+
+[33mcommit fb42b80fb6ca8e310f5d1093a467ed4e5ab0f0b8[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Fri May 8 18:02:35 2020 +0200
+
+    replay fonctionnel
+
+[33mcommit ca47d89028342f152e1caf27771efd2aa55208f5[m
+Author: gouderg <victor.illien974@gmail.com>
+Date:   Fri May 8 01:58:07 2020 +0200
+
+    Remodélisation index et replay avant php
+
+[33mcommit 7124c02e65e3d4858079c949f26d130a941b0862[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Thu May 7 14:21:46 2020 +0200
+
+    Le commit du sale
+
+[33mcommit cdb650d3ae0f62fd68ed8d59f5bda4d99a20727b[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Mon May 4 01:10:31 2020 +0200
+
+    Le back marche, chargement replay ok
+
+[33mcommit 571b6a7bcd7a8467c622a937dc06301141dc9c82[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Sun May 3 21:03:06 2020 +0200
+
+    index
+
+[33mcommit 66a188005cf7ac8081c97d54a2f10a7ac93776ad[m
+Merge: 7d2c3e6 89e667f
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Sun May 3 21:00:25 2020 +0200
+
+    resolve pb
+
+[33mcommit 7d2c3e64ef7fe16e4e857d5fdf249b63a0e5ab41[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Sun May 3 20:56:05 2020 +0200
+
+    Correction bug
+
+[33mcommit 89e667f820cc1094ea03dfa827c471a397d26aba[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Sun May 3 01:46:34 2020 +0200
+
+    Back fonctionnel mais contient une erreur de logique
+
+[33mcommit 248d98ec2241d99fc92f863c9a2ab9d5ff74d158[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Sat May 2 20:35:04 2020 +0200
+
+    Ajout requete sql global et travail
+
+[33mcommit 794c58c3c445257ee7beaef27392375a63354237[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Sat May 2 18:52:06 2020 +0200
+
+    Faille xss
+
+[33mcommit f52d3af9709390e62f5eb31a7287dae6ff5d324e[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Thu Apr 30 13:46:40 2020 +0200
+
+    Add name for
+
+[33mcommit becad8bc20f0326d8733b3b364f19f1fcb49cfb9[m
+Merge: 43e58ba 9ffbc27
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 22 14:12:56 2020 +0200
+
+    Small add
+
+[33mcommit 43e58bae9ebf0798e959c4701dac9d6e87d7ba60[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 22 13:58:38 2020 +0200
+
+    for pull
+
+[33mcommit 9ffbc276e4a0166dca981690b4b7b66448789cbd[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Wed Apr 22 13:57:06 2020 +0200
+
+    replay v2 final
+
+[33mcommit 5d0735331f8890bb88ec9afedf1096c5cab982ca[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Wed Apr 22 12:25:37 2020 +0200
+
+    replay v2
+
+[33mcommit 686499e24dab83721654ef8a90fabff3342406fd[m
+Merge: 3ef7a05 08976e9
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Wed Apr 22 10:14:54 2020 +0200
+
+    Merge branch 'master' of https://github.com/Gouderg/app-Brocoli
+
+[33mcommit 3ef7a059544df5f23d9518279373b0ebec0b2cab[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Wed Apr 22 10:14:42 2020 +0200
+
+    changements v1 replay
+
+[33mcommit 08976e95bdcd2a5847ebc2d5274b87282921e55b[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 21 16:54:21 2020 +0200
+
+    generate.php
+
+[33mcommit 0681263ef86e35fbadd08a0fa4fbf362dec397c3[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Mon Apr 20 17:12:21 2020 +0200
+
+    Fixe header
+
+[33mcommit bba4ecf900085d2f425365d8221be93574c03d32[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Mon Apr 20 17:07:12 2020 +0200
+
+    Add css
+
+[33mcommit 5611cb840ebae917e6603ad89162e4da503ca9c7[m
+Merge: a0cba1b 6e59294
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Mon Apr 20 16:47:49 2020 +0200
+
+    replay.php v1
+
+[33mcommit a0cba1bbc2c74ba9ace0db7753ca29aa35d82397[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Mon Apr 20 16:46:12 2020 +0200
+
+    replay.php v1
+
+[33mcommit 6e59294cb8c92b62e6c6e38ff5322146bfb82c05[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Mon Apr 20 16:37:48 2020 +0200
+
+    Back.html
+
+[33mcommit 18dab87d035034dc66120ac74245cb5eaf4427b4[m
+Author: leo9722 <pralainleopold@gmail.com>
+Date:   Mon Apr 20 15:28:02 2020 +0200
+
+    Add replay
+
+[33mcommit f98dcb96befdd1be146e7208d4d8e9706ebf02b7[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Mon Apr 20 15:16:55 2020 +0200
+
+    Fixed footer & URL
+
+[33mcommit c21d4f35fe500af1517b878bb479ea5200d9851d[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Mon Apr 20 14:33:23 2020 +0200
+
+    Small add
+
+[33mcommit 001d73d7e77cff9ee2d6b9af0f71c2862ac9a0ac[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 15 16:46:45 2020 +0200
+
+    Base de donnée fonctionnel avec exemple
+
+[33mcommit 109b2b1e01b910bde5b2b8f8edbef3f9c8ec93d8[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 15 14:56:55 2020 +0200
+
+    Presentation 9
+
+[33mcommit cc25fe4c297a03fff34a4d920ba012f362683ace[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 15 14:54:38 2020 +0200
+
+    Remaniement du chemin image
+
+[33mcommit 82a4b504d9b5d8e2c8e97d1c3f9afa4056460467[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 15 14:26:37 2020 +0200
+
+    Séparation header, footer - index
+
+[33mcommit 4ad087ba59b9cce2a19a2e7faffb391576291945[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Wed Apr 15 14:03:25 2020 +0200
+
+    Add content
+
+[33mcommit c9dfcc44dd0b3f4f78b72ea7a2e50dd81c356b79[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 14 19:56:31 2020 +0200
+
+    Ajout base de donnée
+
+[33mcommit ecb88b83b5ef9d2f48be884f3d3bbc2104831ab3[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 14 18:43:54 2020 +0200
+
+    Responsive index
+
+[33mcommit 21182e0df7339167dfb618ee5d2f31a3ba2741d2[m
+Author: root <root@localhost.localdomain>
+Date:   Tue Apr 14 09:30:11 2020 -0400
+
+    index.html +index.css + images --> version 1(pas terminé) + modif
+
+[33mcommit b99996d994b014269625c75935c91974da6b0fb4[m
+Author: root <root@localhost.localdomain>
+Date:   Tue Apr 14 09:11:47 2020 -0400
+
+    index.html +index.css + images --> version 1(pas terminé)
+
+[33mcommit 7dc7d4fdec17162af576f610f0556defb8b74fd8[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:39:32 2020 +0200
+
+    Presentation 8
+
+[33mcommit 21d93eb687d9f87871d20ebd6003a02b2b7261e2[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:37:24 2020 +0200
+
+    Presentation 7
+
+[33mcommit a3c893bbf276c4f7751fa0e295d8c9b0a46cb2fe[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:33:49 2020 +0200
+
+    Presentation 6
+
+[33mcommit a104094a12e45fa21d8bb277824dacd1a12bd73e[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:31:12 2020 +0200
+
+    Presentation 5
+
+[33mcommit 4b8d1fd78b7659358e32099160c02e9b8959540b[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:28:14 2020 +0200
+
+    Presentation 4
+
+[33mcommit 8d763df0ac535dfd548c33640f5f6bffebcaaf16[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:20:04 2020 +0200
+
+    Squelette 2
+
+[33mcommit e7e29bdb7928f3244bb34bcb5843e9e72f41cbd6[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Apr 10 14:08:02 2020 +0200
+
+    More work
+
+[33mcommit 78a06a0afa199e545668197dae7c2abd9627c11f[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 7 01:33:02 2020 +0200
+
+    Presentation 3
+
+[33mcommit db3d5d781d0be72af3dd7fac7cd8cc35a357fc8a[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 7 01:32:03 2020 +0200
+
+    Presentation 2
+
+[33mcommit c9060cef1d679b9f41cfb4d6c72494b7823e27ea[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 7 01:27:57 2020 +0200
+
+    Presentation
+
+[33mcommit 4da69c32d09155c0a61b716d103a7e1f437eda5a[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Tue Apr 7 01:22:14 2020 +0200
+
+    Img maquette
+
+[33mcommit 00a62d221ea0b31358fa27798cd5ff6ff56ae9dc[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Sat Apr 4 01:23:48 2020 +0200
+
+    Répartition des tâches
+
+[33mcommit c9c1e678bcc9b6011bcd35f3b507a22925f2438c[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Sat Apr 4 01:18:05 2020 +0200
+
+    Travail à faire
+
+[33mcommit 66d5f4e82038a66820a5fddc7c3c2e3e65635035[m
+Author: Gouderg <victor.illien974@gmail.com>
+Date:   Fri Mar 27 15:12:40 2020 +0100
+
+    Squelette

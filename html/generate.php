@@ -20,7 +20,7 @@
 	}
 
 	#On vide $_SESSION pour éviter d'avoir des erreurs
-	$_SESSION = array();
+	//$_SESSION = array();
 ?>
 
 <!DOCTYPE html>

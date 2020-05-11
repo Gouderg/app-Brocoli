@@ -5,7 +5,6 @@
 	if (isset($_SESSION['libelle'])) {
 		$libelle = $_SESSION['libelle'];
 	}
-	$_SESSION = array();
 ?>
 <!DOCTYPE html>
 <html>
@@ -178,6 +177,7 @@
 				#Si on a rencontré aucune erreur dans la saisie des données et que nomModele et nomTable ne sont pas nuls on envoie
 				if ($isHere && !(empty($_POST['nomModele'])) && !(empty($_POST['nomTable']))) {
 					
+					$_SESSION = array();
 					$_SESSION['nomModele'] = $_POST['nomModele'];
 					$_SESSION['nomTable'] = $_POST['nomTable'];
 					$_SESSION['nbLigne'] = $nbLigne;

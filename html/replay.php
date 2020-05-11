@@ -102,6 +102,7 @@
 				echo "Veuillez sélectionner un modèle";
 
 			} else {
+				$_SESSION = array();
 				if (isset($_POST['generate'])) {
 					$_SESSION['libelle'] = $modele[$nbValid - 1]['libelle'];
 					header("Location: generate.php");
