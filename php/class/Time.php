@@ -22,8 +22,30 @@
 		public function setValMin($valTimeMin) {$this->valTimeMin = $valTimeMin;}
 		public function setValMax($valTimeMax) {$this->valTimeMax = $valTimeMax;}
 		
-		#Méthode
-		# Fonction qui effectue la vérification des données et qui retourne 
+		#Fonction qui regarde si les valeurs rentrés sont bonnes en retournant false et return un message d'erreur sinon
+		public function verifValue($valMin, $valMax) {
+			$heureMin = explode(":", $valMin);
+			$heureMax = explode(":", $valMax);
+
+			if (preg_match('`^\d{1,2}:\d{1,2}:\d{1,2}$`', $valMin) &&		#On vérifie la validité de l'heure
+				preg_match('`^\d{1,2}:\d{1,2}:\d{1,2}$`', $valMax) && 		
+			   	(int)$heureMin[1] <= 59 && (int)$heureMax[1] <= 59 && 		#On vérifie les secondes
+			   	(int)$heureMin[2] <= 59 && (int)$heureMax[2] <= 59 &&		#On vérifie les minutes
+			   	(int)$heureMin[0] <= 23 && (int)$heureMax[0] <= 23){		#On vérifie les heures
+			   	
+				$valMinNew = new DateTime($valMin);
+				$valMaxNew = new DateTime($valMax);
+				$interval = $valMaxNew->getTimestamp() - $valMinNew->getTimestamp();
+
+				if ($interval < 0) {
+					return "Vous avez saisi un temps minimal supérieur à un temps maximal pour le Time à la ligne ".$this->getId()." <br>";
+				} else {
+					return false;
+				}
+			} else {
+				return "Votre saisi d'heure n'est valide pour le Time à la ligne ".$this->getId()." <br>";
+			}
+		}
 		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
 

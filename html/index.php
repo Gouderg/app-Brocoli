@@ -179,8 +179,8 @@
 				if ($isHere && !(empty($_POST['nomModele'])) && !(empty($_POST['nomTable']))) {
 					
 					$_SESSION = array();
-					$_SESSION['nomModele'] = $_POST['nomModele'];
-					$_SESSION['nomTable'] = $_POST['nomTable'];
+					$_SESSION['nomModele'] = htmlspecialchars($_POST['nomModele']);
+					$_SESSION['nomTable'] = htmlspecialchars($_POST['nomTable']);
 					$_SESSION['nbLigne'] = $nbLigne;
 
 					foreach ($arrayTypeClass as $typeClass) {
@@ -189,6 +189,7 @@
 						}
 					}
 					echo "<script> window.location.href='generate.php'</script>";
+					
 					/*
 					Solution Javascript qui marche très bien
 						echo "<script> window.location.href='generate.php'</script>";

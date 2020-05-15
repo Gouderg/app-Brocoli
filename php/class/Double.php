@@ -23,8 +23,18 @@
 		public function setValMin($valDoubleMin) {$this->valDoubleMin = $valDoubleMin;}
 		public function setValMax($valDoubleMax) {$this->valDoubleMax = $valDoubleMax;}
 		
-		#Méthode
-		# Fonction qui effectue la vérification des données et qui retourne 
+		#Fonction qui vérifie si la valeur est correcte 
+		public function verifValue($valMin, $valMax) {
+			if (is_numeric($valMin) && is_numeric($valMax)) {
+					if (floatval($valMin) > floatval($valMax)) {
+						return "La valeur minimale est supérieur à la valeur maximale";
+					} else {
+						return false;
+					}
+			} else {
+				return "La valeur saisi n'est pas numérique (essayer de remplacer la virgule par un point)";
+			}	
+		}
 		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
 

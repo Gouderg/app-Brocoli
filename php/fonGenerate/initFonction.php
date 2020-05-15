@@ -52,9 +52,22 @@
 				break;
 
 				case 'DateTimes':
+					$dateMin = explode(" ", $value['val_min_date']);
+					$dateMax = explode(" ", $value['val_max_date']);
+					$temp = new $value['type_champ']($j, $value['type_champ'], $dateMin[0]."_".$dateMin[1], $dateMax[0]."_".$dateMax[1], 
+													 $value['nom_champ']);
+					array_push($modGen, $temp);
+				break;
+
 				case 'Date':
+					$temp = new $value['type_champ']($j, $value['type_champ'], $value['val_min_date'], $value['val_max_date'],									 $value['nom_champ']);
+					array_push($modGen, $temp);
+				break;
+				
 				case 'Time':
-					$temp = new $value['type_champ']($j, $value['type_champ'], $value['val_min_date'], $value['val_max_date'], $value['nom_champ']);
+					$heureMin = explode(" ", $value['val_min_date']);
+					$heureMax = explode(" ", $value['val_max_date']);
+					$temp = new $value['type_champ']($j, $value['type_champ'], $heureMin[1], $heureMax[1], $value['nom_champ']);
 					array_push($modGen, $temp);
 				break;
 
@@ -86,7 +99,27 @@
 				array_push($modGen, $temp);
 			}
 		}
+		#Permet quand on regénère la page de garder la position initial sinon ça n'affiche rien
+		$_SESSION['nomModele'] = $modGen['nomModele'];
+		$_SESSION['nomTable'] = $modGen['nomTable'];
+		$_SESSION['nbLigne'] = $modGen['nbLigne'];
 		$modGen['nbType'] = $j;
+		return $modGen;
+	}
+
+	#Fonction qui permet de garder les données quand on rafraichis la page
+	function fillFromGenerate() {
+
+		$modGen['libelle'] = $_SESSION['libelle'];
+		$modGen['nomModele'] = $_SESSION['nomModele'];
+		$modGen['nomTable'] = $_SESSION['nomTable'];
+		$modGen['nbLigne'] = $_SESSION['nbLigne'];
+		$modGen['nbType'] = $_SESSION['nbType'];
+
+		for ($i = 0; $i < $_SESSION['nbType']; $i++) {
+
+			array_push($modGen, $_SESSION['_'.$i]);
+		}
 		return $modGen;
 	}
 
@@ -111,62 +144,75 @@
 	function switchValue($objType) {
 
 		$valeurs = '';
-		
 		switch($objType->getTypeChamp()) {
 
 			case 'Boolean':
 				$etat = checkVal($objType->getEtat());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="0: Faux, 1: True, 2: Random" value ='.$etat.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().
+						   '" placeholder="0: Faux, 1: True, 2: Random" value ='.$etat.'></td>';
 			break;
 
 			case 'Integer':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="-2 147 483 648" value ='.$valMin.'></td>';
-				$valeurs .= '<td><input type="text" class="form-control" placeholder="2 147 483 648" value ='.$valMax.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="-2 147 483 648" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" name="'.$objType->getId().'2'.
+							'" placeholder="2 147 483 647" value ='.$valMax.'></td>';
 			break;
 
 			case 'Tinyint':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="-128" value ='.$valMin.'></td>';
-				$valeurs .= '<td><input type="text" class="form-control" placeholder="127" value ='.$valMax.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="-128" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" name="'.$objType->getId().'2'.
+							'" placeholder="127" value ='.$valMax.'></td>';
 			break;
 
 			case 'Double':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="Valeur Minimal" value ='.$valMin.'></td>';
-				$valeurs .= '<td><input type="text" class="form-control" placeholder="Valeur Maximal" value ='.$valMax.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="Valeur Minimal" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" name="'.$objType->getId().'2'.
+							'" placeholder="Valeur Maximal" value ='.$valMax.'></td>';
 			break;
 
 			case 'Varchar':
 			case 'Char':
 				$longueur = checkVal($objType->getLongueur());
 				$nomFichier = checkVal($objType->getFichier());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="Longueur Chaine" value ='.$longueur.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="Longueur (0-255) - Aucun" value ='.$longueur.'></td>';
 				$valeurs .= fillSelectVarchar($objType->getId(), $nomFichier);
 			break;
 
 			case 'Date':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="0001-01-01" value ='.$valMin.'></td>';
-				$valeurs .= '<td><input type="text" class="form-control" placeholder="9999-12-31" value ='.$valMax.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="0001-01-01" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" name="'.$objType->getId().'2'.
+							'" placeholder="9999-12-31" value ='.$valMax.'></td>';
 			break;
 
 			case 'DateTimes':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="1753-01-01 00:00:00" value ='.$valMin.'></td>';
-				$valeurs .= '<td><input type="text" class="form-control" placeholder="9999-12-31 23:59:59" value ='.$valMax.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="1753-01-01_00:00:00" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" name="'.$objType->getId().'2'.
+							'" placeholder="9999-12-31_23:59:59" value ='.$valMax.'></td>';
 			break;
 
 			case 'Time':
 				$valMin = checkVal($objType->getValMin());
 				$valMax = checkVal($objType->getValMax());
-				$valeurs = '<td><input type="text" class="form-control" placeholder="00:00:00" value ='.$valMin.'></td>';
-				$valeurs .= '<td><input type="text" class="form-control" placeholder="23:59:59" value ='.$valMax.'></td>';
+				$valeurs = '<td><input type="text" class="form-control" name="'.$objType->getId().'1'.
+						   '" placeholder="00:00:00" value ='.$valMin.'></td>';
+				$valeurs .= '<td><input type="text" class="form-control" name="'.$objType->getId().'2'.
+							'" placeholder="23:59:59" value ='.$valMax.'></td>';
 			break;
 		}
 		return $valeurs;
@@ -196,7 +242,7 @@
 		if ($nomFichier == NULL) {$selected = 'selected';}
 		else {$selected = ' ';}
 		
-		$select = '<td><select class="form-control" name="char'.$id.'">';
+		$select = '<td><select class="form-control" name="'.$id.'2">';
 		$select .= '<option '.$selected.' > Aucun </option>';
 		
 		foreach($listeFichier as $nom) {
@@ -207,11 +253,6 @@
 		}
 		$select .= '</select></td>';
 		return $select;
-	}
-
-	#Fonction qui affiche un exemple de 10 chiffre généré.
-	function affichExemple() {
-		return 'Hello';
 	}
 
 ?>

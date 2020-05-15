@@ -18,8 +18,15 @@
 		#Setter
 		public function setEtat($etat) {$this->etat = $etat;}
 
-		#Méthode
-		# Fonction qui effectue la vérification des données et qui retourne 
+		#Fonction qui regarde si la variable est bien égale à 1,2 ou 0 et retourne false si c'est bon ou bien un message d'erreur 
+		public function verifValue($etat) {
+			if ((int)$etat >= 0 && (int)$etat <= 2 && is_numeric($etat)) {
+				return false;
+			} else {
+				return "Vous avez saisi une valeur différente de 0, 1 ou 2 pour le Boolean à la ligne ".$this->getId().".<br>";
+			}
+		} 
+
 		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
 

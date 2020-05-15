@@ -4,8 +4,6 @@
 
 	if(!isset($_SESSION)) session_start();
 
-	
-
 	#On regarde qui nous envoie des données
 	#Si c'est replay.php, on effectue une requete sql pour récupérer un modèle déjà sauvegarder
 	if (isset($_SESSION['libelle'])) {
@@ -13,11 +11,16 @@
 		$modeleGen = fillFromReplay($_SESSION['libelle']);
 		
 	} 
-	#Si c'es index.php, on rempli juste le tableau
+	#Si c'est index.php, on rempli juste le tableau
 	elseif (isset($_SESSION['nomModele'])) {
 		$modeleGen = array();
 		$modeleGen = fillFromIndex();
 	
+	}
+	#Si c'est la page elle-même qui se rafraichit
+	elseif (isset($_SESSION['_0'])) {
+		$modeleGen = array();
+		$modeleGen = fillFromGenerate();
 	}
 
 	#On vide $_SESSION pour éviter d'avoir des erreurs
@@ -42,13 +45,15 @@
 						<div class="form-group row">
 							<label for="nomModel" class="col-sm-2 col-form-label">Nom du modèle:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nomModele" placeholder="Nom du modèle" value=<?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
+								<input type="text" class="form-control" name="nomModele" placeholder="Nom du modèle" 
+									  value=<?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de Ligne:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nbLigne" placeholder="Nombre de ligne" value=<?php if (isset($modeleGen)) echo $modeleGen['nbLigne']; ?>>
+								<input type="text" class="form-control" name="nbLigne" placeholder="Nombre de ligne" 
+									   value=<?php if (isset($modeleGen)) echo $modeleGen['nbLigne']; ?>>
 							</div>
 						</div>
 						<thead>
@@ -71,10 +76,11 @@
 										$nomChamp = " ";
 									}
 
-									echo '<tr>';	
+									echo '<tr>';
 									echo positionType($modeleGen['nbType'], $modeleGen[$i]->getId(), $i+1);			#Génère la position
 									echo '<th scope="row">'.$modeleGen[$i]->getTypeChamp().'</th>';					#Génère le type
-									echo '<td><input type="text" class="form-control" value ='.$nomChamp.'></td>';	#Génère le nom
+									echo '<td><input type="text" class="form-control" name="'.$modeleGen[$i]->getId().'nom"'.
+										 'value ='.$nomChamp.'></td>';												#Génère le nom
 									echo switchValue($modeleGen[$i]); 												#Génère les valeurs
 									echo '</tr>';
 								}
@@ -93,7 +99,8 @@
 					<hr>
 					<div class="form-row align-items-center">		
 						<div class="col-auto">
-							<input type="text" id="nomFichier" class="form-control" placeholder="nomFichier" value= <?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
+							<input type="text" id="nomFichier" class="form-control" placeholder="nomFichier" 
+									value= <?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
 						</div>
 						<div class="col-auto">
 							<select id="typeFichier" class="form-control">
@@ -105,10 +112,10 @@
 					<hr>
 					<div class="form-row align-items-center">	
 						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-success btn-lg" id="btnGenerer">Générer</button>						
+							<button type="submit" class="btn btn-outline-success btn-lg" name="btnGenerer">Générer</button>						
 						</div>
 						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-info btn-lg" id="btnDownload">Télécharger</button>
+							<button type="submit" class="btn btn-outline-info btn-lg" name="btnDownload">Télécharger</button>
 						</div>
 					</div>
 				</section>
@@ -118,7 +125,7 @@
 	</form>
 	<hr>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<div class="card" style=" margin-left: 10rem;">
 				<div class="card-body">
 					<h5 class="card-title">Console</h5>
@@ -128,23 +135,73 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4" id="console">
+		<div class="col-md-6" id="console">
 			<?php
-				
-				#On vérifie si chaque position est unique puis on update notre variable modeleGen
-				if (checkPosition($modeleGen['nbType'])) {
-					for ($i = 1; $i <= $modeleGen['nbType']; $i++) {
-						$modeleGen[$i-1]->setId($_POST['pos'.$i]);
+				if (isset($_POST['btnGenerer']) || isset($_POST['btnDownload'])) {
+
+					#On parcours chaque type
+					for ($i = 0; $i < $modeleGen['nbType']; $i++) {
+						#On vérifie la validité du nom et on le sauvegarde
+						$nomVerifier = $modeleGen[$i]->verifNom($_POST[$modeleGen[$i]->getId().'nom']);
+						if ($nomVerifier) {
+							echo $nomVerifier;
+						} else {
+							$modeleGen[$i]->setNomChamp(htmlspecialchars($_POST[$modeleGen[$i]->getId().'nom']));
+						}
+
+						#On regarde si c'est un boolean qui n'a qu'un seul champ
+						if ($modeleGen[$i]->getTypeChamp() == "Boolean") {
+							$valueVerifier = $modeleGen[$i]->verifValue($_POST[$modeleGen[$i]->getId()]);
+						} else {				
+							$valueVerifier = $modeleGen[$i]->verifValue($_POST[$modeleGen[$i]->getId()."1"], $_POST[$modeleGen[$i]->getId()."2"]);
+						}
+
+						#En fonction de l'état de retour on affiche une erreur sinon on affecte la valeur
+						if ($valueVerifier) {
+							echo $valueVerifier;
+						} else {
+							if ($modeleGen[$i]->getTypeChamp() == "Boolean") {
+								$modeleGen[$i]->setEtat($_POST[$modeleGen[$i]->getId()]);
+
+							} elseif ($modeleGen[$i]->getTypeChamp() == "Char" || $modeleGen[$i]->getTypeChamp() == "Varchar") {
+								$modeleGen[$i]->setLongueur($_POST[$modeleGen[$i]->getId()."1"]);	
+								$modeleGen[$i]->setFichier($_POST[$modeleGen[$i]->getId()."2"]);
+
+							} else {
+								$modeleGen[$i]->setValMin($_POST[$modeleGen[$i]->getId()."1"]);
+								$modeleGen[$i]->setValMax($_POST[$modeleGen[$i]->getId()."2"]);
+							}
+							
+						}
 					}
-				} else {
-					echo "Vous avez saisie plusieurs fois la même position pour vos types <br>";
+
+					#On vérifie si chaque position est unique puis on update notre variable modeleGen
+					if (checkPosition($modeleGen['nbType'])) {
+						for ($i = 1; $i <= $modeleGen['nbType']; $i++) {
+							$modeleGen[$i-1]->setId($_POST['pos'.$i]);
+						}
+					} else {
+						echo "Vous avez saisi plusieurs fois la même position pour vos types <br>";
+					}
+
+					#Permet de repeupler la variable $_SESSION pour garder les données si on soumet alors qu'il y a une erreur
+					//fillGenerate($modeleGen);
+					
 				}
 
 				#Boucle de vérification
-				for ($i=0; $i < $modeleGen['nbType'] ; $i++) { 
+				/*for ($i=0; $i < $modeleGen['nbType'] ; $i++) { 
 					var_dump($modeleGen[$i]->getId());
 					echo '<br>';
 				}
+
+				foreach ($_SESSION as $key => $value) {
+					var_dump($key);	
+					echo " : ";
+					var_dump($value);
+					echo "<br>";
+				}*/
+
 				
 				
 

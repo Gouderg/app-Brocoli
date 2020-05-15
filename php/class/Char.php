@@ -23,8 +23,14 @@
 		public function setLongueur($longueur) {$this->longueur = $longueur;}
 		public function setFichier($fichier) {$this->fichier = $fichier;}
 
-		#Méthode
-		# Fonction qui effectue la vérification des données et qui retourne 
+		#Fonction qui regarde si les valeurs rentrées sont bonnes en retournant false et renvoie un message d'erreur sinon
+		public function verifValue($longueur, $fichier) {
+			if (is_numeric($longueur) && (int)$longueur >= 0 && (int)$longueur <= 255 || $longueur == NULL && $fichier != 'Aucun') {
+				return false;
+			} else {
+				return "Vous avez saisi une mauvaise valeur pour le Char à la ligne ".$this->getId().".<br>";
+			}
+		} 
 		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
 

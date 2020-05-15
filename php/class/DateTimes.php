@@ -23,8 +23,46 @@
 		public function setValMin($valDateTimeMin) {$this->valDateTimeMin = $valDateTimeMin;}
 		public function setValMax($valDateTimeMax) {$this->valDateTimeMax = $valDateTimeMax;}
 		
-		#Méthode
-		# Fonction qui effectue la vérification des données et qui retourne 
+		#Fonction qui regarde si les valeurs rentrés sont bonnes en retournant false et return un message d'erreur sinon
+		public function verifValue($valMin, $valMax) {
+			#On sépare la date et l'heure
+			$enseMin = explode("_", $valMin);
+			$enseMax = explode("_", $valMax);
+
+			#On sépare les différentes parties de la date et de l'heure
+			$heureMin = explode(":", $enseMin[1]);
+			$heureMax = explode(":", $enseMax[1]);
+			$dateMin = explode("-", $enseMin[0]);
+			$dateMax = explode("-", $enseMax[0]);
+		
+
+			if (preg_match('`^\d{4}-\d{1,2}-\d{1,2}_\d{1,2}:\d{1,2}:\d{1,2}$`', $valMin) &&		#On vérifie la validité de la date
+				preg_match('`^\d{4}-\d{1,2}-\d{1,2}_\d{1,2}:\d{1,2}:\d{1,2}$`', $valMax) && 		
+			   	(int)$heureMin[1] <= 59 && (int)$heureMax[1] <= 59 && 							#On vérifie les secondes						
+			   	(int)$heureMin[2] <= 59 && (int)$heureMax[2] <= 59 &&							#On vérifie les minutes
+			   	(int)$heureMin[0] <= 23 && (int)$heureMax[0] <= 23 && 							#On vérifie les heures
+			   	(int)$dateMin[0] >= 1753 && (int)$dateMax[0] >= 1753 && 						#On vérifie l'année minimal
+				(int)$dateMin[1] <= 12 && (int)$dateMax[1] <= 12 &&								#On vérifie le nombre de mois
+				(int)$dateMin[2] <= 31 && (int)$dateMax[2] <= 31) {								#On vérifie le nombre de jour
+
+				#On calcule l'interval de temps entre les 2 valeurs
+				$valMinNew = new DateTime($enseMin[0].$enseMin[1]);
+				$valMaxNew = new DateTime($enseMax[0].$enseMax[1]);
+				$interval = $valMinNew->diff($valMaxNew);
+				$interval = $interval->format('%R%a')*(24*3600);
+
+				if ($interval < 0) {
+					return "Vous avez saisi une date minimal supérieur à la date maximal pour le Datetime à la ligne ".$this->getId()." <br>";
+				} else {
+					return false;
+				}
+
+			} else {
+				return "Votre saisi de date n'est valide pour le DateTime à la ligne ".$this->getId()." <br>";
+			}
+
+
+		}
 		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
 

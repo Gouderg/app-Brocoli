@@ -23,8 +23,18 @@
 		public function setValMin($valTinyIntMin) {$this->valTinyIntMin = $valTinyIntMin;}
 		public function setValMax($valTinyIntMax) {$this->valTinyIntMax = $valTinyIntMax;}
 
-		#Méthode
-		# Fonction qui effectue la vérification des données et qui retourne 
+		#Fonction qui vérifie si la valeur est correcte 
+		public function verifValue($valMin, $valMax) {
+			if (is_numeric($valMin) && is_numeric($valMax) && (int)$valMin >= -128 && (int)$valMax <= 127) {
+				if ((int)$valMin > $(int)$valMax) {
+					return "Votre valeur minimale est supérieur à votre valeur maximale";
+				} else {
+					return false;
+				}
+			} else {
+				return "Vous avez saisi une mauvaise valeur pour le TinyInt à la ligne ".$this->getId().".<br>";
+			}
+		}
 		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
 
