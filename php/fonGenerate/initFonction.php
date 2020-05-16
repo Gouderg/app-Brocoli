@@ -1,6 +1,6 @@
 <?php 
 	require_once("../php/database.php");
-	session_start();
+	if (!isset($_SESSION)) session_start();
 
 	spl_autoload_register(function ($className) {
 		include('../php/class/'.$className.'.php');

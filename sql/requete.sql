@@ -42,3 +42,24 @@ WHERE libelle = "1_modVictor";
 SELECT type_champ, nom_champ, val_min_nb, val_max_nb, val_min_date, val_max_date, longueur, liste_txt, etat
 FROM champ
 WHERE libelle = "1_modVictor"; 
+
+#Requête qui récupère le libelle associé au chiffre => generate.php
+SELECT libelle
+FROM modele
+WHERE libelle LIKE '1%';
+
+#Requête qui récupère le dernier libelle => generate.php
+SELECT SUBSTR(libelle, 1, INSTR(libelle, "_") - 1) AS id
+FROM modele
+ORDER BY libelle DESC
+LIMIT 1;
+
+#Requête qui supprime toute les champs
+DELETE * 
+FROM champ
+WHERE libelle = "3_modThomas";
+
+#Requête qui update un modele
+UPDATE modele
+SET date_creation = "2020-12-12", nom_table = "HelloWorld"
+WHERE libelle = "3_modThomas";

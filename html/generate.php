@@ -36,6 +36,7 @@
 </head>
 <body>
 	<?php require "header.html"; ?>
+	<?php var_dump($modeleGen['libelle']); ?>
 
 	<form method="POST">
 		<div class="row">
@@ -50,10 +51,17 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de Ligne:</label>
+							<label for="nbLigne" class="col-sm-2 col-form-label">Nombre de ligne:</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" name="nbLigne" placeholder="Nombre de ligne" 
 									   value=<?php if (isset($modeleGen)) echo $modeleGen['nbLigne']; ?>>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="nbLigne" class="col-sm-2 col-form-label">Nom de la table:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="nomTable" placeholder="Nom de la table" 
+									   value=<?php if (isset($modeleGen)) echo $modeleGen['nomTable']; ?>>
 							</div>
 						</div>
 						<thead>
@@ -91,15 +99,15 @@
 			</div>
 			<div class="col-md-4">
 				<hr>
-				<section class="container" id="tabBord">
+				<section class="container">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" id="save">
-						<label class="form-check-label" for="save">Sauvegarder</label>
+						<input class="form-check-input" type="checkbox" name="save">
+						<label class="form-check-label" for="save">Sauvegarder le modèle</label>
 					</div>
 					<hr>
 					<div class="form-row align-items-center">		
 						<div class="col-auto">
-							<input type="text" id="nomFichier" class="form-control" placeholder="nomFichier" 
+							<input type="text" name="nomFichier" class="form-control" placeholder="nomFichier" 
 									value= <?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
 						</div>
 						<div class="col-auto">
@@ -138,12 +146,14 @@
 		<div class="col-md-6" id="console">
 			<?php
 				if (isset($_POST['btnGenerer']) || isset($_POST['btnDownload'])) {
-
+					$isHere = true;
 					#On parcours chaque type
 					for ($i = 0; $i < $modeleGen['nbType']; $i++) {
+
 						#On vérifie la validité du nom et on le sauvegarde
 						$nomVerifier = $modeleGen[$i]->verifNom($_POST[$modeleGen[$i]->getId().'nom']);
 						if ($nomVerifier) {
+							$isHere = false;
 							echo $nomVerifier;
 						} else {
 							$modeleGen[$i]->setNomChamp(htmlspecialchars($_POST[$modeleGen[$i]->getId().'nom']));
@@ -158,21 +168,44 @@
 
 						#En fonction de l'état de retour on affiche une erreur sinon on affecte la valeur
 						if ($valueVerifier) {
+							$isHere = false;
 							echo $valueVerifier;
 						} else {
 							if ($modeleGen[$i]->getTypeChamp() == "Boolean") {
-								$modeleGen[$i]->setEtat($_POST[$modeleGen[$i]->getId()]);
+								$modeleGen[$i]->setEtat(htmlspecialchars($_POST[$modeleGen[$i]->getId()]));
 
 							} elseif ($modeleGen[$i]->getTypeChamp() == "Char" || $modeleGen[$i]->getTypeChamp() == "Varchar") {
-								$modeleGen[$i]->setLongueur($_POST[$modeleGen[$i]->getId()."1"]);	
-								$modeleGen[$i]->setFichier($_POST[$modeleGen[$i]->getId()."2"]);
+								$modeleGen[$i]->setLongueur(htmlspecialchars($_POST[$modeleGen[$i]->getId()."1"]));	
+								$modeleGen[$i]->setFichier(htmlspecialchars($_POST[$modeleGen[$i]->getId()."2"]));
 
-							} else {
-								$modeleGen[$i]->setValMin($_POST[$modeleGen[$i]->getId()."1"]);
-								$modeleGen[$i]->setValMax($_POST[$modeleGen[$i]->getId()."2"]);
+							} elseif ($modeleGen[$i]->getTypeChamp() == "DateTimes") {
+								$dateMin = explode("_", $_POST[$modeleGen[$i]->getId()."1"]);
+								$dateMax = explode("_", $_POST[$modeleGen[$i]->getId()."2"]);
+								$modeleGen[$i]->setValMin($dateMin[0]." ".$dateMin[1]);
+								$modeleGen[$i]->setValMax($dateMax[0]." ".$dateMax[1]);
+
+							}else {
+								$modeleGen[$i]->setValMin(htmlspecialchars($_POST[$modeleGen[$i]->getId()."1"]));
+								$modeleGen[$i]->setValMax(htmlspecialchars($_POST[$modeleGen[$i]->getId()."2"]));
 							}
 							
 						}
+					}
+					#On récupère le nouveau nom du modèle, le nom du téléchargement et le nom de la table
+					if (isset($_POST['nomModele']) && isset($_POST['nomFichier']) && isset($_POST['nomTable'])) {
+						$modeleGen['nomModele'] = htmlspecialchars($_POST['nomModele']);
+						$modeleGen['nomFichier'] = htmlspecialchars($_POST['nomFichier']);
+						$modeleGen['nomTable'] = htmlspecialchars($_POST['nomTable']);
+					} else {
+						echo "Veuillez saisir un nom de fichier, un nom de modèle et un nom de table. <br>";
+					}
+
+					#On vérifie si le nombre de ligne est supérieur à 0 
+					if ((int)$_POST['nbLigne'] > 0) {
+						$modeleGen['nbLigne'] = htmlspecialchars($_POST['nbLigne']);
+					} else {
+						$isHere = false;
+						echo "Votre nombre de ligne doit être supérieur à 0. <br>";
 					}
 
 					#On vérifie si chaque position est unique puis on update notre variable modeleGen
@@ -181,7 +214,14 @@
 							$modeleGen[$i-1]->setId($_POST['pos'.$i]);
 						}
 					} else {
-						echo "Vous avez saisi plusieurs fois la même position pour vos types <br>";
+						$isHere = false;
+						echo "Vous avez saisi plusieurs fois la même position pour vos types. <br>";
+					}
+
+					if ($isHere) {
+						if (isset($_POST['save'])) {
+							echo saveModele($modeleGen);
+						}
 					}
 
 					#Permet de repeupler la variable $_SESSION pour garder les données si on soumet alors qu'il y a une erreur

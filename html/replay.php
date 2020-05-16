@@ -105,13 +105,15 @@
 				$_SESSION = array();
 				if (isset($_POST['generate'])) {
 					$_SESSION['libelle'] = $modele[$nbValid - 1]['libelle'];
-					header("Location: generate.php");
-					exit();
+					#header("Location: generate.php");
+					#exit();
+					echo "<script> window.location.href='generate.php'</script>";
 
 				} elseif (isset($_POST['index'])) {
 					$_SESSION['libelle'] = $modele[$nbValid - 1]['libelle'];
-					header("Location: index.php");
-					exit();
+					echo "<script> window.location.href='index.php'</script>";
+					#header("Location: index.php");
+					#exit();
 
 				} else {
 					echo "Si tu tombes sur ce message, c'est que tu as trouvé une autre façon de soumettre le formulaire bravo";
