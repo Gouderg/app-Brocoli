@@ -38,6 +38,7 @@
 			echo "Problème de connexion à la base de donnée (saveModele)";
 			exit(1);
 		}
+
 		#On récupère la date du jour
 		$dateNow = new DateTime(null, new DateTimeZone('Europe/Paris'));
 		$update = false;
@@ -77,7 +78,7 @@
 
 			#Si update est false, on ajoute un nouveau modèle
 			else {
-				$id = (int)dbRecupLastLibelle($db) + 1;						#On récupère le dernier id et on lui ajoute 1
+				$id = dbRecupLastLibelle($db) + 1;							#On récupère le dernier id et on lui ajoute 1
 				$modeleGen['libelle'] = $id."_".$modeleGen['nomModele'];	#On met le nouveau libelle
 
 				#Requête pour ajouter un modele à la table modèle

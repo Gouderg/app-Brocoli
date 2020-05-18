@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<section class="container">
 					<table class="table" id="tabReplay">
 						<thead>
@@ -65,7 +65,7 @@
 					</table>
 				</section>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-8">
 						<h4>Changer la structure du modèle: </h4>

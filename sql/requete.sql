@@ -49,9 +49,9 @@ FROM modele
 WHERE libelle LIKE '1%';
 
 #Requête qui récupère le dernier libelle => generate.php
-SELECT SUBSTR(libelle, 1, INSTR(libelle, "_") - 1) AS id
+SELECT CONVERT(SUBSTR(libelle, 1, INSTR(libelle, "_") - 1), SIGNED INTEGER) AS id
 FROM modele
-ORDER BY libelle DESC
+ORDER BY id DESC
 LIMIT 1;
 
 #Requête qui supprime toute les champs

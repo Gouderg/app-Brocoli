@@ -27,7 +27,16 @@
 			}
 		} 
 
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
+		#Fonction retournant une valeur aléatoire
+		public function getValAlea() {
+			if ((int)$this->getEtat() == 0) {
+				return 0;
+			} elseif ((int)$this->getEtat() == 1) {
+				return 1;
+			} elseif ((int)$this->getEtat() == 2) {
+				return rand(0,1);
+			}
+		}
 
 
 	}

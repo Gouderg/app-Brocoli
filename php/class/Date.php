@@ -48,8 +48,16 @@
 			}
 
 		}
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
+		#Fonction qui retourne une valeur aléatoire
+		public function getValAlea() {
+			$dateMin = explode("-", $this->getValMin());
+			$dateMax = explode("-", $this->getValMax());
+			$annee = rand((int)$dateMin[0], (int)$dateMax[0]);
+			$mois = rand(1, 12);
+			$jour = rand(1, 30);
 
+			return '"'.$annee.'-'.$mois.'-'.$jour.'"';
+		}
 
 	}
 

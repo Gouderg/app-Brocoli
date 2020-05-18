@@ -31,9 +31,21 @@
 				return "Vous avez saisi une mauvaise valeur pour le Char à la ligne ".$this->getId().".<br>";
 			}
 		} 
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
 
-
+		#Fonction retournant une valeur aléatoire
+		public function getValAlea() {
+			if ($this->getFichier() == "Aucun") {
+				$chars = "0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN";
+				$string = '';
+				for ($i = 0; $i < $this->getLongueur; $i++) {
+					$string .= $chars[rand(0, strlen($chars) - 1)];
+				}
+				return '"'.$string.'"';
+			} else {
+				$mot = file('../fichier/liste/'.$this->getFichier().'.txt');
+				return '"'.str_replace("\n", "", $mot[rand(0, count($mot) - 1)]).'"';
+			}	
+		}
 	}
 
 ?>

@@ -36,8 +36,10 @@
 			}
 		}
 
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
-
+		#Fonction qui retourne une valeur aléatoire
+		public function getValAlea() {
+			return rand((int)$this->getValMin(), (int)$this->getValMax());
+		}
 
 	}
 

@@ -63,7 +63,16 @@
 
 
 		}
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
+		#Fonction qui retourne une valeur aléatoire
+		public function getValAlea() {
+			$dateTimeMin = new DateTime($this->getValMin());
+			$dateTimeMax = new DateTime($this->getValMax());
+			$new = rand($dateTimeMin->getTimestamp(), $dateTimeMax->getTimestamp());
+			$dateNew = new Datetime();
+			$dateNew->setTimestamp($new);
+			return '"'.$dateNew->format("Y-m-d H:i:s").'"';
+		}
+ 
 
 
 	}

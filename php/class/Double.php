@@ -35,7 +35,12 @@
 				return "La valeur saisi n'est pas numérique (essayer de remplacer la virgule par un point)";
 			}	
 		}
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
+		
+		#Fonction qui retourne une valeur aléatoire
+		public function getValAlea() {
+			return rand((int)$this->getValMin()*100, (int)$this->getValMax()*100)/100;
+		}
+
 
 
 	}

@@ -1,6 +1,7 @@
 <?php
 	require_once("../php/fonGenerate/initFonction.php");
-	require_once("../php/fonGenerate/checkFonction.php");
+	require_once("../php/fonGenerate/checkAndSaveFonction.php");
+	require_once("../php/fonGenerate/genAndDownFonction.php");
 
 	if(!isset($_SESSION)) session_start();
 
@@ -36,7 +37,6 @@
 </head>
 <body>
 	<?php require "header.html"; ?>
-	<?php var_dump($modeleGen['libelle']); ?>
 
 	<form method="POST">
 		<div class="row">
@@ -108,10 +108,10 @@
 					<div class="form-row align-items-center">		
 						<div class="col-auto">
 							<input type="text" name="nomFichier" class="form-control" placeholder="nomFichier" 
-									value= <?php if (isset($modeleGen)) echo $modeleGen['nomModele']; ?>>
+									value= <?php if (isset($modeleGen)) echo $modeleGen['libelle']; ?>>
 						</div>
 						<div class="col-auto">
-							<select id="typeFichier" class="form-control">
+							<select name="typeFichier" class="form-control">
 								<option selected>.sql</option>
 								<option>.csv</option>
 							</select>
@@ -138,13 +138,21 @@
 				<div class="card-body">
 					<h5 class="card-title">Console</h5>
 					<p class="card-text">
-						
+						<?php
+							#Si le fichier existe on affiche quelque chose
+							$exemple = checkAndDisplay($modeleGen);
+							foreach ($exemple as $fields) {
+								echo $fields."<br>";
+							}
+						 ?>
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6" id="console">
 			<?php
+
+
 				if (isset($_POST['btnGenerer']) || isset($_POST['btnDownload'])) {
 					$isHere = true;
 					#On parcours chaque type
@@ -218,9 +226,27 @@
 						echo "Vous avez saisi plusieurs fois la même position pour vos types. <br>";
 					}
 
+					#Si on a validé toutes les conditions précédentes on regarde ce que l'utilisateur veut faire
 					if ($isHere) {
+						#S'il a coché la case sauvegardé, on sauvegarde le modèle en cours 
 						if (isset($_POST['save'])) {
 							echo saveModele($modeleGen);
+						}
+
+						#Si le bouton généré est activé
+						if (isset($_POST['btnGenerer'])) {
+							generateData($modeleGen, $_POST['typeFichier']);
+							echo "Votre jeu de donnée à bien été généré et est prêt à être téléchargé. <br>";
+						}	
+
+						#Si le bouton téléchargé est activé
+						if (isset($_POST['btnDownload'])) {
+							#Si le fichier existe
+							if (1) {
+
+							} else {
+								echo "Veuillez généner d'abord le fichier avant de le télécharger. <br>";
+							}
 						}
 					}
 

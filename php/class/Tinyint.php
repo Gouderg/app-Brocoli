@@ -35,7 +35,11 @@
 				return "Vous avez saisi une mauvaise valeur pour le TinyInt à la ligne ".$this->getId().".<br>";
 			}
 		}
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
+		
+		#Fonction qui retourne une valeur aléatoire
+		public function getValAlea() {
+			return rand((int)$this->getValMin(), (int)$this->getValMax());
+		}
 
 
 	}

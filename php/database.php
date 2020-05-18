@@ -171,9 +171,9 @@
 	#Fonction récupérant l'id du dernier libelle
 	function dbRecupLastLibelle($db) {
 		try {
-			$request = 'SELECT SUBSTR(libelle, 1, INSTR(libelle, "_") - 1)
+			$request = 'SELECT CONVERT(SUBSTR(libelle, 1, INSTR(libelle, "_") - 1), SIGNED INTEGER) as id
 						FROM modele
-						ORDER BY libelle DESC
+						ORDER BY id DESC
 						LIMIT 1';
 			$statement = $db->prepare($request);
 			$statement->execute();
@@ -235,8 +235,8 @@
 			$statement->bindParam(':fichier', $fichier, PDO::PARAM_STR);
 			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
 			$statement->bindParam(':type_champ', $type, PDO::PARAM_STR);
-			
 			$statement->execute();
+
 		} catch (PDOException $exception){
 			error_log('Request error: ' .$exception->getMessage());
 			return false;
@@ -318,6 +318,43 @@
 			return false;
 		}
 		return true;
+	}
+
+	#Fonction qui met à jour le chemin vers le fichier quand il est généré
+	function dbUpdatePathFile($db, $libelle, $nom, $extension) {
+		$path = '../fichier/downloadFic/'.$nom.$extension;
+		try {
+			$request = 'UPDATE modele
+						SET chemin_fichier = :chemin
+						WHERE libelle = :libelle';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':chemin', $path, PDO::PARAM_STR);
+			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->execute();
+
+		} catch (PDOException $exception) {
+			error_log('Request error : ' .$exception->getMessage());
+			return false;
+		}
+		return true; 
+	}
+
+	#Fonction qui va chercher le chemin du fichier du libelle
+	function dbRequestPathFile($db, $libelle) {
+		try {
+			$request = 'SELECT chemin_fichier
+						FROM modele
+						WHERE libelle = :libelle';
+			$statement = $db->prepare($request);
+			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->execute();
+			$result = $statement->fetchColumn();
+
+		} catch (PDOException $exception) {
+			error_log("Request error : " .$exception->getMessage());
+			return false;
+		}
+		return $result;
 	} 
 
  ?>

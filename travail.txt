@@ -117,4 +117,14 @@ Pour chaque champ, faire une fonction dans chaque classe et on appelle cette fon
 =>Peut être faire un isset du bouton et de rappeler les fonctions de initFonction? attention les valeurs pas bonnes doivent rester (meme si je pense que c'est bon).
 Rajouter des names à chaque champ sinon c'est impossible de récupérer la valeur
 
+----------------------------------------------------------------------------------
 
+Problème:
+	- Problème de header qui s'envoie avant
+	- SESSION qui désérialise mal, ne trouve plus la classe associé
+	- libelle impossible à gérer > 10 -> J'ai Réussi héhéhhé
+	- Vérification sur les autres navigateur (chrome ne marche pas)
+
+A faire:
+	- Générer un fichier avec des données OK fait
+	- Proposer un téléchargement

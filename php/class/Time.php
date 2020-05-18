@@ -46,9 +46,16 @@
 				return "Votre saisi d'heure n'est valide pour le Time à la ligne ".$this->getId()." <br>";
 			}
 		}
-		# Fonction retournant une ligne SQL/CSV permettant la génération 
-
-
+		
+		#Fonction qui retourne une valeur aléatoire
+		public function getValAlea() {
+			$timeMin = explode(':', $this->getValMin());
+			$timeMax = explode(':', $this->getValMax());
+			$sec = rand(0, 60);
+			$min = rand(0, 60);
+			$heure = rand((int)$timeMin[0], (int)$timeMax[0]);
+			return '"'.$heure.':'.$min.':'.$sec.'"';
+		}
 	}
 
 ?>
