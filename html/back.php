@@ -13,7 +13,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CC6600;">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="true"><img src="../img/icon/Menu.png" width="50%"></a>
+				<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="true"><img src="../fichier/img/icon/Menu.png" width="50%"></a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="../html/index.php">Index</a>
 					<a class="dropdown-item" href="../html/replay.php">Rejouer un modèle</a>
@@ -42,6 +42,33 @@
 			echo "Requête incorrecte ou table inexistante (dbRequestTypeActif)";
 			exit(1);
 		}
+
+		#On regarde si le formulaire est soumis
+		if (isset($_POST['maj'])) {
+			$i = 0;
+			#Remet les bonnes valeurs dans le tableau après saisie
+			foreach ($champType as $champ) {
+				switch ($_POST['actif'.$champ['type_champ']]) {
+					case 'Actif':
+						if ($champ['actif'] != '1') $champType[$i]['actif'] = '1';
+					break;
+
+					case 'Inactif':
+						if ($champ['actif'] != '0') $champType[$i]['actif'] = '0';
+					break;
+				}
+				$i += 1;
+			}
+
+			#Envoie une requête à la base de donnée pour Update chaque type
+			foreach($champType as $champ) {
+				$result = dbUpdateType($db, $champ['type_champ'], (int)$champ['actif']);
+				if (!$result) {
+					echo "Problème d'update de la base de donnée (dbUpdateType)";
+					exit(1);
+				}
+			}
+		}				
 	?>
 
 	<br>
@@ -73,46 +100,12 @@
 				</tbody>
 			</table>
 			<div class="row">
-				<div class="form-check col">
-					<input type="checkbox" name="check">
-					<label class="form-check-label" for="check">Valider la saisie</label>
-				</div>	
 				<div class="col">
-					<button type="submit" class="btn btn-primary" id="maj">Mettre à jour</button>
+					<button type="submit" class="btn btn-primary" name="maj">Mettre à jour</button>
 				</div>
 			</div>
 		</div>
 	</form>
-	<?php
-
-		#Obligé de mettre un radio pour éviter un ping pong entre les valeurs à cause du reload des valeurs
-		if (isset($_POST['check'])) {
-			$i = 0;
-			#Remet les bonnes valeurs dans le tableau après saisie
-			foreach ($champType as $champ) {
-				switch ($_POST['actif'.$champ['type_champ']]) {
-					case 'Actif':
-						if ($champ['actif'] != '1') $champType[$i]['actif'] = '1';
-					break;
-
-					case 'Inactif':
-						if ($champ['actif'] != '0') $champType[$i]['actif'] = '0';
-					break;
-				}
-				$i += 1;
-			}
-
-			#Envoie une requête à la base de donnée pour Update chaque type
-			foreach($champType as $champ) {
-				$result = dbUpdateType($db, $champ['type_champ'], (int)$champ['actif']);
-				if (!$result) {
-					echo "Problème d'update de la base de donnée (dbUpdateType)";
-					exit(1);
-				}
-			}
-		}				
-
-	?>
 
 	<br><br><br><br>
 	<footer class="fixed-bottom" style="background-color: #CC6600;">

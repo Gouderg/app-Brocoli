@@ -3,9 +3,9 @@
 
 	function generateData($modeleGen, $typeFichier) {
 
-		$filename = '../fichier/downloadFic/'.$modeleGen['nomFichier'].$typeFichier;   #On stocke le chemin
-		$file = fopen($filename, 'a+');												#On ouvre le fichier en lecture/écriture
-		ftruncate($file, 0);														#On vide le fichier s'il y a dejà quelque chose dedans
+		$filename = '../fichier/downloadFic/'.$modeleGen['nomFichier'].$typeFichier;   	#On stocke le chemin
+		$file = fopen($filename, 'a+');										#On ouvre le fichier en lecture/écriture
+		ftruncate($file, 0);												#On vide le fichier s'il y a dejà quelque chose dedans
 
 		#Si le fichier est .sql
 		if ($typeFichier == ".sql") {
@@ -77,40 +77,19 @@
 		
 		fclose($file);
 
-		#Connexion à la base de donnée
-		$db = dbConnect();
-		if (!$db) {
-			echo "Problème de connexion à la base de donnée";
-			exit(1);
-		}
-
-		#On met à jour le chemin dans la base de donnée
-		$gen = dbUpdatePathFile($db, $modeleGen['libelle'], $modeleGen['nomFichier'], $_POST['typeFichier']);
-		if (!$gen) {
-			echo "Requête incorrecte (dbUpdateCheminFile).";
-			exit(1);
-		}
+		return $filename; 
 	}
 
 
 	#Fonction qui affiche un exemple de ce qui à été généré
-	function checkAndDisplay($modeleGen) {
-		#Connexion à la base de donnée
-		$db = dbConnect();
-		if (!$db) {
-			echo "Problème de connexion à la base de donnée";
-			exit(1);
-		}
-
-		$path = dbRequestPathFile($db, $modeleGen['libelle']);
-		if (!$path) {
-			return '';
-		}
+	function checkAndDisplay($path) {
+		#Si le fichier n'a pas encore été crée
+		if (!$path) return false;
 
 		$file = fopen($path, 'r');
 		$chaine = array();
 		$i = 0;
-		while (!feof() && $i != 10) {
+		while (!feof($file) && $i != 5) {
 			array_push($chaine, fgets($file));
 			$i += 1;
 		}

@@ -29,11 +29,21 @@
 			exit();
 		}
 
-		$modGen['libelle'] = $dataMod['libelle'];
+		$modGen['libelle'] = $dataMod['libelle'];							#On stocke le libelle
 		$temp = explode('_', $dataMod['libelle']);
-		$modGen['nomModele'] = $temp[1];
-		$modGen['nomTable'] = $dataMod['nom_table'];
-		$modGen['nbLigne'] = 0;
+		$modGen['nomModele'] = $temp[1];									#On stocke le nom du Modele
+		$modGen['nomTable'] = $dataMod['nom_table'];						#On stocke le nom de la table
+		$modGen['nbLigne'] = 0;												#On stocke le nombre de ligne
+		$date = new DateTime(null, new DateTimeZone('Europe/Paris'));
+		$modGen['pathFichier'] = $dataMod['chemin_fichier']; 				#On stocke le chemin du fichier
+		if ($modGen['pathFichier']) {
+			$path = explode("/", $modGen['pathFichier']);
+			$modGen['nomFichier'] = $path[3];
+		} else {
+			$modGen['nomFichier'] = $temp[1]."_".$date->format("Y-m-d_H:i:s");
+		}
+
+
 
 		$j = 0;
 		foreach ($valueMod as $value) {
@@ -104,22 +114,9 @@
 		$_SESSION['nomTable'] = $modGen['nomTable'];
 		$_SESSION['nbLigne'] = $modGen['nbLigne'];
 		$modGen['nbType'] = $j;
-		return $modGen;
-	}
-
-	#Fonction qui permet de garder les données quand on rafraichis la page
-	function fillFromGenerate() {
-
-		$modGen['libelle'] = $_SESSION['libelle'];
-		$modGen['nomModele'] = $_SESSION['nomModele'];
-		$modGen['nomTable'] = $_SESSION['nomTable'];
-		$modGen['nbLigne'] = $_SESSION['nbLigne'];
-		$modGen['nbType'] = $_SESSION['nbType'];
-
-		for ($i = 0; $i < $_SESSION['nbType']; $i++) {
-
-			array_push($modGen, $_SESSION['_'.$i]);
-		}
+		$date = new DateTime(null, new DateTimeZone('Europe/Paris'));
+		$modGen['nomFichier'] = $modGen['nomModele']."_".$date->format("Y-m-d_H:i:s");
+		$modGen['pathFichier'] = NULL;
 		return $modGen;
 	}
 

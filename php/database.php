@@ -137,7 +137,7 @@
 	#Fonction récupérant le libelle et le nom de la table
 	function dbRequestDataGen($db, $libelle) {
 		try {
-			$request = 'SELECT libelle, nom_table
+			$request = 'SELECT libelle, nom_table, chemin_fichier
 						FROM modele
 						WHERE libelle = :libelle';
 			$statement = $db->prepare($request);
@@ -187,12 +187,12 @@
 	}
 
 	#Fonction ajoutant un modèle à la table modèle 
-	function dbAddModele($db, $libelle, $table, $dateCreation) {
+	function dbAddModele($db, $libelle, $table, $dateCreation, $path) {
 		try {
-			$request = 'INSERT INTO modele (libelle, nom_table, date_creation)
-						VALUES (:libelle, :table, :dateCreation)';
+			$request = 'INSERT INTO modele	VALUES (:libelle, :pathFichier, :table, :dateCreation)';
 			$statement = $db->prepare($request);
 			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+			$statement->bindParam(':pathFichier', $path, PDO::PARAM_STR);
 			$statement->bindParam(':table', $table, PDO::PARAM_STR);
 			$statement->bindParam(':dateCreation', $dateCreation, PDO::PARAM_STR);
 			$statement->execute();
@@ -302,14 +302,15 @@
 	}
 
 	#Fonction qui met à jour le nouveau modele
-	function dbUpdateMod($db, $libelle, $nomTable, $dateCreation) {
+	function dbUpdateMod($db, $libelle, $nomTable, $dateCreation, $pathFichier) {
 		try {
 			$request = 'UPDATE modele
-						SET nom_table = :table, date_creation = :dateCreation
+						SET nom_table = :table, date_creation = :dateCreation, chemin_fichier = :pathFichier
 						WHERE libelle = :libelle';
 			$statement = $db->prepare($request);
 			$statement->bindParam(':table', $nomTable, PDO::PARAM_STR);
 			$statement->bindParam(':dateCreation', $dateCreation, PDO::PARAM_STR);
+			$statement->bindParam(':pathFichier', $pathFichier, PDO::PARAM_STR);
 			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
 			$statement->execute();
 
@@ -318,25 +319,6 @@
 			return false;
 		}
 		return true;
-	}
-
-	#Fonction qui met à jour le chemin vers le fichier quand il est généré
-	function dbUpdatePathFile($db, $libelle, $nom, $extension) {
-		$path = '../fichier/downloadFic/'.$nom.$extension;
-		try {
-			$request = 'UPDATE modele
-						SET chemin_fichier = :chemin
-						WHERE libelle = :libelle';
-			$statement = $db->prepare($request);
-			$statement->bindParam(':chemin', $path, PDO::PARAM_STR);
-			$statement->bindParam(':libelle', $libelle, PDO::PARAM_STR);
-			$statement->execute();
-
-		} catch (PDOException $exception) {
-			error_log('Request error : ' .$exception->getMessage());
-			return false;
-		}
-		return true; 
 	}
 
 	#Fonction qui va chercher le chemin du fichier du libelle

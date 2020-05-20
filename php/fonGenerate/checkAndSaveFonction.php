@@ -69,7 +69,8 @@
 					echo 'Requête incorrecte (dbDeleteChamp)';
 					exit(1);
 				}
-				$updateMod = dbUpdateMod($db, $modeleGen['libelle'], $modeleGen['nomTable'], $dateNow->format("Y-m-d"));
+				$updateMod = dbUpdateMod($db, $modeleGen['libelle'], $modeleGen['nomTable'], $dateNow->format("Y-m-d"), 
+											$modeleGen['pathFichier']);
 				if (!$updateMod) {
 					echo 'Requête incorrecte (dbUpdateMod)';
 					exit(1);
@@ -82,7 +83,8 @@
 				$modeleGen['libelle'] = $id."_".$modeleGen['nomModele'];	#On met le nouveau libelle
 
 				#Requête pour ajouter un modele à la table modèle
-				$addMod = dbAddModele($db, $modeleGen['libelle'], $modeleGen['nomTable'], $dateNow->format("Y-m-d"));
+				$addMod = dbAddModele($db, $modeleGen['libelle'], $modeleGen['nomTable'], $dateNow->format("Y-m-d"), 
+										$modeleGen['pathFichier']);
 				if (!$addMod) {
 					echo "Requête incorrecte (dbAddModele)";
 					exit(1);
@@ -109,8 +111,10 @@
 					case 'DateTimes':
 					case 'Date':
 					case 'Time':
-						$addValue = dbAddValDateTime($db, $modeleGen[$i]->getNomChamp(), $modeleGen[$i]->getValMin(), 
-													$modeleGen[$i]->getValMax(), $modeleGen['libelle'], $modeleGen[$i]->getTypeChamp());
+						$min = explode("_", $modeleGen[$i]->getValMin());
+						$max = explode("_", $modeleGen[$i]->getValMax());
+						$addValue = dbAddValDateTime($db, $modeleGen[$i]->getNomChamp(), $min[0]." ".$min[1], $max[0]." ".$max[1], 
+													$modeleGen['libelle'], $modeleGen[$i]->getTypeChamp());
 					break;
 
 					case 'Boolean':
