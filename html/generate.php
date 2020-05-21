@@ -11,13 +11,11 @@
 	if (isset($_SESSION['libelle'])) {
 		$modeleGen = array();
 		$modeleGen = fillFromReplay($_SESSION['libelle']);
-		//$_SESSION = array();
 	} 
 	#Si c'est index.php, on rempli juste le tableau
 	elseif (isset($_SESSION['nomModele'])) {
 		$modeleGen = array();
 		$modeleGen = fillFromIndex();
-		//$_SESSION = array();
 	}
 
 	/**** VERIFICATION DES DONNEES ****/
@@ -108,6 +106,7 @@
 			#Si le bouton généré est activé
 			if (isset($_POST['btnGenerer'])) {
 				$modeleGen['pathFichier'] = generateData($modeleGen, $_POST['typeFichier']);
+				$_SESSION['pathFichier'] = $modeleGen['pathFichier'];
 				$console .= "Votre jeu de donnée à bien été généré et est prêt à être téléchargé. <br>";
 			}	
 
@@ -115,14 +114,14 @@
 			if (isset($_POST['btnDownload'])) {
 				
 				if ($modeleGen['pathFichier']) {
-					header('Content-disposition: attachment; filename="'.$pathFile.'"');
+					header('Content-disposition: attachment; filename="'.$modeleGen['pathFichier'].'"');
 					header('Content-Type: application/force-download');
 					header('Content-Transfer-Encoding: fichier');
-					header('Content-Length: '.filesize($pathFile));
+					header('Content-Length: '.filesize($modeleGen['pathFichier']));
 					header('Pragma: no-cache');
 					header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
 					header('Expires: 0');
-					readfile($pathFile);
+					readfile($modeleGen['pathFichier']);
 					exit();
 
 				} else {

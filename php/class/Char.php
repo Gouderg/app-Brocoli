@@ -43,7 +43,8 @@
 				return '"'.$string.'"';
 			} else {
 				$mot = file('../fichier/liste/'.$this->getFichier().'.txt');
-				return '"'.str_replace("\n", "", $mot[rand(0, count($mot) - 1)]).'"';
+				$mot = str_replace("\n", "", $mot[rand(0, count($mot) - 1)]);
+				return '"'.str_replace("'", "''", $mot).'"';
 			}	
 		}
 	}

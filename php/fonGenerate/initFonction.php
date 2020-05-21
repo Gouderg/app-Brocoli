@@ -40,7 +40,8 @@
 			$path = explode("/", $modGen['pathFichier']);
 			$modGen['nomFichier'] = $path[3];
 		} else {
-			$modGen['nomFichier'] = $temp[1]."_".$date->format("Y-m-d_H:i:s");
+			$modGen['pathFichier'] = $_SESSION['pathFichier'];
+			$modGen['nomFichier'] = $temp[1]."_".$date->format("YmdHis");
 		}
 
 
@@ -115,7 +116,7 @@
 		$_SESSION['nbLigne'] = $modGen['nbLigne'];
 		$modGen['nbType'] = $j;
 		$date = new DateTime(null, new DateTimeZone('Europe/Paris'));
-		$modGen['nomFichier'] = $modGen['nomModele']."_".$date->format("Y-m-d_H:i:s");
+		$modGen['nomFichier'] = $modGen['nomModele']."_".$date->format("YmdHis");
 		$modGen['pathFichier'] = NULL;
 		return $modGen;
 	}
@@ -123,7 +124,7 @@
 	#Fonction qui retourne le select de position 
 	function positionType($nbType, $posType, $numero) {
 
-		$boutonSelect = '<td class="col-1"><select class="form-control" name= "pos'.$numero.'">';
+		$boutonSelect = '<td><select class="form-control" name= "pos'.$numero.'">';
 		$select = '';
 		for ($i = 1; $i <= $nbType; $i++) {
 			if ($posType == $i) {
