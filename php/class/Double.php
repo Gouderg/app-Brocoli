@@ -27,12 +27,12 @@
 		public function verifValue($valMin, $valMax) {
 			if (is_numeric($valMin) && is_numeric($valMax)) {
 					if (floatval($valMin) > floatval($valMax)) {
-						return "La valeur minimale est supérieur à la valeur maximale";
+						return "La valeur minimale est supérieur à la valeur maximale. <br>";
 					} else {
 						return false;
 					}
 			} else {
-				return "La valeur saisi n'est pas numérique (essayer de remplacer la virgule par un point)";
+				return "La valeur saisi n'est pas numérique (essayer de remplacer la virgule par un point). <br>";
 			}	
 		}
 		

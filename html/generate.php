@@ -2,16 +2,17 @@
 	require_once("../php/fonGenerate/initFonction.php");
 	require_once("../php/fonGenerate/checkAndSaveFonction.php");
 	require_once("../php/fonGenerate/genAndDownFonction.php");
-
 	if(!isset($_SESSION)) session_start();
 
 	/**** INITIALISATION DE LA PAGE ****/
+
 	#On regarde qui nous envoie des données
-	#Si c'est replay.php, on effectue une requete sql pour récupérer un modèle déjà sauvegarder
+	#Si c'est replay.php, on effectue une requete sql pour récupérer un modèle déjà sauvegardé
 	if (isset($_SESSION['libelle'])) {
 		$modeleGen = array();
 		$modeleGen = fillFromReplay($_SESSION['libelle']);
 	} 
+
 	#Si c'est index.php, on rempli juste le tableau
 	elseif (isset($_SESSION['nomModele'])) {
 		$modeleGen = array();
@@ -19,6 +20,7 @@
 	}
 
 	/**** VERIFICATION DES DONNEES ****/
+
 	$console = "";
 	if (isset($_POST['btnGenerer']) || isset($_POST['btnDownload'])) {
 		$isHere = true;
@@ -61,12 +63,10 @@
 					$modeleGen[$i]->setValMin($dateMin[0]."_".$dateMin[1]);
 					$modeleGen[$i]->setValMax($dateMax[0]."_".$dateMax[1]);
 
-
 				}else {
 					$modeleGen[$i]->setValMin(htmlspecialchars($_POST[$modeleGen[$i]->getId()."1"]));
 					$modeleGen[$i]->setValMax(htmlspecialchars($_POST[$modeleGen[$i]->getId()."2"]));
-				}
-					
+				}	
 			}
 		}
 		#On récupère le nouveau nom du modèle, le nom du téléchargement et le nom de la table
@@ -75,6 +75,7 @@
 			$modeleGen['nomFichier'] = htmlspecialchars($_POST['nomFichier']);
 			$modeleGen['nomTable'] = htmlspecialchars($_POST['nomTable']);
 		} else {
+			$isHere = false;
 			$console .= "Veuillez saisir un nom de fichier, un nom de modèle et un nom de table. <br>";
 		}
 
@@ -100,7 +101,7 @@
 		if ($isHere) {
 			#S'il a coché la case sauvegardé, on sauvegarde le modèle en cours 
 			if (isset($_POST['save'])) {
-				$console = saveModele($modeleGen);
+				$console .= saveModele($modeleGen);
 			}
 
 			#Si le bouton généré est activé
@@ -112,7 +113,7 @@
 
 			#Si le bouton téléchargé est activé
 			if (isset($_POST['btnDownload'])) {
-				
+				#On vérifie si le fichier  a été crée
 				if ($modeleGen['pathFichier']) {
 					header('Content-disposition: attachment; filename="'.$modeleGen['pathFichier'].'"');
 					header('Content-Type: application/force-download');
@@ -244,7 +245,7 @@
 						<h5 class="card-title">Console</h5>
 						<p class="card-text">
 							<?php
-								#Si le fichier existe on affiche quelque chose
+								#Si le fichier existe on affiche un exemple du fichier qui a été généré
 								$exemple = checkAndDisplay($modeleGen['pathFichier']);
 								if ($exemple) {
 									foreach ($exemple as $fields) {

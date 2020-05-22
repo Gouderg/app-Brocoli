@@ -96,13 +96,14 @@
 
 	#Fonction qui récupère et ordonne les donnée envoyé par index.php
 	function fillFromIndex() {
-		$modGen['libelle'] = null;
-		$modGen['nomModele'] = $_SESSION['nomModele'];
-		$modGen['nomTable'] = $_SESSION['nomTable'];
-		$modGen['nbLigne'] = $_SESSION['nbLigne'];
-		unset($_SESSION['nomModele'], $_SESSION['nomTable'], $_SESSION['nbLigne']);
+		$modGen['libelle'] = null;													#Stock le libelle du modèle
+		$modGen['nomModele'] = $_SESSION['nomModele'];								#Stock le nom du modèle
+		$modGen['nomTable'] = $_SESSION['nomTable'];								#Stock le nom de la table
+		$modGen['nbLigne'] = $_SESSION['nbLigne'];									#Stock le nombre de ligne
+		unset($_SESSION['nomModele'], $_SESSION['nomTable'], $_SESSION['nbLigne']);	 
 
 		$j = 0;
+		#Parcours tous les types saisies à la page index et créer un objet correspondant à la valeur de key
 		foreach ($_SESSION as $key => $value) {
 			for ($i = 0; $i < $value; $i++) {
 				$j++;
@@ -114,16 +115,20 @@
 		$_SESSION['nomModele'] = $modGen['nomModele'];
 		$_SESSION['nomTable'] = $modGen['nomTable'];
 		$_SESSION['nbLigne'] = $modGen['nbLigne'];
-		$modGen['nbType'] = $j;
+		
+		$modGen['nbType'] = $j;														#Stock le nombre de type
 		$date = new DateTime(null, new DateTimeZone('Europe/Paris'));
-		$modGen['nomFichier'] = $modGen['nomModele']."_".$date->format("YmdHis");
-		$modGen['pathFichier'] = NULL;
+		$modGen['nomFichier'] = $modGen['nomModele']."_".$date->format("YmdHis");	#Stock le nom du fichier
+		if (isset($_SESSION['pathFichier'])) {
+			$modGen['pathFichier'] = $_SESSION['pathFichier'];
+		} else {
+			$modGen['pathFichier'] = NULL;
+		}
 		return $modGen;
 	}
 
 	#Fonction qui retourne le select de position 
 	function positionType($nbType, $posType, $numero) {
-
 		$boutonSelect = '<td><select class="form-control" name= "pos'.$numero.'">';
 		$select = '';
 		for ($i = 1; $i <= $nbType; $i++) {

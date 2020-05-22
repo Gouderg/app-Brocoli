@@ -29,14 +29,14 @@
 	<?php 
 		require_once("../php/database.php");
 
-		#Connexion à la base
+		#Connexion à la base de donnée
 		$db = dbConnect();
 		if (!$db) {
 			echo "Problème de connexion avec la base de donnée";
 			exit(1); 
 		}
 
-		#On récupère le tableau des champs
+		#On récupère sous forme de tableau la table type_champ
 		$champType = dbRequestTypeActif($db);
 		if (!$champType) {
 			echo "Requête incorrecte ou table inexistante (dbRequestTypeActif)";

@@ -2,15 +2,17 @@
 	require_once("../php/database.php");
 	require_once("../php/class/typeChamp.php");
 	require_once("../php/fonIndex/checkForm.php");
-
 	if(!isset($_SESSION)) session_start();
 	
+	/**** INITIALISATION DE LA PAGE ****/
+
 	$libelle = '';
+	#On regarde si on reçoit des données de replay et si oui on récupère le libelle
 	if (isset($_SESSION['libelle'])) {
 		$libelle = $_SESSION['libelle'];
 	}
 	$_SESSION = array();
-	/**** INITIALISATION DE LA PAGE ****/
+	
 
 	#Connexion à la base de donnée
 	$db = dbConnect();
@@ -139,6 +141,7 @@
 				<h2>Nombre de champs types: </h2>
 				<hr>
 				<?php
+					#On parcours chaque type et on le place sur la page
 					foreach ($arrayTypeClass as $class) {
 						if ($class->getActif() == 1) {
 							if ($i % 3 == 0) {

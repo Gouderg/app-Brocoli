@@ -39,12 +39,12 @@
 				$interval = $interval->format('%R%a')*(24*3600);
 
 				if ($interval < 0) {
-					return "Vous avez saisi une date minimal supérieur à la date maximal pour la Date à la ligne ".$this->getId().'<br>';
+					return "Vous avez saisi une date minimal supérieur à la date maximal pour la Date à la ligne ".$this->getId().'.<br>';
 				}
 				return false;
 
 			} else {
-				return "Votre saisi de date n'est valide pour la Date à la ligne ".$this->getId().'<br>';
+				return "Votre saisi de date n'est valide pour la Date à la ligne ".$this->getId().'.<br>';
 			}
 
 		}

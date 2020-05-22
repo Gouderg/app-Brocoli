@@ -1,7 +1,8 @@
 <?php
 	require_once("../php/database.php"); 
 	if(!isset($_SESSION)) session_start();
-	#Fonction qui vérifie si la position est bonne
+
+	#Fonction qui vérifie si la position des types est bonne
 	function checkPosition($nbType) {
 		$verifTemp = array();
 		for($i = 1; $i <= $nbType; $i++) {
@@ -11,22 +12,6 @@
 			array_push($verifTemp, $_POST['pos'.$i]);
 		}
 		return true;
-	}
-
-	#Fonction qui rempli la variable Session permettant de sauvegarder les données rentrées quand on refresh la page
-	function fillGenerate($modeleGen) {
-		$_SESSION = array();
-
-		$_SESSION['libelle'] = $modeleGen['libelle'];
-		$_SESSION['nomModele'] = $modeleGen['nomModele'];
-		$_SESSION['nomTable'] = $modeleGen['nomTable'];
-		$_SESSION['nbLigne'] = $modeleGen['nbLigne'];
-		$_SESSION['nbType'] = $modeleGen['nbType'];
-
-		for ($i = 0; $i < $modeleGen['nbType']; $i++) {
-			$_SESSION['_'.$i] = array();
-			array_push($_SESSION['_'.$i], $modeleGen[$i]);
-		}
 	}
 
 	#Fonction qui sauvegarde le modèle en cours
@@ -42,6 +27,7 @@
 		#On récupère la date du jour
 		$dateNow = new DateTime(null, new DateTimeZone('Europe/Paris'));
 		$update = false;
+
 		#On arrive à 3 cas de figures différents
 		#Si le libelle existe et que le nom du modèle n'a pas changé, on update la base
 		#Si le libelle existe et que le nom du modèle a changé, on crée un nouveau modèle
@@ -91,7 +77,7 @@
 				}
 			}
 			
-			#Boucle pour ajouter chaque champ à la table champ
+			#Boucle pour ajouter chaque champ à la table champ (Commun aux 3 cas)
 			for ($i = 0; $i < $modeleGen['nbType']; $i++) {
 				switch ($modeleGen[$i]->getTypeChamp()) {
 
@@ -130,7 +116,7 @@
 				}
 			}	
 		}
-		return "Sauvegarde du modèle effectué <br>";
+		return "Sauvegarde du modèle effectué. <br>";
 	}
 
 ?>

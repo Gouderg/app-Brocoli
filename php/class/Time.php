@@ -33,17 +33,18 @@
 			   	(int)$heureMin[2] <= 59 && (int)$heureMax[2] <= 59 &&		#On vérifie les minutes
 			   	(int)$heureMin[0] <= 23 && (int)$heureMax[0] <= 23){		#On vérifie les heures
 			   	
+			   	#On regarde si la différence entre les deux times est positive
 				$valMinNew = new DateTime($valMin);
 				$valMaxNew = new DateTime($valMax);
 				$interval = $valMaxNew->getTimestamp() - $valMinNew->getTimestamp();
 
 				if ($interval < 0) {
-					return "Vous avez saisi un temps minimal supérieur à un temps maximal pour le Time à la ligne ".$this->getId()." <br>";
+					return "Vous avez saisi un temps minimal supérieur à un temps maximal pour le Time à la ligne ".$this->getId().". <br>";
 				} else {
 					return false;
 				}
 			} else {
-				return "Votre saisi d'heure n'est valide pour le Time à la ligne ".$this->getId()." <br>";
+				return "Votre saisi d'heure n'est valide pour le Time à la ligne ".$this->getId().". <br>";
 			}
 		}
 		

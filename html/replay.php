@@ -1,7 +1,6 @@
 <?php 
-	if(!isset($_SESSION)) session_start(); 
-
 	require_once("../php/database.php");
+	if(!isset($_SESSION)) session_start(); 
 
 	#Connexion à la base de donnée
 	$db = dbConnect();
@@ -93,10 +92,10 @@
 								foreach($modele as $nom) {
 									$info = explode("_", $nom['libelle']); #On sépare le nombre et le nom du modèle
 									echo '<tr>';
-									echo '<th scope="row">'.(int)$info[0].'</th>';
-									echo '<td>'.$info[1].'</td>';
-									echo '<td>'.$nom["nbChamp"].'</td>';
-									echo '<td>'.$nom['date_creation'].'</td>';
+									echo '<th scope="row">'.(int)$info[0].'</th>';		#Numéro du modèle
+									echo '<td>'.$info[1].'</td>';						#Nom du modèle
+									echo '<td>'.$nom["nbChamp"].'</td>';				#Nombre de champs
+									echo '<td>'.$nom['date_creation'].'</td>';			#Date de création du fichier
 									echo '<td> <div class="form-check">
 												<input type="checkbox" class="form-check-input" name="check'.$info[0].'"></div>';
 									echo '</tr>';

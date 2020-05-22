@@ -27,6 +27,7 @@
 		public function verifValue($valMin, $valMax) {
 			if (preg_match('`^\d{4}-\d{1,2}-\d{1,2}_\d{1,2}:\d{1,2}:\d{1,2}$`', $valMin) &&		#On vérifie la validité de la date
 				preg_match('`^\d{4}-\d{1,2}-\d{1,2}_\d{1,2}:\d{1,2}:\d{1,2}$`', $valMax)) {
+				
 				#On sépare la date et l'heure
 				$enseMin = explode("_", $valMin);
 				$enseMax = explode("_", $valMax);
@@ -51,15 +52,15 @@
 					$interval = $interval->format('%R%a')*(24*3600);
 					
 					if ($interval < 0) {
-						return "Vous avez saisi une date minimal supérieur à la date maximal pour le Datetime à la ligne ".$this->getId()." <br>";
+						return "Vous avez saisi une date minimal supérieur à la date maximal pour le Datetime à la ligne ".$this->getId().". <br>";
 					} else {
 						return false;
 					}
 				} else {
-					return "Votre saisi de date n'est valide pour le DateTime à la ligne ".$this->getId()." <br>";
+					return "Votre saisi de date n'est valide pour le DateTime à la ligne ".$this->getId().". <br>";
 				}
 			} else {
-				return "Votre saisi de date n'est valide pour le DateTime à la ligne ".$this->getId()." <br>";
+				return "Votre saisi de date n'est valide pour le DateTime à la ligne ".$this->getId().". <br>";
 			}
 
 

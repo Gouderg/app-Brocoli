@@ -27,7 +27,7 @@
 		public function verifValue($valMin, $valMax) {
 			if (is_numeric($valMin) && is_numeric($valMax) && (int)$valMin >= -2147483648 && (int)$valMax <= 2147483647) {
 				if ((int)$valMin > (int)$valMax) {
-					return "Votre valeur minimale est supérieur à votre valeur maximale";
+					return "Votre valeur minimale est supérieur à votre valeur maximale. <br>";
 				} else {
 					return false;
 				}

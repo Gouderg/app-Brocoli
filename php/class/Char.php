@@ -37,7 +37,7 @@
 			if ($this->getFichier() == "Aucun") {
 				$chars = "0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN";
 				$string = '';
-				for ($i = 0; $i < $this->getLongueur; $i++) {
+				for ($i = 0; $i < $this->getLongueur(); $i++) {
 					$string .= $chars[rand(0, strlen($chars) - 1)];
 				}
 				return '"'.$string.'"';
